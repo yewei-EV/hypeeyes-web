@@ -23,7 +23,7 @@
 	color: #fff;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@media screen and (min-width: breakpoint-min(sm, $grid-breakpoints)) {
 	.search #results .card .card-body.card-padding {
 		padding-bottom: 0;
 		padding-top: 10px;

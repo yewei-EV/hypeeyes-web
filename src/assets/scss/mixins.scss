@@ -1,5 +1,5 @@
 .no-select {
-	@include user-select(none);
+	user-select: none;
 }
 
 .pointer {

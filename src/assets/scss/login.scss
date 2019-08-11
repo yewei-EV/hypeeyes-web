@@ -11,9 +11,9 @@
 		position: relative;
 		z-index: 1;
 
-		@media (max-width: $screen-xs-max) {
+		@include media-breakpoint-down(xs) {
 			padding: 20px;
-			width: unquote("calc(100% - 60px)");
+			width: calc(100% - 60px);
 		}
 
 		.checkbox {

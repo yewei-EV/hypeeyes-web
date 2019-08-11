@@ -1,4 +1,4 @@
-@media (min-width: $screen-lg-min) {
+@include media-breakpoint-up(lg) {
   .sw-toggled #header {
 		padding-left: 15px;
 	}
@@ -32,7 +32,7 @@
 	box-shadow: 0 0 10px rgba(51, 51, 51, .38);
 	top: 65px;
 	left: 0;
-	height: unquote("calc(100% - 5px)");
+	height: calc(100% - 5px);
 	-webkit-transform: translate3d(-250px,0,0);
 	transform: translate3d(-250px,0,0);
 	z-index: 5;
@@ -85,7 +85,7 @@
 body:not(.sw-toggled) #sidebar {
 	box-shadow: 0 0 10px rgba(51, 51, 51, .38);
 
-	@media (min-width: $screen-lg-min) {
+	@include media-breakpoint-up(lg) {
 		-webkit-transition: all;
 		-moz-transition: all;
 		-o-transition: all;
@@ -96,7 +96,7 @@ body:not(.sw-toggled) #sidebar {
 }
 
 body.sw-toggled #sidebar {
-	@media (min-width: $screen-lg-min) {
+	@include media-breakpoint-up(lg) {
 		-webkit-transform: translate3d(0, 0, 0) !important;
 		transform: translate3d(0, 0, 0) !important;
 		opacity: 1 !important;
@@ -104,7 +104,7 @@ body.sw-toggled #sidebar {
 		box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
 	}
 
-	@media (max-width: $screen-lg-min) {
+	@include media-breakpoint-up(lg) {
 		box-shadow: 0 0 10px rgba(51, 51, 51, .38);
 	}
 }

@@ -493,7 +493,7 @@ body {
 		}
 
 		.chat-modal {
-			@media (max-width: $screen-xs-max) {
+			@include media-breakpoint-down(xs) {
 				.chat-footer {
 					border-top: 1px solid $border-color-dark;
 					background-color: $chat-footer-bg-color-dark;
@@ -517,7 +517,7 @@ body {
 			}
 		}
 
-		@media (min-width: $screen-sm-min) {
+		@include media-breakpoint-up(sm) {
 			.chat-modal {
 				.modal-dialog {
 					.modal-content {
@@ -572,7 +572,7 @@ body {
 
 				.user-info {
 					h3 {
-						@media (max-width: $screen-xs-max) {
+						@include media-breakpoint-down(xs) {
 							color: $body-color-dark;
 						}
 					}

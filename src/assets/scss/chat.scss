@@ -75,8 +75,8 @@
 		-webkit-transition-duration: 250ms;
 		transition-duration: 250ms;
 
-		@media (max-width: $screen-xs-max) {
-			height: unquote("calc(100% - 55px)");
+		@include media-breakpoint-down(xs) {
+			height: calc(100% - 55px);
 			-webkit-transform: translate3d(-240px, 55px, 0);
 			transform: translate3d(-240px, 55px, 0);
 			opacity: 0;
@@ -181,7 +181,7 @@
 		}
 
 		.chat-search-list {
-			max-height: unquote("calc(100% - 94px)") !important;
+			max-height: calc(100% - 94px) !important;
 		}
 
 		#chat-search-menu-trigger {
@@ -204,11 +204,11 @@
 	.ms-body {
 		background-color: $chat-content-bg-color;
 
-		@media (min-width: $screen-sm-min) {
+		@include media-breakpoint-up(sm) {
 			padding-left: 300px;
 		}
 
-		@media (max-width: $screen-xs-max) {
+		@include media-breakpoint-down(xs) {
 			overflow: hidden;
 		}
 	}
@@ -280,7 +280,7 @@
 		margin: 0 !important;
 
 		textarea {
-			width: unquote("calc(100% - 60px)");
+			width: calc(100% - 60px);
 			font-size: 13px;
 			border: 0;
 			padding: 10px 8px;
@@ -289,8 +289,8 @@
 			background-color: $body-bg-color;
 			color: $body-color;
 
-			@media (max-width: $screen-xs-max) {
-				width: unquote("calc(100% - 60px)");
+			@include media-breakpoint-down(xs) {
+				width: calc(100% - 60px);
 				font-size: 12px;
 				padding: 10px 0;
 			}
@@ -307,7 +307,7 @@
 		  	background-color: initial;
 		  	color: $anchor-color;
 
-		  	@media (max-width: $screen-xs-max) {
+		  	@include media-breakpoint-down(xs) {
 		  		font-size: 20px;
 		  		width: 50px;
 		  	}
@@ -380,7 +380,7 @@
 		border-radius: 2px;
 		display: inline-block;
 
-		@media (min-width: $screen-sm-min) {
+		@include media-breakpoint-up(sm) {
 			max-width: 70%;
 		}
 	}
@@ -400,7 +400,7 @@
 		.lv-header-alt {
 			padding: 12px;
 
-			@media (max-width: $screen-xs-max) {
+			@include media-breakpoint-down(xs) {
 				padding: 10px;
 			}
 		}
@@ -494,7 +494,7 @@
 	float: left;
 	margin: 1px 0 0 -7px;
 
-	@media (min-width: $screen-sm-min) {
+	@include media-breakpoint-up(sm) {
 		display: none;
 	}
 
@@ -514,7 +514,7 @@
 
 .chat-modal {
 
-	@media (max-width: $screen-xs-max) {
+	@include media-breakpoint-down(xs) {
 		width: 100%;
 		height: 100%;
 		top: 0 !important;
@@ -721,7 +721,7 @@
 
 
 /* chat modal style updates start */
-@media (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
 	.chat-modal {
 		left: auto !important;
 		right: 5px;
@@ -738,7 +738,7 @@
 					padding: 15px 5px;
 
 					.users-tag-container {
-						max-width: unquote("calc(100% - 75px)");
+						max-width: calc(100% - 75px);
 					}
 				}
 
@@ -777,7 +777,7 @@
 	}
 }
 
-@media (max-width: $screen-sm-max) {
+@include media-breakpoint-down(sm) {
 	.chats {
 		margin-left: -10px;
 		margin-right: -10px;

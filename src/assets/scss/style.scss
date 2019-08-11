@@ -75,15 +75,15 @@ body #content {
 	padding-top: 15px;
 }
 
-@media (min-width: $screen-lg-min) {
+@include media-breakpoint-up(lg) {
 	body.sw-toggled #content {
 		padding: 30px 0px 30px 150px;
 	}
 }
 
-@media (min-width: $screen-lg-min) {
+@include media-breakpoint-up(lg) {
 	body.sw-toggled #content>.container {
-		width: unquote("calc(100% - 30px)");
+		width: calc(100% - 30px);
 	}
 }
 

@@ -115,7 +115,7 @@ input:active, input:focus {
 
 		&.fg-toggled:after {
 			margin-left: 10px;
-			width: unquote("calc(100% - 20px)");
+			width: calc(100% - 20px);
 		}
 	}
 }

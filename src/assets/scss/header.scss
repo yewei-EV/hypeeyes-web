@@ -35,7 +35,7 @@
 		vertical-align: top;
 
 		&.menu-header {
-			@media (min-width: $screen-sm-min) {
+			@include media-breakpoint-up(sm) {
 				display: none;
 			}
 		}
@@ -67,15 +67,15 @@
 	}
 
 	.logo.menu-in-header {
-		@media (min-width: $screen-md-min) {
+		@include media-breakpoint-up(md) {
 			margin-left: 15px;
 		}
 
-		@media (max-width: $screen-sm-max) {
+		@include media-breakpoint-down(sm) {
 			margin-left: 15px;
 		}
 
-		@media (max-width: $screen-xs-max) {
+		@include media-breakpoint-down(xs) {
 			margin-left: 0px;
 		}
 	}

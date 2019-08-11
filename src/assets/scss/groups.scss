@@ -85,7 +85,7 @@
 }
 
 
-@media (max-width: $screen-xs-max) {
+@include media-breakpoint-down(xs) {
 	.row.groups .col-lg-8 {
 		margin-top: 10px;
 	}
@@ -193,7 +193,7 @@
 	}
 
 	.card-body.card-padding {
-		@media (min-width: $screen-md-min) {
+		@include media-breakpoint-up(md) {
 			padding: 18px;
 		}
 	}

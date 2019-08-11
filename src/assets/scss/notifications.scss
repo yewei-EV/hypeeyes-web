@@ -85,25 +85,25 @@
 	}
 }
 
-@media (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
 	.notifications .listview.lv-lg .lv-item .media-body>a {
 		font-size: 14px;
 	}
 }
 
-@media (max-width: $screen-xs-max) {
+@include media-breakpoint-down(xs) {
 	.notifications .listview.lv-lg .lv-item .media-body>a {
 		font-size: 13px;
 	}
 }
 
-@media (min-width: $screen-xs-min) {
+@include media-breakpoint-up(xs) {
 	.notifications .listview.lv-lg .lv-item {
 		padding: 10px 35px 10px 25px;
 	}
 }
 
-@media (max-width: $screen-sm-max) {
+@include media-breakpoint-down(sm) {
 	.notifications .listview.lv-lg .lv-item {
 		padding: 10px 35px 10px 25px;
 	}
