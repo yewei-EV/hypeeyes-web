@@ -8,7 +8,7 @@
 		width: 104px;
 		margin: 0 4px 10px;
 
-		@include media-breakpoint-up(sm) and (max-width: $screen-sm-max) {
+		@include media-breakpoint-between(sm, sm) {
 			margin: 0 0 10px;
 		}
 
