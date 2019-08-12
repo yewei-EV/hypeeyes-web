@@ -11,8 +11,7 @@ import { Topic } from '../../shared/models/topic';
 })
 export class CategoryService {
 
-  private url = Config.apiUrl + 'categories';
-  private url2 = Config.apiUrl + 'category';
+  private url = Config.apiUrl + '/categories';
   constructor(private http: HttpClient) { }
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url).pipe(map((categories: Category[]) => this.convert(categories)));
@@ -22,7 +21,7 @@ export class CategoryService {
     return categories.map(category => Object.assign(new Category(), category));
   }
 
-  getTopics(category: Category): Observable<Topic[]> {
-    return this.http.get<Topic[]>(`${this.url2}/${category.cid}/topics`).pipe(map((topics: Topic[]) => Topic.convert(topics)));
+  getTopicIds(category: Category): Observable<number[]> {
+    return this.http.get<number[]>(`${this.url}/${category.cid}/topics`);
   }
 }

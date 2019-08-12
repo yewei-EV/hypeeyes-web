@@ -5,7 +5,8 @@ import { CategoryService } from '../entities/category/category.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Topic } from '../shared/models/topic';
 import { TopicService } from '../entities/topic/topic.service';
-import { Observable } from 'rxjs';
+import {forkJoin, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -19,10 +20,28 @@ export class HomeComponent implements OnInit {
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService) { }
 
   ngOnInit() {
-    this.categoryService.getAllCategories().subscribe(categories => this.categories = categories);
+    this.categoryService.getAllCategories().subscribe(categories => {
+      this.categories = categories;
+      this.categories.map(category => {
+        if (!category.topics) {
+          category.topics = [];
+        }
+        this.getTopicIds(category).subscribe(ids => {
+          ids.map(id => {
+            this.getTopicById(id).subscribe(topic => {
+              category.topics.push(topic);
+            });
+          });
+        });
+      });
+    });
   }
 
-  getTopics(category: Category): Observable<Topic[]> {
-    return this.categoryService.getTopics(category);
+  getTopicIds(category: Category): Observable<number[]> {
+    return this.categoryService.getTopicIds(category);
+  }
+
+  getTopicById(id: number): Observable<Topic> {
+    return this.topicService.getById(id);
   }
 }

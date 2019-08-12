@@ -1,5 +1,5 @@
 {
-  "/hypeeyes/api/": {
+  "/hypeeyes/api": {
     "target": "http://localhost:4567",
     "secure": false
   },
