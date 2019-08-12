@@ -1,0 +1,48 @@
+<!-- IF !config.categoriesAsList -->
+<div class="categories row" [ngClass]="{'display-animation': !removeCategoriesAnimation}">
+  <!-- BEGIN categories -->
+  <div *ngFor="let category of categories" component="categories/category" [attr.data-cid]="category.cid" [class]="category.class">
+    <div class="category-card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())" *ngFor="let topic of getTopics(category)| async">
+      <a [href]="topic.getLink()" itemprop="url" target="_blank">
+          <div class="category-card-body">
+            <ul class="category-counts float-right">
+              <li>
+                <i class="fa fa-book"></i><span class="human-readable-number" [title]="topic.viewCount"></span>
+              </li>
+              <li>
+                <i class="fa fa-pencil"></i><span class="human-readable-number" [title]="topic.postCount"></span>
+              </li>
+            </ul>
+            <h4 [innerHTML]="topic.title"></h4>
+            <div class="category-description" [innerHTML]="topic.title"></div>
+          </div>
+        </a>
+        <div class="category-card-footer">
+          <!-- BEGIN posts -->
+          <!-- IF @first -->
+          <div component="category/posts">
+            <div class="float-left hidden-xs user-avatar">
+              <a [href]="topic.user.getLink()">
+                <!-- IF categories.posts.user.picture -->
+                <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
+                  <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username" [title]="topic.user.username"/>
+                </ng-container>
+                <!-- ELSE -->
+                <ng-template #userNoIcon>
+                  <div class="user-icon" title="{categories.posts.user.username}" [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
+                </ng-template>
+                <!-- ENDIF categories.posts.user.picture -->
+              </a>
+            </div>
+            <div class="topic-title">
+              <a [href]="topic.getLink()">{{topic.title}}</a>
+            </div>
+          </div>
+          <!-- ENDIF @first -->
+          <!-- END posts -->
+        </div>
+    </div>
+  </div>
+  <!-- END categories -->
+</div>
+<!-- ENDIF !config.categoriesAsList -->

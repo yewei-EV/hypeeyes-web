@@ -70,28 +70,28 @@
 	display: block;
 }
 
-.dropdown .dropdown-menu:not([data-animation]).pull-right, .bootstrap-select .dropdown-menu:not([data-animation]).pull-right, .btn-group .dropdown-menu:not([data-animation]).pull-right, .dropdown .dropdown-menu:not([data-animation]).dropdown-menu-right, .bootstrap-select .dropdown-menu:not([data-animation]).dropdown-menu-right, .btn-group .dropdown-menu:not([data-animation]).dropdown-menu-right {
+.dropdown .dropdown-menu:not([data-animation]).float-right, .bootstrap-select .dropdown-menu:not([data-animation]).float-right, .btn-group .dropdown-menu:not([data-animation]).float-right, .dropdown .dropdown-menu:not([data-animation]).dropdown-menu-right, .bootstrap-select .dropdown-menu:not([data-animation]).dropdown-menu-right, .btn-group .dropdown-menu:not([data-animation]).dropdown-menu-right {
 	-webkit-transform-origin: top right;
 	-moz-transform-origin: top right;
 	-ms-transform-origin: top right;
 	transform-origin: top right;
 }
 
-.dropdown .dropdown-menu:not([data-animation]):not(.pull-right):not(.dropdown-menu-right), .bootstrap-select .dropdown-menu:not([data-animation]):not(.pull-right):not(.dropdown-menu-right), .btn-group .dropdown-menu:not([data-animation]):not(.pull-right):not(.dropdown-menu-right) {
+.dropdown .dropdown-menu:not([data-animation]):not(.float-right):not(.dropdown-menu-right), .bootstrap-select .dropdown-menu:not([data-animation]):not(.float-right):not(.dropdown-menu-right), .btn-group .dropdown-menu:not([data-animation]):not(.float-right):not(.dropdown-menu-right) {
 	-webkit-transform-origin: top left;
 	-moz-transform-origin: top left;
 	-ms-transform-origin: top left;
 	transform-origin: top left;
 }
 
-.dropup .dropdown-menu:not([data-animation]).pull-right, .dropup .dropdown-menu:not([data-animation]).dropdown-menu-right {
+.dropup .dropdown-menu:not([data-animation]).float-right, .dropup .dropdown-menu:not([data-animation]).dropdown-menu-right {
 	-webkit-transform-origin: bottom right;
 	-moz-transform-origin: bottom right;
 	-ms-transform-origin: bottom right;
 	transform-origin: bottom right;
 }
 
-.dropup .dropdown-menu:not([data-animation]):not(.pull-right):not(.dropdown-menu-right) {
+.dropup .dropdown-menu:not([data-animation]):not(.float-right):not(.dropdown-menu-right) {
 	-webkit-transform-origin: bottom left;
 	-moz-transform-origin: bottom left;
 	-ms-transform-origin: bottom left;

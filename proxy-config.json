@@ -1,0 +1,7 @@
+{
+  "/hypeeyes/api/": {
+    "target": "http://localhost:4567",
+    "secure": false
+  },
+  "logLevel": "debug"
+}
