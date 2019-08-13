@@ -78,9 +78,12 @@
 	}
 }
 
-//use mixins
-.user-icon {
+@mixin user-icon-default() {
 	@include user-icon(35px, 1.9rem);
+}
+
+.user-icon {
+  @include user-icon(35px, 1.9rem);
 }
 
 .user-avatar {

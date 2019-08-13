@@ -1,39 +1,47 @@
-<!-- IF !config.categoriesAsList -->
-<div class="categories row" [ngClass]="{'display-animation': !removeCategoriesAnimation}">
-  <!-- BEGIN categories -->
-  <div *ngFor="let category of categories" component="categories/category" [attr.data-cid]="category.cid" [class]="category.class">
-    <div class="category-card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())" *ngFor="let topic of category.topics">
+<div [ngClass]="{'display-animation': !removeCategoriesAnimation}">
+  <div *ngFor="let category of categories" [attr.data-cid]="category.cid">
+    <div style="display: flex;">
+      <h4 [innerHTML]="category.name"></h4>
+      <hr style="height: 20px; border-left: 2px solid #dddddd; border-top: 0;margin: 5px 10px 0 10px;">
+      <span class="pt-1" [innerHTML]="category.descriptionParsed"></span>
+    </div>
+    <div class="row no-wrap m-auto" style="width: 90%;">
+    <div class="topic" [ngClass]="category.class" *ngFor="let topic of category.topics">
+      <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
         <a [href]="topic.getLink()" itemprop="url" target="_blank">
-            <div class="category-card-body">
-              <ul class="category-counts float-right">
-                <li>
-                  <i class="fa fa-book"></i><span class="human-readable-number" [title]="topic.viewCount"></span>
-                </li>
-                <li>
-                  <i class="fa fa-pencil"></i><span class="human-readable-number" [title]="topic.postCount"></span>
-                </li>
-              </ul>
-              <h4 [innerHTML]="topic.title"></h4>
-              <div class="category-description" [innerHTML]="topic.title"></div>
+          <div class="card-body">
+            <ul class="counts float-right">
+              <li>
+                <i class="fa fa-book"></i><span class="human-readable-number">{{topic.viewCount}}</span>
+              </li>
+              <li>
+                <i class="fa fa-pencil"></i><span class="human-readable-number">{{topic.postCount}}</span>
+              </li>
+            </ul>
+            <div class="card-img"><img src="../../assets/images/12345.jpg" alt=""></div>
+          </div>
+        </a>
+        <div class="card-footer">
+          <div>
+            <div class="float-left hidden-xs user-avatar">
+              <a [href]="topic.user.getLink()">
+                <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
+                  <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
+                       [title]="topic.user.username"/>
+                </ng-container>
+                <ng-template #userNoIcon>
+                  <div class="user-icon" [title]="topic.user.username"
+                       [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
+                </ng-template>
+              </a>
             </div>
-          </a>
-          <div class="category-card-footer">
-            <div component="category/posts">
-              <div class="float-left hidden-xs user-avatar">
-                <a [href]="topic.user.getLink()">
-                  <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
-                    <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username" [title]="topic.user.username"/>
-                  </ng-container>
-                  <ng-template #userNoIcon>
-                    <div class="user-icon" [title]="topic.user.username" [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
-                  </ng-template>
-                </a>
-              </div>
-              <div class="topic-title">
-                <a [href]="topic.getLink()">{{topic.user.picture}}</a>
-              </div>
+            <div class="title">
+              <a [href]="topic.getLink()">{{topic.title}}</a>
             </div>
           </div>
+        </div>
       </div>
+    </div>
+    </div>
   </div>
 </div>

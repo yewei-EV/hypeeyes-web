@@ -1,0 +1,13 @@
+.counts {
+  display: flex;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 12px;
+  li {
+    span {
+      margin: 0 5px;
+    }
+  }
+}
+

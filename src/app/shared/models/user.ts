@@ -27,7 +27,12 @@ export class User {
     return this['icon:text'];
   }
 
+  public static convert(user) {
+    return Object.assign(new User(), user);
+  }
+
   getLink() {
     return Config.relativePath + 'user/' + this.userSlug;
   }
+
 }

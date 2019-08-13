@@ -19,6 +19,7 @@ export class Category {
 
 
   public getStyle() {
+    return '';
     const style = [];
 
     if (this.bgColor) {

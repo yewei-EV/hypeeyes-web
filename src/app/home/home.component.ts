@@ -7,6 +7,7 @@ import { Topic } from '../shared/models/topic';
 import { TopicService } from '../entities/topic/topic.service';
 import {forkJoin, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import { Post } from '../shared/models/post';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
           ids.map(id => {
             this.getTopicById(id).subscribe(topic => {
               category.topics.push(topic);
+              this.topicService.getMainPostById(topic.tid).subscribe(post => topic.posts = [post]);
             });
           });
         });
