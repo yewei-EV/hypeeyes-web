@@ -1,11 +1,11 @@
 <div [ngClass]="{'display-animation': !removeCategoriesAnimation}">
   <div *ngFor="let category of categories" [attr.data-cid]="category.cid">
-    <div style="display: flex;">
+    <div style="display: flex; padding:15px;">
       <h4 [innerHTML]="category.name"></h4>
       <hr style="height: 20px; border-left: 2px solid #dddddd; border-top: 0;margin: 5px 10px 0 10px;">
       <span class="pt-1" [innerHTML]="category.descriptionParsed"></span>
     </div>
-    <div class="row no-wrap m-auto" style="width: 90%;">
+    <div class="row no-wrap m-auto">
     <div class="topic" [ngClass]="category.class" *ngFor="let topic of category.topics">
       <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
         <a [href]="topic.getLink()" itemprop="url" target="_blank">
@@ -18,7 +18,9 @@
                 <i class="fa fa-pencil"></i><span class="human-readable-number">{{topic.postCount}}</span>
               </li>
             </ul>
-            <div class="card-img"><img src="../../assets/images/12345.jpg" alt=""></div>
+            <div class="card-img">
+              <img [src]="getImg(topic.posts)" alt="">
+            </div>
           </div>
         </a>
         <div class="card-footer">

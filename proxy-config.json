@@ -1,7 +1,7 @@
-{
-  "/hypeeyes/api": {
+[
+  {
+    "context": ["/hypeeyes/api", "/assets"],
     "target": "http://localhost:4567",
     "secure": false
-  },
-  "logLevel": "debug"
-}
+  }
+]
