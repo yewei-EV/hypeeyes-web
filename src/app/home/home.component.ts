@@ -5,9 +5,9 @@ import { CategoryService } from '../entities/category/category.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Topic } from '../shared/models/topic';
 import { TopicService } from '../entities/topic/topic.service';
-import {forkJoin, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Post } from '../shared/models/post';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +18,27 @@ export class HomeComponent implements OnInit {
   categories: Category[];
   removeCategoriesAnimation = Config.removeCategoriesAnimation;
   regexp = new RegExp(/<img[ ]+src="([^"]*)"/);
+  public config: SwiperConfigInterface = {
+    direction: 'horizontal',
+    loop: true,
+    keyboard: true,
+    mousewheel: true,
+    scrollbar: false,
+    navigation: true,
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    autoplay: true,
+    effect: 'coverflow',
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+    observer: true,
+    centeredSlides: true,
+    observeParents: true,
+  };
+  firstTopics: Topic[] = [];
 
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService) { }
 
@@ -29,9 +50,13 @@ export class HomeComponent implements OnInit {
           category.topics = [];
         }
         this.getTopicIds(category).subscribe(ids => {
+          const index = +ids[0];
           ids.map(id => {
             this.getTopicById(id).subscribe(topic => {
               category.topics.push(topic);
+              if (+topic.tid === index) {
+                this.firstTopics.push(topic);
+              }
               this.topicService.getMainPostById(topic.tid).subscribe(post => topic.posts = [post]);
             });
           });
