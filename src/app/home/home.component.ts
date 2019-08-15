@@ -17,8 +17,7 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 export class HomeComponent implements OnInit {
   categories: Category[];
   removeCategoriesAnimation = Config.removeCategoriesAnimation;
-  regexp = new RegExp(/<img[ ]+src="([^"]*)"/);
-  public config: SwiperConfigInterface = {
+  config: SwiperConfigInterface = {
     direction: 'horizontal',
     loop: true,
     keyboard: true,
@@ -43,19 +42,25 @@ export class HomeComponent implements OnInit {
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService) { }
 
   ngOnInit() {
+    const topics = [];
     this.categoryService.getAllCategories().subscribe(categories => {
       this.categories = categories;
       this.categories.map(category => {
         if (!category.topics) {
           category.topics = [];
         }
+        const indexList = [];
         this.getTopicIds(category).subscribe(ids => {
           const index = +ids[0];
+          indexList.push(index);
           ids.map(id => {
             this.getTopicById(id).subscribe(topic => {
               category.topics.push(topic);
-              if (+topic.tid === index) {
-                this.firstTopics.push(topic);
+              if (indexList.indexOf(+topic.tid) >= 0) {
+                topics.push(topic);
+              }
+              if (topics.length === categories.length) {
+                this.firstTopics = topics.sort((a: Topic, b: Topic) => a.cid - b.cid);
               }
               this.topicService.getMainPostById(topic.tid).subscribe(post => topic.posts = [post]);
             });
@@ -74,14 +79,9 @@ export class HomeComponent implements OnInit {
   }
 
   getImg(posts: Post[]) {
-    let img = 'http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/assets/uploads/system/site-logo.jpg';
     if (posts && posts.length > 0) {
-      const content = posts[0].content;
-      const result = this.regexp.exec(content);
-      if (result && result.length > 1) {
-        img = result[1];
-      }
+      return posts[0].firstImg;
     }
-    return img;
+    return 'http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/assets/uploads/system/site-logo.png';
   }
 }
