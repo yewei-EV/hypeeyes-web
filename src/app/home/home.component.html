@@ -17,7 +17,8 @@
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
 </div>
-<div [ngClass]="{'display-animation': !removeCategoriesAnimation}">
+<div [ngClass]="{'display-animation': !removeCategoriesAnimation}" style="width: 100%; position: relative;">
+  <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 1200px;">
   <div *ngFor="let category of categories">
     <div style="display: flex; padding:15px;">
       <h4 [innerHTML]="category.name"></h4>
@@ -64,5 +65,6 @@
       </div>
     </div>
     </div>
+  </div>
   </div>
 </div>
