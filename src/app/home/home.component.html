@@ -2,7 +2,7 @@
   <div class="swiper-container" [swiper]="config">
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let topic of firstTopics">
-        <div><img [src]="getImg(topic.posts)" alt=""></div>
+        <div *ngIf="getImg(topic.posts)"><img [src]="getImg(topic.posts)" alt=""></div>
       </div>
     </div>
     <div class="swiper-pagination"></div>
@@ -10,7 +10,6 @@
     <div class="swiper-button-next"></div>
   </div>
 </ng-container>
-{{firstTopics.length}}
 <div [ngClass]="{'display-animation': !removeCategoriesAnimation}">
   <div *ngFor="let category of categories">
     <div style="display: flex; padding:15px;">
@@ -23,14 +22,6 @@
         <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
           <a [href]="topic.getLink()" itemprop="url" target="_blank">
             <div class="card-body">
-              <ul class="counts float-right">
-                <li>
-                  <i class="fa fa-book"></i><span class="human-readable-number">{{topic.viewCount}}</span>
-                </li>
-                <li>
-                  <i class="fa fa-pencil"></i><span class="human-readable-number">{{topic.postCount}}</span>
-                </li>
-              </ul>
               <div class="card-img">
                 <img [src]="getImg(topic.posts)" alt="">
               </div>

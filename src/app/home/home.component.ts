@@ -82,6 +82,5 @@ export class HomeComponent implements OnInit {
     if (posts && posts.length > 0) {
       return posts[0].firstImg;
     }
-    return 'http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/assets/uploads/system/site-logo.png';
   }
 }
