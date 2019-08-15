@@ -1,70 +1,57 @@
-<div class="swiper-container" [swiper]="config">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide" ><a href="http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/api/topic/4/%E6%BD%AE%E7%9B%AE%E7%BB%86%E8%B5%8F-travis-scott-x-air-jordan-1-low">
-      <img src="http://s2.dgtle.com/portal/201907/21/004142besl2o2kel7vs7i1.jpg" alt="">
-    </a></div>
-    <div class="swiper-slide" ><a href="http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/api/topic/9/%E4%B8%89%E6%AC%BE%E9%85%8D%E8%89%B2-supreme-x-nike-dunk-low-%E4%BB%8A%E5%B9%B4%E7%A7%8B%E5%AD%A3%E5%8F%91%E5%94%AE%E4%BF%A1%E6%81%AF">
-      <img src="http://s2.dgtle.com/portal/201908/14/163559csbnbhf9w6n3bc9d.jpg" alt="">
-    </a></div>
-    <div class="swiper-slide" ><a href="http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/api/topic/17/%E5%B0%98%E5%9F%83%E8%90%BD%E5%AE%9A-nba-%E7%8A%B6%E5%85%83%E7%A7%80-zion-%E6%AD%A3%E5%BC%8F%E7%AD%BE%E7%BA%A6-jordan-brand">
-      <img src="http://s2.dgtle.com/portal/201908/12/145237fkuwq7otkve16yh3.jpg" alt="">
-    </a></div>
-    <div class="swiper-slide" ><a href="http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/api/topic/14/%E5%A6%82%E6%9E%9C-asap-rocky-%E5%85%A5%E7%8B%B1%E5%85%AD%E5%B9%B4-%E9%82%A3%E6%95%B4%E4%B8%AA%E5%9C%88%E5%AD%90%E5%8F%AF%E8%83%BD%E4%BC%9A%E4%B8%80%E7%89%87%E9%A5%A5%E8%8D%92">
-      <img src="http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/assets/uploads/files/1565820546232-6b1adfd0-6ed0-44b2-8ba1-17808741777d-image.png" alt="">
-    </a></div>
+<ng-container *ngIf="firstTopicImgList.length > 0">
+  <div class="swiper-container" [swiper]="config">
+    <div class="swiper-wrapper">
+      <ng-container *ngFor="let img of firstTopicImgList">
+        <div class="swiper-slide">
+          <div><img [src]="img" alt=""></div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
-  <div class="swiper-pagination"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-</div>
+</ng-container>
 <div [ngClass]="{'display-animation': !removeCategoriesAnimation}" style="width: 100%; position: relative;">
   <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 1200px;">
-  <div *ngFor="let category of categories">
-    <div style="display: flex; padding:15px;">
-      <h4 [innerHTML]="category.name"></h4>
-      <hr style="height: 20px; border-left: 2px solid #dddddd; border-top: 0;margin: 5px 10px 0 10px;">
-      <span class="pt-1" [innerHTML]="category.descriptionParsed"></span>
-    </div>
-    <div class="row no-wrap m-auto">
-    <div class="topic" [ngClass]="category.class" *ngFor="let topic of category.topics">
-      <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
-        <a [href]="topic.getLink()" itemprop="url" target="_blank">
-          <div class="card-body">
-            <ul class="counts float-right">
-              <li>
-                <i class="fa fa-book"></i><span class="human-readable-number">{{topic.viewCount}}</span>
-              </li>
-              <li>
-                <i class="fa fa-pencil"></i><span class="human-readable-number">{{topic.postCount}}</span>
-              </li>
-            </ul>
-            <div class="card-img">
-              <img [src]="getImg(topic.posts)" alt="">
-            </div>
-          </div>
-        </a>
-        <div class="card-footer">
-          <div>
-            <div class="float-left hidden-xs user-avatar">
-              <a [href]="topic.user.getLink()">
-                <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
-                  <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
-                       [title]="topic.user.username"/>
-                </ng-container>
-                <ng-template #userNoIcon>
-                  <div class="user-icon" [title]="topic.user.username"
-                       [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
-                </ng-template>
-              </a>
-            </div>
-            <div class="title">
-              <a [href]="topic.getLink()">{{topic.title}}</a>
+    <div *ngFor="let category of categories">
+      <div style="display: flex; padding:15px;">
+        <h4 [innerHTML]="category.name"></h4>
+        <hr style="height: 20px; border-left: 2px solid #dddddd; border-top: 0;margin: 5px 10px 0 10px;">
+        <span class="pt-1" [innerHTML]="category.descriptionParsed"></span>
+      </div>
+      <div class="row no-wrap m-auto">
+        <div class="topic" [ngClass]="category.class" *ngFor="let topic of category.topics">
+          <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
+            <a [href]="topic.getLink()" itemprop="url" target="_blank">
+              <div class="card-body">
+                <div class="card-img">
+                  <img [src]="getImg(topic.posts)" alt="">
+                </div>
+              </div>
+            </a>
+            <div class="card-footer">
+              <div>
+                <div class="float-left hidden-xs user-avatar">
+                  <a [href]="topic.user.getLink()">
+                    <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
+                      <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
+                           [title]="topic.user.username"/>
+                    </ng-container>
+                    <ng-template #userNoIcon>
+                      <div class="user-icon" [title]="topic.user.username"
+                           [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
+                    </ng-template>
+                  </a>
+                </div>
+                <div class="title">
+                  <a [href]="topic.getLink()">{{topic.title}}</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
-  </div>
   </div>
 </div>
