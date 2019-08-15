@@ -1,9 +1,11 @@
-<ng-container *ngIf="firstTopics.length >= 4">
+<ng-container *ngIf="firstTopicImgList.length > 0">
   <div class="swiper-container" [swiper]="config">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let topic of firstTopics">
-        <div *ngIf="getImg(topic.posts)"><img [src]="getImg(topic.posts)" alt=""></div>
-      </div>
+      <ng-container *ngFor="let img of firstTopicImgList">
+        <div class="swiper-slide">
+          <div><img [src]="img" alt=""></div>
+        </div>
+      </ng-container>
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-prev"></div>

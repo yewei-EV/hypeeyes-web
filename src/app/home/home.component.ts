@@ -37,12 +37,12 @@ export class HomeComponent implements OnInit {
     centeredSlides: true,
     observeParents: true,
   };
-  firstTopics: Topic[] = [];
+  firstTopicImgList: string[] = [];
 
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService) { }
 
   ngOnInit() {
-    const topics = [];
+    const topics: Topic[] = [];
     this.categoryService.getAllCategories().subscribe(categories => {
       this.categories = categories;
       this.categories.map(category => {
@@ -56,13 +56,16 @@ export class HomeComponent implements OnInit {
           ids.map(id => {
             this.getTopicById(id).subscribe(topic => {
               category.topics.push(topic);
-              if (indexList.indexOf(+topic.tid) >= 0) {
-                topics.push(topic);
-              }
-              if (topics.length === categories.length) {
-                this.firstTopics = topics.sort((a: Topic, b: Topic) => a.cid - b.cid);
-              }
-              this.topicService.getMainPostById(topic.tid).subscribe(post => topic.posts = [post]);
+
+              this.topicService.getMainPostById(topic.tid).subscribe(post => {
+                if (indexList.indexOf(+topic.tid) >= 0) {
+                  topics.push(topic);
+                }
+                topic.posts = [post];
+                if (topics.length === categories.length) {
+                  this.firstTopicImgList = topics.map(firstTopic => firstTopic.posts[0].firstImg);
+                }
+              });
             });
           });
         });
@@ -82,5 +85,6 @@ export class HomeComponent implements OnInit {
     if (posts && posts.length > 0) {
       return posts[0].firstImg;
     }
+    return 'http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/assets/uploads/system/site-logo.png';
   }
 }
