@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
                 }
                 topic.posts = [post];
                 if (topics.length === categories.length) {
-                  this.firstTopicImgList = topics.map(firstTopic => firstTopic.posts[0].firstImg);
+                  this.firstTopicImgList = topics.sort((a, b) => a.cid - b.cid).map(firstTopic => firstTopic.posts[0].firstImg);
                 }
               });
             });
