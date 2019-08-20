@@ -1,9 +1,11 @@
-<ng-container *ngIf="firstTopicImgList.length > 0">
+<ng-container *ngIf="firstTopicList.length > 0">
   <div class="swiper-container" [swiper]="config">
     <div class="swiper-wrapper">
-      <ng-container *ngFor="let img of firstTopicImgList">
+      <ng-container *ngFor="let topic of firstTopicList">
         <div class="swiper-slide">
-          <div><img [src]="img" alt=""></div>
+          <a [href]="'/topic/' + topic.tid + '/' + topic.title">
+            <div><img [src]="topic?.posts[0]?.firstImg" alt=""></div>
+          </a>
         </div>
       </ng-container>
     </div>

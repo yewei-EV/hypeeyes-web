@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     centeredSlides: true,
     observeParents: true,
   };
-  firstTopicImgList: string[] = [];
+  firstTopicList: Topic[] = [];
 
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService) { }
 
@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
                 }
                 topic.posts = [post];
                 if (topics.length === categories.length) {
-                  this.firstTopicImgList = topics.sort((a, b) => a.cid - b.cid).map(firstTopic => firstTopic.posts[0].firstImg);
+                  this.firstTopicList = topics.sort((a, b) => a.cid - b.cid).map(firstTopic => firstTopic);
                 }
               });
             });
