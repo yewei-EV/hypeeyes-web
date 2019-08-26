@@ -1,5 +1,7 @@
 .swiper-container {
+  margin-bottom: 30px;
   width: 100%;
+  overflow: initial;
 }
 .swiper-slide {
   background-position: center;
@@ -25,4 +27,26 @@
 
 .list {
   position: absolute;
+}
+
+.swiper-slide {
+  margin-top: 23px;
+}
+
+.swiper-slide-active {
+  margin-top: 0;
+  height: 550px;
+  position: relative;
+  div {height: 550px}
+  &:after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 14px 25px rgba(14, 21, 47, 0.3);
+    transition: all 0.3s ease 0s;
+    width: 100%;
+    display: block;
+    content: '';
+  }
 }
