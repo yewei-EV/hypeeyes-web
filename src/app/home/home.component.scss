@@ -17,6 +17,10 @@
 }
 
 .row {
+  div {
+    padding-right: 0;
+    padding-left: 12px;
+  }
   :first-child {
     padding-left: 0;
   }
