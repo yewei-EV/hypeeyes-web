@@ -23,7 +23,7 @@
 		&.ch-alt {
 			&:not([class*=bgm-]) {
 				background-color: $lv-header-alt-bg-color;
-				border-bottom: 1px solid #EEEEEE;
+				border-bottom: 1px solid #edf1f4;
 			}
 
 			@media screen {

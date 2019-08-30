@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     autoplay: true,
     effect: 'slide',
     slidesPerView: 'auto',
+    // loopedSlides: 4,
     spaceBetween: 20,
     observer: true,
     centeredSlides: true,
