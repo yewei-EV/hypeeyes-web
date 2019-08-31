@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     direction: 'horizontal',
     loop: true,
     keyboard: true,
-    mousewheel: true,
+    mousewheel: false,
     scrollbar: false,
     navigation: true,
     pagination: {
@@ -32,8 +32,9 @@ export class HomeComponent implements OnInit {
       clickable: true
     },
     autoplay: true,
-    effect: 'coverflow',
+    effect: 'slide',
     slidesPerView: 'auto',
+    // loopedSlides: 4,
     spaceBetween: 20,
     observer: true,
     centeredSlides: true,
