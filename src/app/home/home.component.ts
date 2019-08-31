@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../shared/models/category';
-import { Config } from '../shared';
+import { Constant } from '../shared';
 import { CategoryService } from '../entities/category/category.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Topic } from '../shared/models/topic';
@@ -8,6 +8,8 @@ import { TopicService } from '../entities/topic/topic.service';
 import { Observable } from 'rxjs';
 import { Post } from '../shared/models/post';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { Config } from '../shared/models/config';
+import { ConfigService } from '../shared/service/config.service';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +18,8 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 })
 export class HomeComponent implements OnInit {
   categories: Category[];
-  removeCategoriesAnimation = Config.removeCategoriesAnimation;
-  config: SwiperConfigInterface = {
+  config: Config;
+  swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
     loop: true,
     keyboard: true,
@@ -39,7 +41,8 @@ export class HomeComponent implements OnInit {
   };
   firstTopicList: Topic[] = [];
 
-  constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService) { }
+  constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService,
+              private configService: ConfigService) { }
 
   ngOnInit() {
     const topics: Topic[] = [];
@@ -71,6 +74,8 @@ export class HomeComponent implements OnInit {
         });
       });
     });
+
+    this.configService.getConfig().subscribe((config) => this.config = config);
   }
 
   getTopicIds(category: Category): Observable<number[]> {

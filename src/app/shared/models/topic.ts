@@ -1,31 +1,9 @@
 import { User } from './user';
 import * as moment from 'moment';
-import { Config } from '../config';
 import { Post } from './post';
+import { Constant } from '../constant';
 
 export class Topic {
-  get timestamp(): number {
-    return this._timestamp;
-  }
-
-  set timestamp(value: number) {
-    this._timestamp = value;
-  }
-  get lastPostTime(): moment.Moment {
-    return this._lastPostTime;
-  }
-
-  set lastPostTime(value: moment.Moment) {
-    this._lastPostTime = moment(value);
-  }
-
-  get viewCount(): number {
-    return this.viewcount;
-  }
-  get postCount(): number {
-    return this.postcount;
-  }
-
   posts: Post[];
   user: User;
   cid: number;
@@ -44,19 +22,20 @@ export class Topic {
   timestampISO: string;
   lastPostTimeISO: string;
   votes: number;
-  teaser
-  private viewcount: number;
-  private postcount: number;
-  private _timestamp: number;
-  private _lastPostTime: moment.Moment;
+  private viewCount: number;
+  private postCount: number;
+  timestamp: moment.Moment;
+  lastPostTime: moment.Moment;
 
-  public static convert(topic) {
+  public static convert(topic: Topic) {
+    topic.timestamp = moment(topic.timestamp);
+    topic.lastPostTime = moment(topic.lastPostTime);
     topic.user = User.convert(topic.user);
     return Object.assign(new Topic(), topic);
   }
 
-  getLink() {
-    return Config.relativePath + '/topic/' + this.slug + '/' + this.tid;
+  getLink(relativePath: string) {
+    return relativePath + '/topic/' + this.slug + '/' + this.tid;
   }
 
 }

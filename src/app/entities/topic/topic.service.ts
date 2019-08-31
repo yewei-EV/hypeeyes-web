@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Config } from '../../shared';
+import { Constant } from '../../shared';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,7 +13,7 @@ export class TopicService {
 
   constructor(private http: HttpClient) {
   }
-  private url = Config.apiUrl + '/topics';
+  private url = Constant.apiUrl + '/topics';
 
   getById(id: number): Observable<Topic> {
     return this.http.get<Topic>(`${this.url}/${id}`).pipe(map(topic => Topic.convert(topic)));

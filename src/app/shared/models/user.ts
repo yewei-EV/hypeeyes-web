@@ -1,4 +1,4 @@
-import { Config } from '../config';
+import { Constant } from '../constant';
 
 export class User {
   uid: number;
@@ -31,8 +31,8 @@ export class User {
     return Object.assign(new User(), user);
   }
 
-  getLink() {
-    return Config.relativePath + 'user/' + this.userSlug;
+  getLink(relativePath: string) {
+    return relativePath + 'user/' + this.userSlug;
   }
 
 }

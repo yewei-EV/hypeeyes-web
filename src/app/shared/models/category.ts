@@ -1,5 +1,5 @@
 import { Topic } from './topic';
-import { Config } from '../config';
+import { Constant } from '../constant';
 
 export class Category {
   private bgColor: string;
@@ -38,13 +38,5 @@ export class Category {
     }
 
     return style.join('; ') + ';';
-  }
-
-  getLink() {
-    let link = this.link;
-    if (!link) {
-      link = Config.relativePath + '/category/' + this.slug;
-    }
-    return link;
   }
 }
