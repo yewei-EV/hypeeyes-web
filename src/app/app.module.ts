@@ -10,6 +10,8 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { MenuComponent } from './shared/components/menu/menu.component';
+import {TranslateService} from '@ngx-translate/core';
+import {SharedModule} from './shared/shared.module';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -27,7 +29,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     RouterModule,
     EntitiesModule,
     SwiperModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
+    SharedModule
   ],
   providers: [{
     provide: SWIPER_CONFIG,
@@ -35,4 +38,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('zh-cn');
+  }
+}

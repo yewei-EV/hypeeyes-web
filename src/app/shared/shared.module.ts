@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export function httpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, '/i18n/', '.json');
 }
 
 const translateConfig: TranslateModuleConfig = {
@@ -19,8 +19,7 @@ const translateConfig: TranslateModuleConfig = {
 @NgModule({
   exports: [
     CommonModule,
-    TranslateMod
-    ule.forRoot(translateConfig)
+    TranslateModule.forRoot<>(translateConfig),
   ],
 })
 export class SharedModule {

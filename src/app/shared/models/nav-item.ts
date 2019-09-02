@@ -7,6 +7,7 @@ export class NavItem {
   class: string;
   id: string;
   text: string;
+  content: string;
   order: string;
   groups: string[];
   originalRoute: string;

@@ -9,4 +9,10 @@ export class Config {
   title: string;
   showSiteTitle: boolean;
   removeCategoriesAnimation: boolean;
+  searchEnabled: boolean;
+  loggedIn: boolean;
+  disableChat: boolean;
+  showModMenu: boolean;
+  csrfToken: boolean;
+  allowRegistration: boolean;
 }
