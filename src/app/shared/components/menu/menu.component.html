@@ -81,11 +81,12 @@
 
         <!-- IF config.loggedIn -->
         <ng-container *ngIf="user">
-          <li class="notifications dropdown" component="notifications">
-            <a href="#" data-toggle="dropdown" id="notif_dropdown">
+          <li class="notifications" component="notifications">
+            <a href="#" id="notif_dropdown" [ngbPopover]="notify" [placement]="['bottom', 'left', 'auto']">
               <i class="fa fa-fw fa-bell-o" component="notifications/icon" data-content="0"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg pull-right">
+            <ng-template #notify>
+            <div class="popover-list" style="width: 300px;">
               <div class="listview">
                 <div class="lv-header">
                   {{'notifications.title'|translate}}
@@ -101,42 +102,44 @@
                 </div>
               </div>
             </div>
+            </ng-template>
           </li>
 
           <!-- IF !config.disableChat -->
           <li *ngIf="!config.disableChat" class="chats dropdown">
-            <a data-toggle="dropdown" href="#" id="chat_dropdown" component="chat/dropdown">
+            <a data-toggle="dropdown" href="#" id="chat_dropdown" component="chat/dropdown" [ngbPopover]="chat" [placement]="['bottom', 'left', 'auto']">
               <i component="chat/icon" class="fa fa-comment-o fa-fw"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-md pull-right" aria-labelledby="chat_dropdown">
+            <ng-template #chat>
+            <div class="popover-list" style="width: 200px;">
               <div class="listview">
                 <div class="lv-body c-overflow chat-list" component="chat/list">
                 </div>
                 <div class="lv-footer">
-                  <a href="#" class="mark-all-read"
-                     component="chats/mark-all-read">{{'modules.chat.mark_all_read'|translate}}</a>
+                  <a href="#" class="mark-all-read" component="chats/mark-all-read">{{'modules.chat.mark_all_read'|translate}}</a>
                   <hr/>
-                  <a
-                    [href]="config.relativePath + '/user/' + user.userSlug + '/chats'">{{'modules.chat.see_all'|translate}}</a>
+                  <a [href]="config.relativePath + '/user/' + user.userSlug + '/chats'">{{'modules.chat.see_all'|translate}}</a>
                 </div>
               </div>
             </div>
+            </ng-template>
           </li>
           <!-- ENDIF !config.disableChat -->
 
           <li id="user_label" class="dropdown">
-            <a data-toggle="dropdown" href="#" id="user_dropdown">
+            <a href="#" id="user_dropdown" [ngbPopover]="userControl" [placement]="['bottom', 'left', 'auto']">
               <img *ngIf="user.picture && user.picture.trim().length > 0" component="header/userpicture"
                    [src]="user.picture" [alt]="user.username" class="user-picture" id="user-header-picture"/>
               <div component="header/usericon" class="user-icon"
                    [ngStyle]="{'background-color': user.iconBgColor, 'display:none;': user.picture}">{{user.iconText}}</div>
             </a>
-            <ul id="user-control-list" component="header/usercontrol" class="dropdown-menu pull-right"
-                aria-labelledby="user_dropdown">
+            <ng-template #userControl>
+            <ul id="user-control-list" component="header/usercontrol" class="popover-list"
+                aria-labelledby="user_dropdown" style="width: 130px;">
               <li>
                 <a component="header/profilelink" id="user-profile-link"
                    [href]="config.relativePath + '/user/' + user.userSlug">
-                  <i component="user/status" class="status {user.status}"></i>
+                  <i component="user/status" class="status" [ngClass]="user.status"></i>
                   <span component="header/username" id="user-header-name">{{user.username}}</span>
                 </a>
               </li>
@@ -208,6 +211,7 @@
                 </form>
               </li>
             </ul>
+            </ng-template>
           </li>
         </ng-container>
         <!-- ELSE -->

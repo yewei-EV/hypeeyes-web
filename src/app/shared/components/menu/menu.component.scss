@@ -10,3 +10,30 @@
     background-color: transparent;
   }
 }
+
+.popover-list {
+  font-size: 13px;
+  .btn {
+    font-size: 13px;
+  }
+  li {
+    a {
+      display: block;
+      padding: 8px 17px;
+    }
+  }
+}
+
+#user-control-list{
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+:host {
+  ::ng-deep .popover {
+    .arrow {
+      right: 0.5rem;
+    }
+    max-width: 400px !important;
+  }
+}

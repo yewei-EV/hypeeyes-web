@@ -1,3 +1,4 @@
+@import "old/variables";
 .counts {
   display: flex;
   position: absolute;
@@ -22,4 +23,36 @@ body {
 
 .user-icon {
   font-size: 1.1rem;
+}
+a {
+  &,
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
+    color: #337ab7;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+.status {
+  &.online {
+    background-color: $material-success;
+    color: $material-success;
+  }
+
+  &.away {
+    background-color: $material-warning;
+    color: $material-warning;
+  }
+
+  &.dnd {
+    background-color: $material-danger;
+    color: $material-danger;
+  }
+
+  &.offline {
+    background-color: #777;
+    color: #777;
+  }
 }
