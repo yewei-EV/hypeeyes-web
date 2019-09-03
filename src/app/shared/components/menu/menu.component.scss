@@ -6,4 +6,7 @@
 .form-control {
   padding: 0;
   height: 0;
+  &:focus {
+    background-color: transparent;
+  }
 }

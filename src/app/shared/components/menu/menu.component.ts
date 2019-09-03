@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { Config } from '../../models/config';
 import { ConfigService } from '../../service/config.service';
 import { NavItem } from '../../models/nav-item';
@@ -12,6 +12,8 @@ import { UserService } from '../../../entities/user/user.service';
 })
 export class MenuComponent implements OnInit {
 
+  @ViewChild('search', {static: false})
+  search: ElementRef;
   config: Config = new Config();
   brandLogoUrl: string;
   navItems: NavItem[];
@@ -52,7 +54,8 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  test() {
-    console.log('click');
+  showAndFocusSearch() {
+    this.showSearch = true;
+    setTimeout(() => this.search.nativeElement.focus());
   }
 }

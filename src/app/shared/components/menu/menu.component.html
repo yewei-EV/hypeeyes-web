@@ -1,5 +1,5 @@
 <header id="header" component="navbar">
-  <ul class="header-inner top-menu">
+  <ul class="header-inner">
     <li id="menu-trigger" (click)="toggled=!toggled" [ngClass]="{'menu-header': config.menuInHeader, 'open': toggled}">
       <div class="line-wrap">
         <div class="line top"></div>
@@ -26,9 +26,6 @@
           </a>
         </li>
       </ul>
-    </li>
-    <li>
-          <button (click)="test()" style="color: white">test</button>
     </li>
     <li class="pull-right">
       <ul class="top-menu">
@@ -67,24 +64,19 @@
         <!-- IF config.searchEnabled -->
         <li *ngIf="config.searchEnabled">
           <form id="search-form" class="hidden-xs" role="search" method="GET">
-            <div [ngClass]="{'d-none': !showSearch}" id="search-fields">
+            <div [ngClass]="{'d-none': !showSearch}" id="search-fields" (focusout)="showSearch=false">
               <div class="form-group">
                 <div class="fg-line">
-                  <input type="text" class="form-control" [placeholder]="'global.search'|translate" name="query" value="">
+                  <input type="text" class="form-control" [placeholder]="'global.search'|translate" name="query" value="" #search>
                 </div>
               </div>
               <button type="submit" class="btn btn-default d-none">{{'global.search'|translate}}</button>
             </div>
-            <button id="search-button" type="button" class="btn btn-link" (click)="test()">
+            <button id="search-button" type="button" class="btn btn-link" [ngClass]="{'d-none': showSearch}"
+                    (click)="showAndFocusSearch()">
               <i class="fa fa-search fa-fw"></i></button>
-            <div (click)="test()" style="color: white">test</div>
           </form>
-
-          <div (click)="test()" style="color: white">test</div>
         </li>
-        <div>
-        <div (click)="test()" style="color: white">test</div>
-        </div>
         <!-- ENDIF config.searchEnabled -->
 
         <!-- IF config.loggedIn -->
