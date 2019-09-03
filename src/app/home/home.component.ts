@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../shared/models/category';
-import { Constant } from '../shared';
 import { CategoryService } from '../entities/category/category.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Topic } from '../shared/models/topic';
@@ -46,6 +45,7 @@ export class HomeComponent implements OnInit {
               private configService: ConfigService) { }
 
   ngOnInit() {
+    this.configService.getConfig().subscribe((config) => this.config = config);
     const topics: Topic[] = [];
     this.categoryService.getAllCategories().subscribe(categories => {
       this.categories = categories;
@@ -76,7 +76,6 @@ export class HomeComponent implements OnInit {
       });
     });
 
-    this.configService.getConfig().subscribe((config) => this.config = config);
   }
 
   getTopicIds(category: Category): Observable<number[]> {

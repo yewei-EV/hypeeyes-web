@@ -10,12 +10,26 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { MenuComponent } from './shared/components/menu/menu.component';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateModuleConfig, TranslateService } from '@ngx-translate/core';
 import {SharedModule} from './shared/shared.module';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 'auto'
+};
+
+export function httpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '/i18n/', '.json');
+}
+
+const translateConfig: TranslateModuleConfig = {
+  loader: {
+    provide: TranslateLoader,
+    useFactory: httpLoaderFactory,
+    deps: [HttpClient]
+  }
 };
 
 @NgModule({
@@ -26,7 +40,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   ],
   imports: [
     BrowserModule,
-    RouterModule,
+    TranslateModule.forRoot(translateConfig),
     EntitiesModule,
     SwiperModule,
     RouterModule.forRoot([]),
