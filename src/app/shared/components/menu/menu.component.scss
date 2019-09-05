@@ -37,3 +37,39 @@
     max-width: 400px !important;
   }
 }
+
+button i {
+  color: white;
+}
+
+::ng-deep .chats .popover {
+  top: -10px !important;
+  left: -20px !important;
+  .arrow {
+    left: 60%;
+  }
+}
+
+::ng-deep .chats .popover {
+  top: -5px !important;
+  left: -20px !important;
+  .arrow {
+    left: 60%;
+  }
+}
+
+::ng-deep .notifications .popover {
+  top: -5px !important;
+  left: -40px !important;
+  .arrow {
+    left: 62.5%;
+  }
+}
+
+::ng-deep #user_label .popover {
+  top: -10px !important;
+  left: -40px !important;
+  .arrow {
+    left: 80%;
+  }
+}

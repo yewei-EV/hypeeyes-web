@@ -82,9 +82,9 @@
         <!-- IF config.loggedIn -->
         <ng-container *ngIf="user">
           <li class="notifications" component="notifications">
-            <a href="#" id="notif_dropdown" [ngbPopover]="notify" [placement]="['bottom', 'left', 'auto']">
+              <button class="btn btn-link" id="notif_dropdown" [ngbPopover]="notify" placement="bottom">
               <i class="fa fa-fw fa-bell-o" component="notifications/icon" data-content="0"></i>
-            </a>
+            </button>
             <ng-template #notify>
             <div class="popover-list" style="width: 300px;">
               <div class="listview">
@@ -107,11 +107,11 @@
 
           <!-- IF !config.disableChat -->
           <li *ngIf="!config.disableChat" class="chats dropdown">
-            <a data-toggle="dropdown" href="#" id="chat_dropdown" component="chat/dropdown" [ngbPopover]="chat" [placement]="['bottom', 'left', 'auto']">
+            <button class="btn btn-link" id="chat_dropdown" component="chat/dropdown" [ngbPopover]="chat" placement="bottom">
               <i component="chat/icon" class="fa fa-comment-o fa-fw"></i>
-            </a>
+            </button>
             <ng-template #chat>
-            <div class="popover-list" style="width: 200px;">
+            <div class="popover-list" style="width: 180px;">
               <div class="listview">
                 <div class="lv-body c-overflow chat-list" component="chat/list">
                 </div>
@@ -126,16 +126,16 @@
           </li>
           <!-- ENDIF !config.disableChat -->
 
-          <li id="user_label" class="dropdown">
-            <a href="#" id="user_dropdown" [ngbPopover]="userControl" [placement]="['bottom', 'left', 'auto']">
+          <li id="user_label">
+            <button id="user_dropdown" class="btn btn-link" [ngbPopover]="userControl" placement="bottom">
               <img *ngIf="user.picture && user.picture.trim().length > 0" component="header/userpicture"
                    [src]="user.picture" [alt]="user.username" class="user-picture" id="user-header-picture"/>
-              <div component="header/usericon" class="user-icon"
-                   [ngStyle]="{'background-color': user.iconBgColor, 'display:none;': user.picture}">{{user.iconText}}</div>
-            </a>
+              <span component="header/usericon" class="user-icon"
+                   [ngStyle]="{'background-color': user.iconBgColor, 'display:none;': user.picture}">{{user.iconText}}</span>
+            </button>
             <ng-template #userControl>
             <ul id="user-control-list" component="header/usercontrol" class="popover-list"
-                aria-labelledby="user_dropdown" style="width: 130px;">
+                aria-labelledby="user_dropdown" style="width: 110px;">
               <li>
                 <a component="header/profilelink" id="user-profile-link"
                    [href]="config.relativePath + '/user/' + user.userSlug">
