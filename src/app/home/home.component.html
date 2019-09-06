@@ -1,13 +1,18 @@
 <ng-container *ngIf="firstTopicList.length > 0">
-  <div class="swiper-container" [swiper]="swiperConfig">
-    <div class="swiper-wrapper">
-      <ng-container *ngFor="let topic of firstTopicList">
-        <div class="swiper-slide">
-          <a [href]="'/topic/' + topic.tid + '/' + topic.title">
-            <div><img [src]="topic?.posts[0]?.firstImg || ''" alt=""></div>
-          </a>
-        </div>
-      </ng-container>
+  <div class="swiper-wrap">
+    <div class="swiper-container" [swiper]="swiperConfig">
+      <div class="swiper-wrapper">
+        <ng-container *ngFor="let topic of firstTopicList">
+          <div class="swiper-slide">
+            <a [href]="'/topic/' + topic.tid + '/' + topic.title">
+              <div><img [src]="topic?.posts[0]?.firstImg || ''" alt=""></div>
+            </a>
+          </div>
+        </ng-container>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   </div>
 </ng-container>
