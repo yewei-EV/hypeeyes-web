@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
       type: 'bullets',
       clickable: true
     },
-    // autoplay: true,
+    autoplay: true,
     effect: 'slide',
     slidesPerView: 'auto',
     // loopedSlides: 4,

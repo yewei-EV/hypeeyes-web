@@ -26,9 +26,10 @@
     @include user-icon(20px, 0.92rem);
   }
   .title {
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: 500;
     a {
-      color: black;
+      color: #3f3f3f;
     }
   }
 }
