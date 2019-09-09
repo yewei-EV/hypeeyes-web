@@ -76,7 +76,6 @@
 .top-menu {
 	list-style: none;
 	padding: 3px;
-
 	>li {
 		display: inline-block;
 		vertical-align: -webkit-baseline-middle;
@@ -148,7 +147,7 @@
 	.top-menu>li:not(#toggle-width):before {
 		left: 0;
 		top: 0;
-		content: "";
+		// content: "";
 		position: absolute;
 		width: 100%;
 		height: 100%;

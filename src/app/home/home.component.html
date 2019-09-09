@@ -1,48 +1,53 @@
 <ng-container *ngIf="firstTopicList.length > 0">
-  <div class="swiper-container" [swiper]="swiperConfig">
-    <div class="swiper-wrapper">
-      <ng-container *ngFor="let topic of firstTopicList">
-        <div class="swiper-slide">
-          <a [href]="'/topic/' + topic.tid + '/' + topic.title">
-            <div><img [src]="topic?.posts[0]?.firstImg" alt=""></div>
-          </a>
-        </div>
-      </ng-container>
+  <div class="swiper-wrap">
+    <div class="swiper-container" [swiper]="swiperConfig">
+      <div class="swiper-wrapper">
+        <ng-container *ngFor="let topic of firstTopicList">
+          <div class="swiper-slide">
+            <a [href]="'/topic/' + topic.tid + '/' + topic.title">
+              <div><img [src]="topic?.posts[0]?.firstImg || ''" alt=""></div>
+            </a>
+          </div>
+        </ng-container>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   </div>
 </ng-container>
-<div [ngClass]="{'display-animation': !config.removeCategoriesAnimation}" style="width: 100%; position: relative;">
+<div [ngClass]="{'display-animation': !config?.removeCategoriesAnimation}" style="width: 100%; position: relative;">
   <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 1200px;">
     <div *ngFor="let category of categories">
-      <div style="display: flex; padding:15px;">
+      <div style="display: flex; padding: 5px; padding-top: 20px;">
         <h4 [innerHTML]="category.name"></h4>
-        <hr style="height: 20px; border-left: 2px solid #dddddd; border-top: 0;margin: 5px 10px 0 10px;">
+        <hr style="height: 20px; border-left: 2px solid #bbbbbb; border-top: 0; margin: 5px 10px 0 10px;">
         <span class="pt-1" [innerHTML]="category.descriptionParsed"></span>
       </div>
-      <div class="row no-wrap m-auto">
+      <div class="row no-wrap m-auto flag-wrap">
         <div class="topic" [ngClass]="category.class" *ngFor="let topic of category.topics">
           <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
             <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
               <div class="card-body">
                 <div class="card-img">
-                  <img [src]="getImg(topic)" alt="">
+                  <img [src]="getImg(topic) || ''" alt="">
                 </div>
               </div>
             </a>
             <div class="card-footer">
               <div>
-                <div class="float-left hidden-xs user-avatar">
-                  <a [href]="topic.user.getLink(config.relativePath)">
-                    <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
-                      <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
-                           [title]="topic.user.username"/>
-                    </ng-container>
-                    <ng-template #userNoIcon>
-                      <div class="user-icon" [title]="topic.user.username"
-                           [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
-                    </ng-template>
-                  </a>
-                </div>
+<!--                <div class="float-left hidden-xs user-avatar">-->
+<!--                  <a [href]="topic.user.getLink(config.relativePath)">-->
+<!--                    <ng-container *ngIf="topic?.user?.picture; else userNoIcon">-->
+<!--                      <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"-->
+<!--                           [title]="topic.user.username"/>-->
+<!--                    </ng-container>-->
+<!--                    <ng-template #userNoIcon>-->
+<!--                      <div class="user-icon" [title]="topic.user.username"-->
+<!--                           [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>-->
+<!--                    </ng-template>-->
+<!--                  </a>-->
+<!--                </div>-->
                 <div class="title">
                   <a [href]="topic.getLink(config.relativePath)">{{topic.title}}</a>
                 </div>

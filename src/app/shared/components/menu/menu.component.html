@@ -1,35 +1,35 @@
 <header id="header" component="navbar">
   <ul class="header-inner">
-    <li id="menu-trigger" data-trigger="#sidebar" [ngClass]="{'menu-header': config.menuInHeader}">
-    <div class="line-wrap">
-      <div class="line top"></div>
-      <div class="line center"></div>
-      <div class="line bottom"></div>
-    </div>
+    <li id="menu-trigger" (click)="toggled=!toggled" [ngClass]="{'menu-header': config.menuInHeader, 'open': toggled}">
+      <div class="line-wrap">
+        <div class="line top"></div>
+        <div class="line center"></div>
+        <div class="line bottom"></div>
+      </div>
     </li>
     <li class="logo" [ngClass]="{'menu-in-header': config.menuInHeader}">
       <a *ngIf="config.brandLogo" [href]="config.brandLogoUrl">
-        <img [alt]="config.brandLogoAlt" class="forum-logo" [ngClass]="config.brandLogoDisplay"
-             [src]="config.brandLogo"/>
+        <img [alt]="config.brandLogoAlt" class="forum-logo" [src]="config.brandLogo"/>
       </a>
-      <a *ngIf="config.showSiteTitle" class="title" [href]="config.titleUrl">
-        {{config.title}}
+      <a *ngIf="config.showSiteTitle" class="title" [href]="config.siteTitleUrl">
+        {{config.siteTitle}}
       </a>
     </li>
 
     <li *ngIf="config.menuInHeader" class="hidden-xs">
       <ul class="header-menu" id="main-nav">
         <li *ngFor="let navItem of navItems" [ngClass]="navItem.class">
-          <a class="navigation-link" [href]="navItem.route" [title]="navItem.title" [attr.id]="navItem.id? navItem.id : null"
+          <a class="navigation-link" [href]="navItem.route" [title]="navItem.title"
+             [attr.id]="navItem.id? navItem.id : null"
              [target]="navItem.properties?.targetBlank?'_blank' : null">
-          <i *ngIf="navItem.iconClass" class="fa fa-fw" [ngClass]="navItem.iconClass"></i>
+            <i *ngIf="navItem.iconClass" class="fa fa-fw" [ngClass]="navItem.iconClass"></i>
           </a>
         </li>
       </ul>
     </li>
-
     <li class="pull-right">
       <ul class="top-menu">
+        <!-- pagination
         <li class="nav navbar-nav pagination-block visible-lg visible-md">
           <div class="dropdown">
             <i class="fa fa-angle-double-up pointer fa-fw pagetop"></i>
@@ -48,17 +48,15 @@
 
             <ul class="dropdown-menu" role="menu">
               <li>
-                <label>
                 <input type="text" class="form-control" id="indexInput" [placeholder]="'global.pagination.enter_index'|translate">
-                </label>
               </li>
             </ul>
           </div>
         </li>
-
+        -->
         <li>
-          <a href="#" id="reconnect" class="hide"
-             [title]="'Connection to ' + config.title + ' has been lost, attempting to reconnect...'">
+          <a href="#" id="reconnect" class="d-none"
+             [title]="'Connection to ' + config.siteTitle + ' has been lost, attempting to reconnect...'">
             <i class="fa fa-check"></i>
           </a>
         </li>
@@ -66,160 +64,170 @@
         <!-- IF config.searchEnabled -->
         <li *ngIf="config.searchEnabled">
           <form id="search-form" class="hidden-xs" role="search" method="GET">
-            <div class="hidden" id="search-fields">
+            <div [ngClass]="{'d-none': !showSearch}" id="search-fields" (focusout)="showSearch=false">
               <div class="form-group">
                 <div class="fg-line">
-                  <label>
-                    <input type="text" class="form-control" [placeholder]="'global.search'|translate" name="query" value="">
-                  </label>
+                  <input type="text" class="form-control" [placeholder]="'global.search'|translate" name="query" value="" #search>
                 </div>
               </div>
-              <button type="submit" class="btn btn-default hide">{{'global.search'|translate}}</button>
+              <button type="submit" class="btn btn-default d-none">{{'global.search'|translate}}</button>
             </div>
-            <button id="search-button" type="button" class="btn btn-link"><i class="fa fa-search fa-fw"></i></button>
+            <button id="search-button" type="button" class="btn btn-link" [ngClass]="{'d-none': showSearch}"
+                    (click)="showAndFocusSearch()">
+              <i class="fa fa-search fa-fw"></i></button>
           </form>
         </li>
         <!-- ENDIF config.searchEnabled -->
 
         <!-- IF config.loggedIn -->
-        <ng-container *ngIf="config.loggedIn">
-        <li class="notifications dropdown" component="notifications">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="notif_dropdown">
-            <i class="fa fa-fw fa-bell-o" component="notifications/icon" data-content="0"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg pull-right">
-            <div class="listview">
-              <div class="lv-header">
-                {{'notifications.title'|translate}}
-              </div>
-              <div class="lv-body c-overflow" id="notif-list" component="notifications/list">
-                <a href="#" class="lv-item"><i class="fa fa-refresh fa-spin"></i> {{'global.notifications.loading'|translate}}</a>
-              </div>
-              <div class="lv-footer">
-                <a href="#" class="mark-all-read">{{'notifications.mark_all_read'|translate}}</a>
-                <hr/>
-                <a [href]="config.relativePath + '/notifications'">{{'notifications.see_all'|translate}}</a>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <!-- IF !config.disableChat -->
-        <li *ngIf="config.disableChat" class="chats dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="chat_dropdown" component="chat/dropdown">
-            <i component="chat/icon" class="fa fa-comment-o fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-md pull-right" aria-labelledby="chat_dropdown">
-            <div class="listview">
-              <div class="lv-body c-overflow chat-list" component="chat/list">
-              </div>
-              <div class="lv-footer">
-                <a href="#" class="mark-all-read" component="chats/mark-all-read">{{'modules.chat.mark_all_read'|translate}}</a>
-                <hr/>
-                <a [href]="config.relativePath + '/user/' + user.userSlug + '/chats'">{{'modules.chat.see_all'|translate}}</a>
+        <ng-container *ngIf="user">
+          <li class="notifications" component="notifications">
+              <button class="btn btn-link" id="notif_dropdown" [ngbPopover]="notify" placement="bottom">
+              <i class="fa fa-fw fa-bell-o" component="notifications/icon" data-content="0"></i>
+            </button>
+            <ng-template #notify>
+            <div class="popover-list" style="width: 300px;">
+              <div class="listview">
+                <div class="lv-header">
+                  {{'notifications.title'|translate}}
+                </div>
+                <div class="lv-body c-overflow" id="notif-list" component="notifications/list">
+                  <a href="#" class="lv-item"><i
+                    class="fa fa-refresh fa-spin"></i> {{'global.notifications.loading'|translate}}</a>
+                </div>
+                <div class="lv-footer">
+                  <a href="#" class="mark-all-read">{{'notifications.mark_all_read'|translate}}</a>
+                  <hr/>
+                  <a [href]="config.relativePath + '/notifications'">{{'notifications.see_all'|translate}}</a>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-        <!-- ENDIF !config.disableChat -->
+            </ng-template>
+          </li>
 
-        <li id="user_label" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="user_dropdown">
-            <img component="header/userpicture" [src]="user.picture" [alt]="user.username" class="user-picture"
-                 id="user-header-picture" [ngStyle]="{'display:none;': !user.picture}"/>
-            <div component="header/usericon" class="user-icon"
-                 [ngStyle]="{'background-color': user.iconBgColor, 'display:none;': user.picture}">{{user.iconText}}</div>
-          </a>
-          <ul id="user-control-list" component="header/usercontrol" class="dropdown-menu pull-right"
-              aria-labelledby="user_dropdown">
-            <li>
-              <a component="header/profilelink" id="user-profile-link" [href]="config.relativePath + '/user/' + user.userSlug">
-                <i component="user/status" class="status {user.status}"></i>
-                <span component="header/username" id="user-header-name">{{user.username}}</span>
-              </a>
-            </li>
-            <li role="presentation" class="divider"></li>
-            <li>
-              <a href="#" class="user-status" data-status="online">
-                <i class="status online"></i><span> {{'global.online'|translate}}</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="user-status" data-status="away">
-                <i class="status away"></i><span> {{'global.away'|translate}}</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="user-status" data-status="dnd">
-                <i class="status dnd"></i><span> {{'global.dnd'|translate}}</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="user-status" data-status="offline">
-                <i class="status offline"></i><span> {{'global.invisible'|translate}}</span>
-              </a>
-            </li>
-            <li role="presentation" class="divider"></li>
-            <li>
-              <a component="header/profilelink/edit" [href]="config.relativePath + '/user/' + user.userSlug + '/edit'">
-                <i class="fa fa-fw fa-edit"></i><span> {{'user.edit-profile'|translate}}</span>
-              </a>
-            </li>
-            <li>
-              <a component="header/profilelink/settings" [href]="config.relativePath + '/user/' + user.userSlug + '/settings'">
-                <i class="fa fa-fw fa-gear"></i><span> {{'user.settings'|translate}}</span>
-              </a>
-            </li>
+          <!-- IF !config.disableChat -->
+          <li *ngIf="!config.disableChat" class="chats dropdown">
+            <button class="btn btn-link" id="chat_dropdown" component="chat/dropdown" [ngbPopover]="chat" placement="bottom">
+              <i component="chat/icon" class="fa fa-comment-o fa-fw"></i>
+            </button>
+            <ng-template #chat>
+            <div class="popover-list" style="width: 180px;">
+              <div class="listview">
+                <div class="lv-body c-overflow chat-list" component="chat/list">
+                </div>
+                <div class="lv-footer">
+                  <a href="#" class="mark-all-read" component="chats/mark-all-read">{{'modules.chat.mark_all_read'|translate}}</a>
+                  <hr/>
+                  <a [href]="config.relativePath + '/user/' + user.userSlug + '/chats'">{{'modules.chat.see_all'|translate}}</a>
+                </div>
+              </div>
+            </div>
+            </ng-template>
+          </li>
+          <!-- ENDIF !config.disableChat -->
 
-            <!-- IF showModMenu -->
-            <ng-container *ngIf="config.showModMenu">
-            <li role="presentation" class="divider"></li>
-            <li class="dropdown-header">{{'pages.moderator-tools'|translate}}</li>
-            <li>
-              <a [href]="config.relativePath + '/flags'">
-                <i class="fa fa-fw fa-flag"></i> <span>{{'pages.flagged-content'|translate}}</span>
-              </a>
-            </li>
-            <li>
-              <a [href]="config.relativePath + '/post-queue'">
-                <i class="fa fa-fw fa-list-alt"></i> <span>{{'pages.post-queue'|translate}}</span>
-              </a>
-            </li>
-            <li>
-              <a [href]="config.relativePath + '/ip-blacklist'">
-                <i class="fa fa-fw fa-ban"></i> <span>{{'pages.ip-blacklist'|translate}}</span>
-              </a>
-            </li>
-            </ng-container>
-            <!-- ENDIF showModMenu -->
+          <li id="user_label">
+            <button id="user_dropdown" class="btn btn-link" [ngbPopover]="userControl" placement="bottom">
+              <img *ngIf="user.picture && user.picture.trim().length > 0" component="header/userpicture"
+                   [src]="user.picture" [alt]="user.username" class="user-picture" id="user-header-picture"/>
+              <span component="header/usericon" class="user-icon"
+                   [ngStyle]="{'background-color': user.iconBgColor, 'display:none;': user.picture}">{{user.iconText}}</span>
+            </button>
+            <ng-template #userControl>
+            <ul id="user-control-list" component="header/usercontrol" class="popover-list"
+                aria-labelledby="user_dropdown" style="width: 110px;">
+              <li>
+                <a component="header/profilelink" id="user-profile-link"
+                   [href]="config.relativePath + '/user/' + user.userSlug">
+                  <i component="user/status" class="status" [ngClass]="user.status"></i>
+                  <span component="header/username" id="user-header-name">{{user.username}}</span>
+                </a>
+              </li>
+              <li role="presentation" class="divider"></li>
+              <li>
+                <a href="#" class="user-status" data-status="online">
+                  <i class="status online"></i><span> {{'global.online'|translate}}</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="user-status" data-status="away">
+                  <i class="status away"></i><span> {{'global.away'|translate}}</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="user-status" data-status="dnd">
+                  <i class="status dnd"></i><span> {{'global.dnd'|translate}}</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="user-status" data-status="offline">
+                  <i class="status offline"></i><span> {{'global.invisible'|translate}}</span>
+                </a>
+              </li>
+              <li role="presentation" class="divider"></li>
+              <li>
+                <a component="header/profilelink/edit"
+                   [href]="config.relativePath + '/user/' + user.userSlug + '/edit'">
+                  <i class="fa fa-fw fa-edit"></i><span> {{'user.edit-profile'|translate}}</span>
+                </a>
+              </li>
+              <li>
+                <a component="header/profilelink/settings"
+                   [href]="config.relativePath + '/user/' + user.userSlug + '/settings'">
+                  <i class="fa fa-fw fa-gear"></i><span> {{'user.settings'|translate}}</span>
+                </a>
+              </li>
 
-            <li role="presentation" class="divider"></li>
-            <li component="user/logout">
-              <form method="post" [action]="config.relativePath + '/logout'">
-                <input type="hidden" name="_csrf" [value]="config.csrfToken">
-                <input type="hidden" name="noscript" value="true">
-                <button type="submit" class="btn btn-link">
-                  <i class="fa fa-fw fa-sign-out"></i><span> {{'global.logout'|translate}}</span>
-                </button>
-              </form>
-            </li>
-          </ul>
-        </li>
+              <!-- IF showModMenu -->
+              <ng-container *ngIf="config.showModMenu">
+                <li role="presentation" class="divider"></li>
+                <li class="dropdown-header">{{'pages.moderator-tools'|translate}}</li>
+                <li>
+                  <a [href]="config.relativePath + '/flags'">
+                    <i class="fa fa-fw fa-flag"></i> <span>{{'pages.flagged-content'|translate}}</span>
+                  </a>
+                </li>
+                <li>
+                  <a [href]="config.relativePath + '/post-queue'">
+                    <i class="fa fa-fw fa-list-alt"></i> <span>{{'pages.post-queue'|translate}}</span>
+                  </a>
+                </li>
+                <li>
+                  <a [href]="config.relativePath + '/ip-blacklist'">
+                    <i class="fa fa-fw fa-ban"></i> <span>{{'pages.ip-blacklist'|translate}}</span>
+                  </a>
+                </li>
+              </ng-container>
+              <!-- ENDIF showModMenu -->
+
+              <li role="presentation" class="divider"></li>
+              <li component="user/logout">
+                <form method="post" [action]="config.relativePath + '/logout'">
+                  <input type="hidden" name="_csrf" [value]="config.csrfToken">
+                  <input type="hidden" name="noscript" value="true">
+                  <button type="submit" class="btn btn-link">
+                    <i class="fa fa-fw fa-sign-out"></i><span> {{'global.logout'|translate}}</span>
+                  </button>
+                </form>
+              </li>
+            </ul>
+            </ng-template>
+          </li>
         </ng-container>
         <!-- ELSE -->
-        <ng-container *ngIf="!config.loggedIn">
-        <!-- IF allowRegistration -->
-        <li *ngIf="config.allowRegistration" class="hidden-xs">
-          <a [href]="config.relativePath + '/register'">
-            <span>{{'global.register'|translate}}</span>
-          </a>
-        </li>
-        <!-- ENDIF allowRegistration -->
-        <li class="hidden-xs">
-          <a [href]="config.relativePath + '/login'">
-            <span>{{'global.login'|translate}}</span>
-          </a>
-        </li>
+        <ng-container *ngIf="!user">
+          <!-- IF allowRegistration -->
+          <li *ngIf="config.allowRegistration" class="hidden-xs">
+            <a [href]="config.relativePath + '/register'">
+              <span>{{'global.register'|translate}}</span>
+            </a>
+          </li>
+          <!-- ENDIF allowRegistration -->
+          <li class="hidden-xs">
+            <a [href]="config.relativePath + '/login'">
+              <span>{{'global.login'|translate}}</span>
+            </a>
+          </li>
         </ng-container>
         <!-- ENDIF config.loggedIn -->
       </ul>
@@ -228,54 +236,56 @@
 </header>
 
 <section id="main" [ngClass]="{'visible-xs': config.menuInHeader}">
-<aside id="sidebar">
-  <div class="sidebar-inner">
-    <div class="si-inner">
-      <ul class="main-menu">
-        <li id="toggle-width" class="hidden-xs">
-          <div class="toggle-switch">
-            <input id="tw-switch" type="checkbox" hidden="hidden">
-            <label for="tw-switch" class="ts-helper"></label>
-          </div>
-        </li>
-        <!-- IF !config.loggedIn -->
-        <!-- IF allowRegistration -->
-        <li class="visible-xs">
-          <a [href]="config.relativePath + '/register'">
-            <i class="fa fa-pencil fa-fw"></i> {{'global.register'|translate}}
-          </a>
-        </li>
-        <!-- ENDIF allowRegistration -->
-        <li class="visible-xs">
-          <a [href]="config.relativePath + '/login'">
-            <i class="fa fa-sign-in fa-fw"></i> {{'global.login'|translate}}
-          </a>
-        </li>
-        <!-- ENDIF !config.loggedIn -->
+  <aside id="sidebar" [ngClass]="{'toggled': toggled}">
+    <div class="sidebar-inner">
+      <div class="si-inner">
+        <ul class="main-menu">
+          <li id="toggle-width" class="hidden-xs">
+            <div class="toggle-switch">
+              <input id="tw-switch" type="checkbox" hidden="hidden" [checked]="swToggled" (change)="swChange()">
+              <label for="tw-switch" class="ts-helper"></label>
+            </div>
+          </li>
+          <!-- IF !config.loggedIn -->
+          <!-- IF allowRegistration -->
+          <li class="visible-xs">
+            <a [href]="config.relativePath + '/register'">
+              <i class="fa fa-pencil fa-fw"></i> {{'global.register'|translate}}
+            </a>
+          </li>
+          <!-- ENDIF allowRegistration -->
+          <li class="visible-xs">
+            <a [href]="config.relativePath + '/login'">
+              <i class="fa fa-sign-in fa-fw"></i> {{'global.login'|translate}}
+            </a>
+          </li>
+          <!-- ENDIF !config.loggedIn -->
 
-        <li class="visible-xs">
-          <a [href]="config.relativePath + '/search'">
-            <i class="fa fa-search fa-fw"></i> {{'global.search'|translate}}
-          </a>
-        </li>
+          <li class="visible-xs">
+            <a [href]="config.relativePath + '/search'">
+              <i class="fa fa-search fa-fw"></i> {{'global.search'|translate}}
+            </a>
+          </li>
 
-        <!-- BEGIN navigation -->
-        <!-- IF function.displayMenuItem, @index -->
-        <li *ngFor="let navItem of navItems;" [ngClass]="navItem.class">
-          <a class="navigation-link" [href]="navItem.route" [title]="navItem.title" [attr.id]="navItem.id ? navItem.id : null"
-             [target]="navItem.properties?.targetBlank?'_blank' : null">
-          <!-- IF navigation.iconClass -->
-          <i *ngIf="navItem.iconClass" class="fa fa-fw" [ngClass]="navItem.iconClass" [attr.data-content]="navItem.content"></i>
-          <!-- ENDIF navigation.iconClass -->
-          <!-- IF navigation.text -->
-          {{navItem.text}}
-          <!-- ENDIF navigation.text -->
-          </a>
-        </li>
-        <!-- ENDIF function.displayMenuItem -->
-        <!-- END navigation -->
-      </ul>
+          <!-- BEGIN navigation -->
+          <!-- IF function.displayMenuItem, @index -->
+          <li *ngFor="let navItem of navItems;" [ngClass]="navItem.class">
+            <a class="navigation-link" [href]="navItem.route" [title]="navItem.title"
+               [attr.id]="navItem.id ? navItem.id : null"
+               [target]="navItem.properties?.targetBlank?'_blank' : null">
+              <!-- IF navigation.iconClass -->
+              <i *ngIf="navItem.iconClass" class="fa fa-fw" [ngClass]="navItem.iconClass"
+                 [attr.data-content]="navItem.content"></i>
+              <!-- ENDIF navigation.iconClass -->
+              <!-- IF navigation.text -->
+              {{navItem.text}}
+              <!-- ENDIF navigation.text -->
+            </a>
+          </li>
+          <!-- ENDIF function.displayMenuItem -->
+          <!-- END navigation -->
+        </ul>
+      </div>
     </div>
-  </div>
-</aside>
+  </aside>
 </section>

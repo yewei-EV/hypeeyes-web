@@ -1,0 +1,75 @@
+.dropdown-menu {
+  padding: 0;
+  margin: 0;
+}
+
+.form-control {
+  padding: 0;
+  height: 0;
+  &:focus {
+    background-color: transparent;
+  }
+}
+
+.popover-list {
+  font-size: 13px;
+  .btn {
+    font-size: 13px;
+  }
+  li {
+    a {
+      display: block;
+      padding: 8px 17px;
+    }
+  }
+}
+
+#user-control-list{
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+:host {
+  ::ng-deep .popover {
+    .arrow {
+      right: 0.5rem;
+    }
+    max-width: 400px !important;
+  }
+}
+
+button i {
+  color: white;
+}
+
+::ng-deep .chats .popover {
+  top: -10px !important;
+  left: -20px !important;
+  .arrow {
+    left: 60%;
+  }
+}
+
+::ng-deep .chats .popover {
+  top: -5px !important;
+  left: -20px !important;
+  .arrow {
+    left: 60%;
+  }
+}
+
+::ng-deep .notifications .popover {
+  top: -5px !important;
+  left: -40px !important;
+  .arrow {
+    left: 62.5%;
+  }
+}
+
+::ng-deep #user_label .popover {
+  top: -10px !important;
+  left: -40px !important;
+  .arrow {
+    left: 80%;
+  }
+}

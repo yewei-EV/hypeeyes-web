@@ -3,14 +3,12 @@ export class Config {
   brandLogo: string;
   brandLogoUrl: string;
   brandLogoAlt: string;
-  brandLogoDisplay: string;
   relativePath: string;
-  titleUrl: string;
-  title: string;
+  siteTitleUrl: string;
+  siteTitle: string;
   showSiteTitle: boolean;
   removeCategoriesAnimation: boolean;
   searchEnabled: boolean;
-  loggedIn: boolean;
   disableChat: boolean;
   showModMenu: boolean;
   csrfToken: boolean;

@@ -5,7 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { TopicComponent } from './topic/topic.component';
 
 @NgModule({
-  declarations: [CategoryComponent, TopicComponent],
+  declarations: [
+    CategoryComponent,
+    TopicComponent,
+  ],
   exports: [
     CategoryComponent
   ],
