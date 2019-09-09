@@ -60,16 +60,17 @@ export class HomeComponent implements OnInit {
           ids.map(id => {
             this.getTopicById(id).subscribe(topic => {
               category.topics.push(topic);
-
+              /*
               this.topicService.getMainPostById(topic.tid).subscribe(post => {
                 if (indexList.indexOf(+topic.tid) >= 0) {
                   topics.push(topic);
                 }
-                topic.posts = [post];
+                // topic.posts = [post];
                 if (topics.length === categories.length) {
                   this.firstTopicList = topics.sort((a, b) => a.cid - b.cid).map(firstTopic => firstTopic);
                 }
               });
+               */
             });
           });
         });
@@ -87,10 +88,10 @@ export class HomeComponent implements OnInit {
     return this.topicService.getById(id);
   }
 
-  getImg(posts: Post[]) {
-    if (posts && posts.length > 0) {
-      return posts[0].firstImg;
+  getImg(topic: Topic) {
+    if (topic.thumb) {
+      return topic.thumb;
     }
-    return 'http://ec2-18-225-9-46.us-east-2.compute.amazonaws.com/assets/uploads/system/site-logo.png';
+    return '/assets/uploads/system/site-logo.png';
   }
 }
