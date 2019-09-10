@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Observable, pipe} from 'rxjs';
 import { Category } from '../../shared/models/category';
 import { HttpClient } from '@angular/common/http';
 import { Constant } from '../../shared';
-import { map } from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
+import {Topic} from '../../shared/models/topic';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,16 @@ export class CategoryService {
 
   private url = Constant.apiUrl + '/categories';
   constructor(private http: HttpClient) { }
-  getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.url).pipe(map((categories: Category[]) => this.convert(categories)));
+  getAllPgcCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.url)
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.order <= 4)))
+      .pipe(map((categories: Category[]) => this.convert(categories)));
+  }
+
+  getAllUgcCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.url)
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.order > 4 && category.order !== 9)))
+      .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
   private convert(categories: Category[]) {
@@ -22,5 +31,10 @@ export class CategoryService {
 
   getTopicIds(category: Category): Observable<number[]> {
     return this.http.get<number[]>(`${this.url}/${category.cid}/topics`);
+  }
+
+  getTopicsByCid(num: number, cid: number): Observable<Topic[]> {
+    return this.http.get<Topic[]>(`${this.url}/${cid}?start=0&stop=${num}&sort=most-votes`)
+      .pipe(map((topics: Topic[]) => topics.map(topic => Topic.convert(topic))));
   }
 }

@@ -16,7 +16,8 @@ import { ConfigService } from '../shared/service/config.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  categories: Category[];
+  categoriesPgc: Category[];
+  categoriesUgc: Category[];
   config: Config;
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -46,37 +47,30 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.configService.getConfig().subscribe((config) => this.config = config);
-    const topics: Topic[] = [];
-    this.categoryService.getAllCategories().subscribe(categories => {
-      this.categories = categories;
-      this.categories.map(category => {
+    // PGC categories
+    this.categoryService.getAllPgcCategories().subscribe(categories => {
+      this.categoriesPgc = categories;
+      this.categoriesPgc.map(category => {
         if (!category.topics) {
           category.topics = [];
         }
-        const indexList = [];
-        this.getTopicIds(category).subscribe(ids => {
-          const index = +ids[0];
-          indexList.push(index);
-          ids.map(id => {
-            this.getTopicById(id).subscribe(topic => {
-              category.topics.push(topic);
-              /*
-              this.topicService.getMainPostById(topic.tid).subscribe(post => {
-                if (indexList.indexOf(+topic.tid) >= 0) {
-                  topics.push(topic);
-                }
-                // topic.posts = [post];
-                if (topics.length === categories.length) {
-                  this.firstTopicList = topics.sort((a, b) => a.cid - b.cid).map(firstTopic => firstTopic);
-                }
-              });
-               */
-            });
-          });
+        this.getTopicsByCid(3, category.cid).subscribe(topic => {
+          category.topics.push.apply(category.topics, topic);
         });
       });
     });
-
+    // UGC categories
+    this.categoryService.getAllUgcCategories().subscribe(categories => {
+      this.categoriesUgc = categories;
+      this.categoriesUgc.map(category => {
+        if (!category.topics) {
+          category.topics = [];
+        }
+        this.getTopicsByCid(11, category.cid).subscribe(topic => {
+          category.topics.push.apply(category.topics, topic);
+        });
+      });
+    });
   }
 
   getTopicIds(category: Category): Observable<number[]> {
@@ -92,5 +86,9 @@ export class HomeComponent implements OnInit {
       return topic.thumb;
     }
     return '/assets/uploads/system/site-logo.png';
+  }
+
+  private getTopicsByCid(num: number, cid: number) {
+    return this.categoryService.getTopicsByCid(num, cid);
   }
 }

@@ -16,6 +16,7 @@ export class Category {
   descriptionParsed: string;
   topics: Topic[];
   slug: string;
+  order: number;
 
 
   public getStyle() {
