@@ -14,6 +14,7 @@ import { TranslateLoader, TranslateModule, TranslateModuleConfig, TranslateServi
 import {SharedModule} from './shared/shared.module';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -44,7 +45,8 @@ const translateConfig: TranslateModuleConfig = {
     EntitiesModule,
     SwiperModule,
     RouterModule.forRoot([]),
-    SharedModule
+    SharedModule,
+    NgbTabsetModule
   ],
   providers: [{
     provide: SWIPER_CONFIG,

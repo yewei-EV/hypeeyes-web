@@ -11,10 +11,31 @@
   background-size: cover;
   width: 1000px;
   div {
-    height: 420px;
+    height: 400px;
     overflow: hidden;
     img {
       width: 1200px;
+    }
+  }
+}
+
+::ng-deep .nav-tabs {
+  font-weight: normal;
+  font-size: 18px;
+  padding: 20px;
+  .nav-link {
+    margin: 0 12px;
+    border: #2196f3 1px solid;
+    border-radius: 20px;
+    padding: 0 15px;
+    line-height: 35px;
+    background: #ffffff;
+    color: #2196f3;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    &.active {
+      background: #2196f3;
+      color: #ffffff;
     }
   }
 }
@@ -37,14 +58,14 @@
 }
 
 .swiper-slide {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .swiper-slide-active {
   margin-top: 0;
-  height: 450px;
+  height: 425px;
   position: relative;
-  div {height: 450px}
+  div {height: 425px}
   &:after{
     position: absolute;
     top: 0;
@@ -60,6 +81,32 @@
     &:after {
       box-shadow: 0 16px 25px rgba(22, 32, 47, 0.6);
     }
+  }
+}
+
+.swiper-slide-prev div {
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 320px;
+    height: 400px;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .3);
+  }
+}
+
+.swiper-slide-next div {
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 320px;
+    height: 400px;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .3);
   }
 }
 
