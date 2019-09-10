@@ -15,6 +15,7 @@ export class Topic {
   tid: number;
   title: string;
   uid: number;
+  thumb: string;
 
   upVotes: number;
   downVotes: number;
