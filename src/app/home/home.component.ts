@@ -18,6 +18,7 @@ import { ConfigService } from '../shared/service/config.service';
 export class HomeComponent implements OnInit {
   categoriesPgc: Category[];
   categoriesUgc: Category[];
+  categoriesSwiper: Category[];
   config: Config;
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -47,6 +48,19 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.configService.getConfig().subscribe((config) => this.config = config);
+    // Swiper categories
+    this.categoryService.getSwiperCategories().subscribe(categories => {
+      this.categoriesSwiper = categories;
+      this.categoriesSwiper.map(category => {
+        if (!category.topics) {
+          category.topics = [];
+        }
+        this.getTopicsByCid(3, category.cid).subscribe(topic => {
+          category.topics.push.apply(category.topics, topic);
+        });
+      });
+    });
+
     // PGC categories
     this.categoryService.getAllPgcCategories().subscribe(categories => {
       this.categoriesPgc = categories;

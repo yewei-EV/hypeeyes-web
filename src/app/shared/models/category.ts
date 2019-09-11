@@ -17,6 +17,7 @@ export class Category {
   topics: Topic[];
   slug: string;
   order: number;
+  disable: number;
 
 
   public getStyle() {
