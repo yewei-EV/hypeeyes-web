@@ -20,28 +20,33 @@ export class HomeComponent implements OnInit {
   categoriesUgc: Category[];
   categoriesSwiper: Category;
   config: Config;
+  active: false;
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
-    loop: true,
+    // loop: true,
+    // loopedSlides: 4,
+    initialSlide: 1,
+    slidesPerView: 'auto',
     keyboard: true,
     mousewheel: false,
     scrollbar: false,
-    navigation: true,
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
       clickable: true
     },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
     autoplay: true,
     effect: 'slide',
-    slidesPerView: 'auto',
-    // loopedSlides: 4,
     spaceBetween: 20,
     observer: true,
     centeredSlides: true,
     observeParents: true,
+    grabCursor: true,
   };
-  firstTopicList: Topic[] = [];
 
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService,
               private configService: ConfigService) { }

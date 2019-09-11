@@ -186,3 +186,23 @@
     }
   }
 }
+
+.slider-whole {
+  position:relative;
+  margin-top:30px;
+  margin-bottom: 50px;
+  display: flex;
+  img{
+    height: 100%;
+  }
+  &>div{
+    transition: all .6s ease;
+    width: 66.66%;
+    overflow: hidden;
+    //flex: 1;
+    &.on{
+      width: 33.33%;
+      flex: initial;
+    }
+  }
+}
