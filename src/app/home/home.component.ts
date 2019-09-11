@@ -18,7 +18,7 @@ import { ConfigService } from '../shared/service/config.service';
 export class HomeComponent implements OnInit {
   categoriesPgc: Category[];
   categoriesUgc: Category[];
-  categoriesSwiper: Category[];
+  categoriesSwiper: Category;
   config: Config;
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -50,15 +50,21 @@ export class HomeComponent implements OnInit {
     this.configService.getConfig().subscribe((config) => this.config = config);
     // Swiper categories
     this.categoryService.getSwiperCategories().subscribe(categories => {
-      this.categoriesSwiper = categories;
-      this.categoriesSwiper.map(category => {
+      this.categoriesSwiper = categories && categories[0];
+      const category = this.categoriesSwiper;
+      if (category) {
         if (!category.topics) {
           category.topics = [];
         }
-        this.getTopicsByCid(3, category.cid).subscribe(topic => {
-          category.topics.push.apply(category.topics, topic);
+        this.getTopicsByCid(3, category.cid).subscribe(topics => {
+          category.topics = topics || [];
+          category.topics.map(topic => {
+            this.topicService.getMainPostById(topic.mainPid).subscribe(post => {
+              topic.posts = [post];
+            });
+          });
         });
-      });
+      }
     });
 
     // PGC categories
@@ -68,8 +74,8 @@ export class HomeComponent implements OnInit {
         if (!category.topics) {
           category.topics = [];
         }
-        this.getTopicsByCid(3, category.cid).subscribe(topic => {
-          category.topics.push.apply(category.topics, topic);
+        this.getTopicsByCid(3, category.cid).subscribe(topics => {
+          category.topics = topics;
         });
       });
     });
@@ -80,8 +86,8 @@ export class HomeComponent implements OnInit {
         if (!category.topics) {
           category.topics = [];
         }
-        this.getTopicsByCid(11, category.cid).subscribe(topic => {
-          category.topics.push.apply(category.topics, topic);
+        this.getTopicsByCid(11, category.cid).subscribe(topics => {
+          category.topics = topics;
         });
       });
     });
