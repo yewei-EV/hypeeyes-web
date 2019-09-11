@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   categoriesUgc: Category[];
   categoriesSwiper: Category;
   config: Config;
-  active: false;
+  active: boolean;
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
     // loop: true,
