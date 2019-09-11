@@ -2,10 +2,11 @@
   <div class="swiper-wrap">
     <div class="swiper-container" [swiper]="swiperConfig">
       <div class="swiper-wrapper">
-        <ng-container *ngFor="let topic of categoriesSwiper[0]?.topics">
+        <ng-container *ngFor="let topic of categoriesSwiper?.topics">
           <div class="swiper-slide">
             <a [href]="'/topic/' + topic.tid + '/' + topic.title">
-              <div><img [src]="topic?.posts[0]?.firstImg || ''" alt=""></div>
+              {{topic |json}}
+              <div><img [src]="topic?.posts?topic?.posts[0].firstImg:''" alt=""></div>
             </a>
           </div>
         </ng-container>
