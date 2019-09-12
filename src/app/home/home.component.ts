@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
         this.getTopicsByCid(3, category.cid).subscribe(topics => {
           category.topics = topics || [];
           category.topics.map(topic => {
-            this.topicService.getMainPostById(topic.mainPid).subscribe(post => {
+            this.topicService.getMainPostByTid(topic.tid).subscribe(post => {
               topic.posts = [post];
             });
           });
