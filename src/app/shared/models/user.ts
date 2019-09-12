@@ -32,7 +32,7 @@ export class User {
   }
 
   getLink(relativePath: string) {
-    return relativePath + 'user/' + this.userSlug;
+    return relativePath + '/user/' + this.userSlug;
   }
 
 }

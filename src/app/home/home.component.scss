@@ -9,7 +9,7 @@
 .swiper-slide {
   background-position: center;
   background-size: cover;
-  width: 1000px;
+  width: 1200px;
   div {
     height: 400px;
     overflow: hidden;
@@ -20,11 +20,11 @@
 }
 
 ::ng-deep .nav-tabs {
-  font-weight: normal;
-  font-size: 18px;
-  padding: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 30px;
   .nav-link {
-    margin: 0 12px;
+    margin: 0 20px;
     border: #2196f3 1px solid;
     border-radius: 20px;
     padding: 0 15px;
@@ -189,7 +189,7 @@
 
 .slider-whole {
   position:relative;
-  margin-top:30px;
+  margin-top:40px;
   margin-bottom: 50px;
   display: flex;
   img{
@@ -205,4 +205,11 @@
       flex: initial;
     }
   }
+}
+
+.home-separator {
+  display: block;
+  border-top: 1px solid #faba41;
+  margin-top: -15px;
+  margin-bottom: 10px;
 }

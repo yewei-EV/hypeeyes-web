@@ -1,10 +1,10 @@
-<ng-container>
+<ng-container *ngIf="categoriesSwiper?.topics.length > 0">
   <div class="swiper-wrap">
     <div class="swiper-container" [swiper]="swiperConfig">
       <div class="swiper-wrapper">
         <ng-container *ngFor="let topic of categoriesSwiper?.topics">
           <div class="swiper-slide">
-            <a [href]="'/topic/' + topic.tid + '/' + topic.title">
+            <a target="_blank" [href]="'/topic/' + topic.tid + '/' + topic.title">
               <div><img [src]="topic?.posts?topic?.posts[0].firstImg:''" alt=""></div>
             </a>
           </div>
@@ -26,6 +26,7 @@
         <hr style="height: 20px; border-left: 2px solid #bbbbbb; border-top: 0; margin: 5px 10px 0 10px;">
         <span class="pt-1" [innerHTML]="category.descriptionParsed"></span>
       </div>
+      <div class="home-separator"></div>
       <div class="row no-wrap m-auto flag-wrap-pgc">
         <div class="topic" [ngClass]="category.class" *ngFor="let topic of category.topics">
           <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
@@ -51,7 +52,7 @@
                   </a>
                 </div>
                 <div class="title">
-                  <a [href]="topic.getLink(config.relativePath)">{{topic.title}}</a>
+                  <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
                 </div>
               </div>
             </div>
@@ -60,17 +61,16 @@
       </div>
     </div>
 
+    <!--    交易区/红黑榜-->
     <div class="slider-whole">
-      <div class="slider-first" [ngClass]="{'on': active}" (mouseover)="active = false;"><img src="https://www.s0l1d.com/wp-content/uploads/2018/10/performing-team-1200x510.jpg"></div>
-      <div class="slider-second" [ngClass]="{'on': !active}" (mouseover)="active = true;"><img src="https://www.njgamblingsites.com/wp-content/uploads/2019/01/paypal-accepted-nj-online-casinos-1200x510.png"></div>
+      <div class="slider-first" [ngClass]="{'on': active}" (mouseover)="active = false;">
+        <img src="/assets/uploads/category/blanket-blue-coffee-614710_gaitubao_1200x510.jpg">
+      </div>
+      <div class="slider-second" [ngClass]="{'on': !active}" (mouseover)="active = true;">
+        <img src="/assets/uploads/category/blank-branding-identity-business-cards-6372_gaitubao_1200x510.jpg">
+      </div>
     </div>
-<!--    <div style="position:absolute;z-index:2;left:60px;top:60px;"><img src="b.gif" width="100" height="100"></div>-->
-
-<!--    交易区/红黑榜-->
-<!--    <img alt="html image example" src="https://www.njgamblingsites.com/wp-content/uploads/2019/01/paypal-accepted-nj-online-casinos-1200x510.png"-->
-<!--    style="padding-top: 30px; padding-bottom: 30px;"/>-->
-<!--    <img alt="html image example" src="https://www.s0l1d.com/wp-content/uploads/2018/10/performing-team-1200x510.jpg"-->
-<!--         style="padding-top: 30px; padding-bottom: 30px;"/>-->
+    <div class="home-separator"></div>
 
     <ngb-tabset type="tabs" justify="center">
       <div *ngFor="let category of categoriesUgc" style="display: inline;">
@@ -89,7 +89,7 @@
                   <div class="card-footer">
                     <div>
                       <div class="title">
-                        <a [href]="topic.getLink(config.relativePath)">{{topic.title}}</a>
+                        <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
                       </div>
                     </div>
                   </div>

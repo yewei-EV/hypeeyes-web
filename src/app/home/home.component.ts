@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit {
     observer: true,
     centeredSlides: true,
     observeParents: true,
-    grabCursor: true,
   };
 
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService,
