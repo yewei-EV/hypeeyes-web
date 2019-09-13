@@ -67,12 +67,11 @@ export class HomeComponent implements OnInit {
   categoriesUgc: Category[];
   categoriesSwiper: Category;
   config: Config;
-  active: boolean;
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
-    loop: true,
-    loopedSlides: 4,
-    initialSlide: 1,
+    // loop: true,
+    // loopedSlides: 6,
+    initialSlide: 2,
     slidesPerView: 'auto',
     keyboard: false,
     mousewheel: false,
@@ -80,7 +79,7 @@ export class HomeComponent implements OnInit {
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
-      // clickable: true
+      clickable: true
     },
     navigation: {
       nextEl: '.swiper-button-next',
@@ -108,7 +107,7 @@ export class HomeComponent implements OnInit {
         if (!category.topics) {
           category.topics = [];
         }
-        this.getTopicsByCid(3, category.cid).subscribe(topics => {
+        this.getTopicsByCid(7, category.cid).subscribe(topics => {
           category.topics = topics || [];
           category.topics.map(topic => {
             this.topicService.getMainPostByTid(topic.tid).subscribe(post => {

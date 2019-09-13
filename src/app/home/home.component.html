@@ -4,7 +4,7 @@
       <div class="swiper-wrapper">
         <ng-container *ngFor="let topic of categoriesSwiper?.topics">
           <div class="swiper-slide">
-            <a target="_blank" [href]="'/topic/' + topic.tid + '/' + topic.title">
+            <a target="_blank" [href]="'/topic/' + topic.tid + '/'">
               <div><img [src]="topic?.posts?topic?.posts[0].firstImg:''" alt=""></div>
             </a>
           </div>
