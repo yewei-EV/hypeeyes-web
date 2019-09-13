@@ -9,12 +9,59 @@ import { Post } from '../shared/models/post';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Config } from '../shared/models/config';
 import { ConfigService } from '../shared/service/config.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('shortLong', [
+      // ...
+      state('short', style({
+        position: 'absolute',
+        top: '378px',
+        'max-width': '90%',
+        width: '90%',
+        transition: 'all .6s',
+        opacity: 1,
+        transform: 'translateX(-50%)',
+        left: '50%',
+        color: '#fff',
+        'font-size': '16px',
+        'line-height': 'normal',
+        'text-shadow': '1px 1px 5px rgba(0, 0, 0, .65)'
+      })),
+      state('long', style({
+        background: 'rgba(0, 0, 0, 0.4)',
+        position: 'absolute',
+        top: '105px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        'max-width': '90%',
+        'z-index': 1,
+        transition: 'all .6s',
+        opacity: 0,
+        width: '90%',
+        'font-size': '15px',
+        margin: '0 10px',
+        padding: '5px',
+        'text-shadow': '1px 0 black, 0 -1px black',
+        'border-radius': '5px',
+        color: '#fff',
+        overflow: 'hidden',
+        'max-height': '253px'
+      })),
+      transition('short => long', [
+        animate('1s')
+      ]),
+      transition('long => short', [
+        animate('0.5s')
+      ]),
+    ]),
+  ]
 })
+
 export class HomeComponent implements OnInit {
   categoriesPgc: Category[];
   categoriesUgc: Category[];
@@ -23,17 +70,17 @@ export class HomeComponent implements OnInit {
   active: boolean;
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
-    // loop: true,
-    // loopedSlides: 4,
+    loop: true,
+    loopedSlides: 4,
     initialSlide: 1,
     slidesPerView: 'auto',
-    keyboard: true,
+    keyboard: false,
     mousewheel: false,
     scrollbar: false,
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
-      clickable: true
+      // clickable: true
     },
     navigation: {
       nextEl: '.swiper-button-next',
@@ -46,6 +93,7 @@ export class HomeComponent implements OnInit {
     centeredSlides: true,
     observeParents: true,
   };
+  mouseIndex = 1;
 
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService,
               private configService: ConfigService) { }
