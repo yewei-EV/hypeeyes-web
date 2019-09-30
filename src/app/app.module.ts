@@ -22,7 +22,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 export function httpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, '/i18n/', '.json');
+  if (location.origin.indexOf('hypeeyes.com') > 0 ) {
+    return new TranslateHttpLoader(http, '/hypeeyes/web/i18n/', '.json');
+  } else {
+    return new TranslateHttpLoader(http, '/i18n/', '.json');
+  }
 }
 
 const translateConfig: TranslateModuleConfig = {
