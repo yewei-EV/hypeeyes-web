@@ -19,7 +19,7 @@ export class TopicService {
     return this.http.get<Topic>(`${this.url}/${id}`).pipe(map(topic => Topic.convert(topic)));
   }
 
-  getMainPostById(id: number): Observable<Post> {
+  getMainPostByTid(id: number): Observable<Post> {
     return this.http.get<Post>(`${this.url}/${id}/main-post`).pipe(map(post => Post.convert(post)));
   }
 

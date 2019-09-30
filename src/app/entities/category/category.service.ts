@@ -15,13 +15,14 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
   getAllPgcCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url)
-      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.order <= 4)))
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.order <= 5)))
       .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
   getAllUgcCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url)
-      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.order > 4 && category.order !== 9)))
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) =>
+        category.order > 5 && category.cid !== 9 && category.cid !== 10)))
       .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
