@@ -92,6 +92,21 @@ export class HomeComponent implements OnInit {
     centeredSlides: true,
     observeParents: true,
   };
+  tagSwiperConfig: SwiperConfigInterface = {
+    slidesPerView: 4,
+    spaceBetween: 40,
+    slidesPerGroup: 4,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    pagination: {
+      // el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  };
   mouseIndex = 1;
 
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService,
