@@ -178,28 +178,30 @@
     border-left: 0;
 
     .card-footer {
+      width: 269px;
+      margin: 0 auto;
       background: none;
-      margin-top: 10px;
       padding: 0px;
       border-top: 0px;
-      margin-bottom: 0px;
       .title {
         margin: 5px;
       }
     }
 
     .topic {
-      margin: 0px;
+      margin: 0;
     }
 
     .card {
       margin-left: -1px;
-      height: 320px;
       padding: 15px;
-      margin-bottom: 0px;
+      margin-bottom: 0;
       border: #dddddd 1px solid!important;
       //border: 0;
       transition: all .6s ease;
+      .card-body {
+        padding: 0;
+      }
       &:hover {
         z-index: 1;
         box-shadow: 0 10px 20px #ddd;
@@ -210,14 +212,17 @@
 
 .flag-wrap-pgc {
   background: transparent;
-  width: calc(100% + 39px);
-  margin-left: -19px!important;
+  // width: calc(100% + 39px);
+  // margin-left: -19px!important;
+  width: 100%;
 
   .topic {
     .card {
       border: 0;
+      background-color: transparent;
       .card-body {
         overflow: hidden;
+        padding: 0;
         .card-img {
           cursor: pointer;
           transition: all 0.5s;
@@ -231,11 +236,9 @@
 
   .card-footer {
     background: transparent;
-    margin-top: 15px;
+    margin: 0 auto;
     border-top: 0;
-    margin-bottom: 0;
-    padding-left: 20px;
-
+    width: 269px;
     .title {
       width: 269px;
       font-size: 16px;
@@ -385,5 +388,36 @@
         }
       }
     }
+  }
+}
+
+.category {
+  margin:0 auto;
+  width: 1200px;
+}
+
+@import "~bootstrap/scss/bootstrap";
+
+@include media-breakpoint-down(md) {
+  .topic-swiper {
+    display: none;
+  }
+  .card-slider {
+    display: none;
+  }
+  .category {
+    width: 100%;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .topic-swiper {
+    display: none;
+  }
+  .card-slider {
+    display: none;
+  }
+  .category {
+    width: 100%;
   }
 }
