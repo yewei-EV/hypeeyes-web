@@ -5,21 +5,22 @@
 
   .swiper-container {
     margin-bottom: 45px;
-    width: 100%;
     overflow: initial;
   }
 
   .swiper-slide {
     background-position: center;
     background-size: cover;
-    width: 1200px;
+    width: 100vw;
+    max-width: 1200px;
 
     div {
-      height: 400px;
+      height: 33.3vw;
+      max-height: 400px;
       overflow: hidden;
 
       img {
-        width: 1200px;
+        width: 100%;
       }
     }
   }
@@ -148,26 +149,34 @@
 }
 
 .swiper-slide-prev div {
+  height: 31vw !important;
+  max-height: 380px!important;
+  padding-top: 20px;
   &:after {
     display: block;
     content: '';
     position: absolute;
     width: 400px;
-    height: 400px;
-    top: 0;
+    max-height: 360px;
+    height: calc(31vw - 20px);
+    top: 20px;
     right: 0;
     background: rgba(0, 0, 0, .3);
   }
 }
 
 .swiper-slide-next div {
+  height: 31vw !important;
+  max-height: 380px!important;
+  padding-top: 20px;
   &:after {
     display: block;
     content: '';
     position: absolute;
     width: 400px;
-    height: 400px;
-    top: 0;
+    height: calc(31vw - 20px);
+    max-height: 360px;
+    top: 20px;
     left: 0;
     background: rgba(0, 0, 0, .3);
   }
@@ -399,25 +408,52 @@
 @import "~bootstrap/scss/bootstrap";
 
 @include media-breakpoint-down(md) {
-  .topic-swiper {
-    display: none;
-  }
   .card-slider {
     display: none;
   }
   .category {
     width: 100%;
   }
+/*
+  .swiper-slide-prev div {
+    height: 0 !important;
+    &:after {
+      width: 0;
+      height: 0;
+    }
+  }
+  .swiper-slide-next div {
+    height: 0 !important;
+    &:after {
+      width: 0;
+      height: 0;
+    }
+  }
+ */
 }
 
 @include media-breakpoint-down(lg) {
-  .topic-swiper {
-    display: none;
-  }
   .card-slider {
     display: none;
   }
   .category {
     width: 100%;
   }
+  /*
+  .swiper-slide-prev div {
+    height: 0 !important;
+    &:after {
+      width: 0;
+      height: 0;
+    }
+  }
+  .swiper-slide-next div {
+    height: 0 !important;
+    &:after {
+      width: 0;
+      height: 0;
+    }
+  }
+
+   */
 }

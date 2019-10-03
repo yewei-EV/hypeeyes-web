@@ -120,7 +120,7 @@
       <ngb-tab title={{category.name}}>
         <ng-template ngbTabContent>
           <div class="row no-wrap m-auto flag-wrap">
-            <div class="topic" [ngClass]="category.class" *ngFor="let topic of category.topics">
+            <div class="topic col-lg-3 col-sm-6" *ngFor="let topic of category.topics">
               <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
                 <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
                   <div class="card-body">

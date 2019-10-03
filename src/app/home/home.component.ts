@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
   config: Config;
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
-    // loop: true,
+    loop: true,
     // loopedSlides: 6,
     initialSlide: 2,
     slidesPerView: 'auto',
@@ -91,6 +91,7 @@ export class HomeComponent implements OnInit {
     observer: true,
     centeredSlides: true,
     observeParents: true,
+    speed: 1000,
   };
   tagSwiperConfig: SwiperConfigInterface = {
     slidesPerView: 4,
@@ -112,12 +113,25 @@ export class HomeComponent implements OnInit {
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService,
               private configService: ConfigService) { }
 
+  private async getSwiperCategories() {
+    const categories = await this.categoryService.getSwiperCategories().toPromise();
+    if (categories && categories[0]) {
+      const topics = await this.getTopicsByCid(7, categories[0].cid).toPromise();
+      for (const topic of topics) {
+        const post = await this.topicService.getMainPostByTid(topic.tid).toPromise();
+        topic.posts = [post];
+      }
+      categories[0].topics = topics;
+      this.categoriesSwiper = categories[0];
+    }
+  }
+
   ngOnInit() {
     this.configService.getConfig().subscribe((config) => this.config = config);
     // Swiper categories
+    /*
     this.categoryService.getSwiperCategories().subscribe(categories => {
-      this.categoriesSwiper = categories && categories[0];
-      const category = this.categoriesSwiper;
+      const category = categories && categories[0];
       if (category) {
         if (!category.topics) {
           category.topics = [];
@@ -129,9 +143,12 @@ export class HomeComponent implements OnInit {
               topic.posts = [post];
             });
           });
+          this.categoriesSwiper = category;
         });
       }
     });
+     */
+    this.getSwiperCategories().then();
 
     // PGC categories
     this.categoryService.getAllPgcCategories().subscribe(categories => {
