@@ -20,6 +20,37 @@
 </ng-container>
 
 <div class="category">
+  <div *ngIf="categoryPublish">
+    <div style="display: flex; padding: 5px; padding-top: 30px;">
+      <a class="title-category" target="_blank" [innerHTML]="categoryPublish.name" [href]="'/category/' + categoryPublish.cid + '/'"></a>
+      <hr style="height: 20px; border-left: 2px solid #bbbbbb; border-top: 0; margin: 5px 10px 0 10px;">
+      <span class="pt-1" [innerHTML]="categoryPublish.descriptionParsed"></span>
+    </div>
+    <div class="home-separator"></div>
+    <div class="row m-auto flag-wrap-pgc">
+      <div class="topic col-lg-3 col-sm-6" *ngFor="let topic of categoryPublish.topics">
+        <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(categoryPublish.getStyle())">
+          <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
+            <div class="card-body">
+              <div class="card-img">
+                <img [src]="getImg(topic) || ''" alt="">
+              </div>
+            </div>
+          </a>
+          <div class="card-footer">
+            <div style="width: 269px; margin: 0 auto;">
+              <div class="title">
+                <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+              </div>
+              <div class="calendar" *ngIf="topic?.posts && topic?.posts.length > 0">{{topic?.posts[0].calendar|date:'MM月dd日'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="category">
   <div *ngFor="let category of categoriesPgc">
     <div style="display: flex; padding: 5px; padding-top: 30px;">
       <a class="title-category" target="_blank" [innerHTML]="category.name" [href]="'/category/' + category.cid + '/'"></a>
