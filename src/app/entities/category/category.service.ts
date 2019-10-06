@@ -22,7 +22,7 @@ export class CategoryService {
   getAllUgcCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url)
       .pipe(map((categories: Category[]) => categories.filter((category: Category) =>
-        category.order > 5 && category.cid !== 9 && category.cid !== 10)))
+        category.order > 5 && category.cid !== 9 && category.cid !== 14)))
       .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
