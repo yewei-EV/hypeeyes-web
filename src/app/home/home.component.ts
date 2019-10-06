@@ -66,6 +66,7 @@ export class HomeComponent implements OnInit {
   categoriesPgc: Category[];
   categoriesUgc: Category[];
   categoriesSwiper: Category;
+  categoryPublish: Category;
   config: Config;
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -126,6 +127,19 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  private async getPublishCategories() {
+    const categories = await this.categoryService.getPublishCategories().toPromise();
+    if (categories && categories[0]) {
+      const topics = await this.getTopicsByCid(3, categories[0].cid).toPromise();
+      for (const topic of topics) {
+        const post = await this.topicService.getMainPostByTid(topic.tid).toPromise();
+        topic.posts = [post];
+      }
+      categories[0].topics = topics;
+      this.categoryPublish = categories[0];
+    }
+  }
+
   ngOnInit() {
     this.configService.getConfig().subscribe((config) => this.config = config);
     // Swiper categories
@@ -149,6 +163,7 @@ export class HomeComponent implements OnInit {
     });
      */
     this.getSwiperCategories().then();
+    this.getPublishCategories().then();
 
     // PGC categories
     this.categoryService.getAllPgcCategories().subscribe(categories => {

@@ -15,7 +15,7 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
   getAllPgcCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url)
-      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.order <= 5)))
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.order <= 5 && category.name !== '发售日历')))
       .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
@@ -23,6 +23,12 @@ export class CategoryService {
     return this.http.get<Category[]>(this.url)
       .pipe(map((categories: Category[]) => categories.filter((category: Category) =>
         category.order > 5 && category.cid !== 9 && category.cid !== 14)))
+      .pipe(map((categories: Category[]) => this.convert(categories)));
+  }
+
+  getPublishCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.url)
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.name === '发售日历')))
       .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
