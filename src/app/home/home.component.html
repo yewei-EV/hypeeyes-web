@@ -52,60 +52,125 @@
 
 <div class="category">
   <div *ngFor="let category of categoriesPgc">
-    <div style="display: flex; padding: 5px; padding-top: 30px;">
-      <a class="title-category" target="_blank" [innerHTML]="category.name" [href]="'/category/' + category.cid + '/'"></a>
-      <hr style="height: 20px; border-left: 2px solid #bbbbbb; border-top: 0; margin: 5px 10px 0 10px;">
-      <span class="pt-1" [innerHTML]="category.descriptionParsed"></span>
-      <ngb-tabset type="">
-        <ngb-tab title="全部" style="padding: 0">
-          <!--          <ng-template ngbTabContent>-->
-
-          <!--          </ng-template>-->
+    <div style="padding: 5px; padding-top: 30px; position: relative">
+      <div style="display: flex; position:absolute">
+        <a class="title-category" target="_blank" [innerHTML]="category.name" [href]="'/category/' + category.cid + '/'"></a>
+        <hr style="height: 20px; border-left: 2px solid #bbbbbb; border-top: 0; margin: 5px 10px 0 10px;">
+        <span class="pt-1" [innerHTML]="category.descriptionParsed"></span>
+      </div>
+      <ngb-tabset justify="end" class="pgc-tabset" type="" style="font-weight: 500; font-size: 16px">
+        <ngb-tab title="全部">
+          <ng-template ngbTabContent style="margin-top: 20px">
+            <div class="home-separator"></div>
+            <div class="row m-auto flag-wrap-pgc">
+              <div class="topic col-lg-3 col-sm-6" *ngFor="let topic of category.topics">
+                <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
+                  <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
+                    <div class="card-body">
+                      <div class="card-img">
+                        <img [src]="getImg(topic) || ''" alt="">
+                      </div>
+                    </div>
+                  </a>
+                  <div class="card-footer">
+                    <div>
+                      <div class="float-left hidden-xs user-avatar">
+                        <a [href]="topic.user.getLink(config.relativePath)">
+                          <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
+                            <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
+                                 [title]="topic.user.username"/>
+                          </ng-container>
+                          <ng-template #userNoIcon>
+                            <div class="user-icon" [title]="topic.user.username"
+                                 [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
+                          </ng-template>
+                        </a>
+                      </div>
+                      <div class="title">
+                        <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
         </ngb-tab>
-        <ngb-tab title="Supreme" style="padding: 0">
-<!--          <ng-template ngbTabContent>-->
-
-<!--          </ng-template>-->
+        <ngb-tab title="Supreme">
+          <ng-template ngbTabContent>
+            <div class="home-separator"></div>
+            <div class="row m-auto flag-wrap-pgc">
+              <div class="topic col-lg-3 col-sm-6" *ngFor="let topic of category.topics">
+                <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
+                  <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
+                    <div class="card-body">
+                      <div class="card-img">
+                        <img [src]="getImg(topic) || ''" alt="">
+                      </div>
+                    </div>
+                  </a>
+                  <div class="card-footer">
+                    <div>
+                      <div class="float-left hidden-xs user-avatar">
+                        <a [href]="topic.user.getLink(config.relativePath)">
+                          <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
+                            <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
+                                 [title]="topic.user.username"/>
+                          </ng-container>
+                          <ng-template #userNoIcon>
+                            <div class="user-icon" [title]="topic.user.username"
+                                 [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
+                          </ng-template>
+                        </a>
+                      </div>
+                      <div class="title">
+                        <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
         </ngb-tab>
-        <ngb-tab title="Kith" style="padding: 0">
-<!--          <ng-template ngbTabContent>-->
-
-<!--          </ng-template>-->
+        <ngb-tab title="Kith">
+          <ng-template ngbTabContent>
+            <div class="home-separator"></div>
+            <div class="row m-auto flag-wrap-pgc">
+              <div class="topic col-lg-3 col-sm-6" *ngFor="let topic of category.topics">
+                <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
+                  <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
+                    <div class="card-body">
+                      <div class="card-img">
+                        <img [src]="getImg(topic) || ''" alt="">
+                      </div>
+                    </div>
+                  </a>
+                  <div class="card-footer">
+                    <div>
+                      <div class="float-left hidden-xs user-avatar">
+                        <a [href]="topic.user.getLink(config.relativePath)">
+                          <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
+                            <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
+                                 [title]="topic.user.username"/>
+                          </ng-container>
+                          <ng-template #userNoIcon>
+                            <div class="user-icon" [title]="topic.user.username"
+                                 [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
+                          </ng-template>
+                        </a>
+                      </div>
+                      <div class="title">
+                        <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
         </ngb-tab>
       </ngb-tabset>
-    </div>
-    <div class="home-separator"></div>
-    <div class="row m-auto flag-wrap-pgc">
-      <div class="topic col-lg-3 col-sm-6" *ngFor="let topic of category.topics">
-        <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
-          <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
-            <div class="card-body">
-              <div class="card-img">
-                <img [src]="getImg(topic) || ''" alt="">
-              </div>
-            </div>
-          </a>
-          <div class="card-footer">
-            <div>
-              <div class="float-left hidden-xs user-avatar">
-                <a [href]="topic.user.getLink(config.relativePath)">
-                  <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
-                    <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
-                         [title]="topic.user.username"/>
-                  </ng-container>
-                  <ng-template #userNoIcon>
-                    <div class="user-icon" [title]="topic.user.username"
-                         [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
-                  </ng-template>
-                </a>
-              </div>
-              <div class="title">
-                <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
