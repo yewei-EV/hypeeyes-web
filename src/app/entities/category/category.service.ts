@@ -21,20 +21,13 @@ export class CategoryService {
 
   getAllUgcCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url)
-      .pipe(map((categories: Category[]) => categories.filter((category: Category) =>
-        category.order > 5 && category.cid !== 9 && category.cid !== 14)))
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.name === '潮目社区')))
       .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
-  getPublishCategories(): Observable<Category[]> {
+  getCategoryByName(cname: string): Observable<Category[]> {
     return this.http.get<Category[]>(this.url)
-      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.name === '发售日历')))
-      .pipe(map((categories: Category[]) => this.convert(categories)));
-  }
-
-  getSwiperCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.url)
-      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.name === '首页置顶')))
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.name === cname)))
       .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
