@@ -12,8 +12,8 @@ export class Post {
   votes: number;
   timestampISO: string;
   editedISO: string;
-  private _firstImg;
-  private _calendar;
+  private _firstImg: string;
+  private _firstCalendar: Date;
   static convert(post) {
     return Object.assign(new Post(), post);
   }
@@ -33,17 +33,16 @@ export class Post {
     return img;
   }
 
-  get calendar(): string {
-    if (!this._calendar) {
+  get fistCalendar(): Date {
+    if (!this._firstCalendar) {
       const content = this.content;
       const regexp = new RegExp(/local, ([0-9]+),/);
       const result = regexp.exec(content);
       console.log(content.length, result);
       if (result && result.length > 1) {
-        this._calendar = new Date(+result[1]);
-        console.log(this._calendar);
+        this._firstCalendar = new Date(+result[1]);
       }
     }
-    return this._calendar;
+    return this._firstCalendar;
   }
 }

@@ -1,0 +1,36 @@
+@import "~bootstrap/scss/bootstrap";
+
+@include media-breakpoint-up(xs) {
+  .masonry {
+    width: 270px;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .masonry {
+    width: 560px;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .masonry {
+    width: 1140px;
+  }
+}
+
+.masonry {
+  margin: auto;
+}
+
+.masonry-item {
+  width: 270px;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 8px;
+}

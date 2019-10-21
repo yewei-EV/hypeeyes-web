@@ -5,11 +5,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Topic } from '../shared/models/topic';
 import { TopicService } from '../entities/topic/topic.service';
 import { Observable } from 'rxjs';
-import { Post } from '../shared/models/post';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Config } from '../shared/models/config';
 import { ConfigService } from '../shared/service/config.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
@@ -117,12 +116,7 @@ export class HomeComponent implements OnInit {
   private async getSwiperCategories() {
     const categories = await this.categoryService.getSwiperCategories().toPromise();
     if (categories && categories[0]) {
-      const topics = await this.getTopicsByCid(7, categories[0].cid).toPromise();
-      for (const topic of topics) {
-        const post = await this.topicService.getMainPostByTid(topic.tid).toPromise();
-        topic.posts = [post];
-      }
-      categories[0].topics = topics;
+      categories[0].topics = await this.categoryService.getTopicsWithMainPostInfoByCid(categories[0].cid, 0, 7).toPromise();
       this.categoriesSwiper = categories[0];
     }
   }
@@ -130,12 +124,7 @@ export class HomeComponent implements OnInit {
   private async getPublishCategories() {
     const categories = await this.categoryService.getPublishCategories().toPromise();
     if (categories && categories[0]) {
-      const topics = await this.getTopicsByCid(3, categories[0].cid).toPromise();
-      for (const topic of topics) {
-        const post = await this.topicService.getMainPostByTid(topic.tid).toPromise();
-        topic.posts = [post];
-      }
-      categories[0].topics = topics;
+      categories[0].topics = await this.getTopicsByCid(3, categories[0].cid).toPromise();
       this.categoryPublish = categories[0];
     }
   }

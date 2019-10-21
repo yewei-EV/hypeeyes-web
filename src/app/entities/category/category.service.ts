@@ -50,4 +50,8 @@ export class CategoryService {
     return this.http.get<Topic[]>(`${this.url}/${cid}?start=0&stop=${num}&sort=most-votes`)
       .pipe(map((topics: Topic[]) => topics.map(topic => Topic.convert(topic))));
   }
+  getTopicsWithMainPostInfoByCid(cid: number, start: number, size: number) {
+    return this.http.get<Topic[]>(`${this.url}/${cid}/withMainPostInfo?start=${start}&stop=${start + size - 1}&sort=most-votes`)
+      .pipe(map((topics: Topic[]) => topics.map(topic => Topic.convert(topic))));
+  }
 }

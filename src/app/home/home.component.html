@@ -6,7 +6,7 @@
           <ng-container *ngFor="let topic of categoriesSwiper?.topics">
             <div class="swiper-slide">
               <a target="_blank" [href]="'/topic/' + topic.tid + '/'">
-                <div><img [src]="topic?.posts?topic?.posts[0].firstImg:''" alt=""></div>
+                <div><img [src]="topic?.firstImg" alt=""></div>
               </a>
             </div>
           </ng-container>
@@ -42,7 +42,7 @@
               <div class="title">
                 <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
               </div>
-              <div class="calendar" *ngIf="topic?.posts && topic?.posts.length > 0">{{topic?.posts[0].calendar|date:'MM月dd日'}}</div>
+              <div class="calendar" *ngIf="topic?.firstCalendar">{{topic.firstCalendar|date:'MM月dd日'}}</div>
             </div>
           </div>
         </div>
@@ -50,7 +50,6 @@
     </div>
   </div>
 
-<div class="category">
   <div *ngFor="let category of categoriesPgc">
     <div style="display: flex; padding: 5px; padding-top: 30px;">
       <a class="title-category" target="_blank" [innerHTML]="category.name" [href]="'/category/' + category.cid + '/'"></a>
@@ -221,4 +220,3 @@
     <div class="swiper-button-prev"></div>
   </div>
 </div>
-

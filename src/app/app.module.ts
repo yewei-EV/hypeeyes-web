@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {RouterModule} from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 import {EntitiesModule} from './entities/entities.module';
 import { HomeComponent } from './home/home.component';
 
@@ -37,6 +37,10 @@ const translateConfig: TranslateModuleConfig = {
   }
 };
 
+const routes: Route[] = [
+  {path: '', component: HomeComponent},
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +52,7 @@ const translateConfig: TranslateModuleConfig = {
     TranslateModule.forRoot(translateConfig),
     EntitiesModule,
     SwiperModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot(routes),
     SharedModule,
     NgbTabsetModule
   ],

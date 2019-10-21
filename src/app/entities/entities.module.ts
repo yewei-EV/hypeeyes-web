@@ -1,20 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoryComponent } from './category/category.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TopicComponent } from './topic/topic.component';
+import { Route, RouterModule } from '@angular/router';
+
+const routes: Route[] = [
+  {path: 'category', loadChildren: './category/category.module#CategoryModule'},
+  ];
 
 @NgModule({
-  declarations: [
-    CategoryComponent,
-    TopicComponent,
-  ],
-  exports: [
-    CategoryComponent
-  ],
   imports: [
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class EntitiesModule { }

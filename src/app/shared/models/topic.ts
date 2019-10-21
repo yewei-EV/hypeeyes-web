@@ -4,7 +4,8 @@ import { Post } from './post';
 import { Constant } from '../constant';
 
 export class Topic {
-  posts: Post[];
+  firstImg: string;
+  firstCalendar: Date;
   user: User;
   cid: number;
   deleted: number;
@@ -32,6 +33,7 @@ export class Topic {
     topic.timestamp = moment(topic.timestamp);
     topic.lastPostTime = moment(topic.lastPostTime);
     topic.user = User.convert(topic.user);
+    topic.firstCalendar = new Date(topic.firstCalendar);
     return Object.assign(new Topic(), topic);
   }
 

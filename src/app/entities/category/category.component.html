@@ -1,0 +1,21 @@
+<ngx-masonry [options]="masonryOptions" [useImagesLoaded]="true" class="masonry">
+  <div ngxMasonryItem class="masonry-item" *ngFor="let topic of topics">
+    <div class="card">
+      <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
+        <div class="card-body">
+          <div class="card-img">
+            <img [src]="getImg(topic) || ''" alt="" style="width: 269px;">
+          </div>
+        </div>
+      </a>
+      <div class="card-footer">
+        <div style="width: 269px; margin: 0 auto;">
+          <div class="title">
+            <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ngx-masonry>
+<div *ngIf="gettingTopic" style="margin: auto; width: 50px; font-size: 4rem;"><i class="fa fa-spinner fa-pulse"></i></div>
