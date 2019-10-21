@@ -1,7 +1,8 @@
 [
   {
     "context": ["/hypeeyes/api", "/assets"],
-    "target": "http://localhost:4567",
-    "secure": false
+    "target": "https://www.hypeeyes.com/",
+    "secure": false,
+    "changeOrigin": true
   }
 ]

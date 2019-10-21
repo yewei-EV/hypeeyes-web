@@ -22,6 +22,7 @@ export class Category {
 
   public getStyle() {
     return '';
+    /*
     const style = [];
 
     if (this.bgColor) {
@@ -40,5 +41,6 @@ export class Category {
     }
 
     return style.join('; ') + ';';
+     */
   }
 }

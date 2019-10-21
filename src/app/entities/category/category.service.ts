@@ -21,20 +21,13 @@ export class CategoryService {
 
   getAllUgcCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url)
-      .pipe(map((categories: Category[]) => categories.filter((category: Category) =>
-        category.order > 5 && category.cid !== 9 && category.cid !== 14)))
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.name === '潮目社区')))
       .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
-  getPublishCategories(): Observable<Category[]> {
+  getCategoryByName(cname: string): Observable<Category[]> {
     return this.http.get<Category[]>(this.url)
-      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.name === '发售日历')))
-      .pipe(map((categories: Category[]) => this.convert(categories)));
-  }
-
-  getSwiperCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.url)
-      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.name === '首页置顶')))
+      .pipe(map((categories: Category[]) => categories.filter((category: Category) => category.name === cname)))
       .pipe(map((categories: Category[]) => this.convert(categories)));
   }
 
@@ -46,8 +39,8 @@ export class CategoryService {
     return this.http.get<number[]>(`${this.url}/${category.cid}/topics`);
   }
 
-  getTopicsByCid(num: number, cid: number): Observable<Topic[]> {
-    return this.http.get<Topic[]>(`${this.url}/${cid}?start=0&stop=${num}&sort=most-votes`)
+  getTopicsByCid(cid: number, start: number, size: number): Observable<Topic[]> {
+    return this.http.get<Topic[]>(`${this.url}/${cid}?start=${start}&stop=${start + size - 1}&sort=most-votes`)
       .pipe(map((topics: Topic[]) => topics.map(topic => Topic.convert(topic))));
   }
   getTopicsWithMainPostInfoByCid(cid: number, start: number, size: number) {
