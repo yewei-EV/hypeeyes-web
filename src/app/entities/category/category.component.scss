@@ -1,5 +1,4 @@
 @import "~bootstrap/scss/bootstrap";
-
 @include media-breakpoint-up(xs) {
   .masonry {
     width: 270px;
@@ -9,6 +8,12 @@
 @include media-breakpoint-up(md) {
   .masonry {
     width: 560px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .masonry {
+    width: 850px;
   }
 }
 

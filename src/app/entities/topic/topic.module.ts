@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TopicComponent } from './topic.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TopicComponent
+  ],
   imports: [
     CommonModule
   ]
