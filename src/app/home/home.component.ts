@@ -66,7 +66,6 @@ export class HomeComponent implements OnInit {
   categoryNews: Category;
   categoryWiki: Category;
   categoryPict: Category;
-  categoryTech: Category;
   subCategoryNike: Category;
   subCategoryAdidas: Category;
   subCategorySupreme: Category;
@@ -156,8 +155,6 @@ export class HomeComponent implements OnInit {
     this.getCategories('潮流百科').then(object => {this.categoryWiki = object; });
     // 美图细赏
     this.getCategories('美图细赏').then(object => {this.categoryPict = object; });
-    // 抢购黑科技
-    this.getCategories('抢购黑科技').then(object => {this.categoryTech = object; });
 
     // 发售资讯 Subcategories
     this.getCategories('Nike').then(object => {this.subCategoryNike = object; });

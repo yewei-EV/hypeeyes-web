@@ -530,56 +530,6 @@
       </ngb-tabset>
     </div>
   </div>
-<!--抢购黑科技-->
-  <div *ngIf="categoryTech">
-    <div style="padding: 5px; padding-top: 30px; position: relative">
-      <div style="display: flex; position:absolute">
-        <a class="title-category" target="_blank" [innerHTML]="categoryTech.name" [href]="'/category/' + categoryTech.cid + '/'"></a>
-        <hr style="height: 20px; border-left: 2px solid #bbbbbb; border-top: 0; margin: 5px 10px 0 10px;">
-        <span class="pt-1" [innerHTML]="categoryPict.descriptionParsed"></span>
-      </div>
-      <ngb-tabset justify="end" class="pgc-tabset" type="" style="font-weight: 500; font-size: 16px">
-        <ngb-tab title="精选">
-          <ng-template ngbTabContent style="margin-top: 20px">
-            <div class="home-separator"></div>
-            <div class="row m-auto flag-wrap-pgc">
-              <div class="topic col-lg-3 col-sm-6" *ngFor="let topic of categoryTech.topics">
-                <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(categoryTech.getStyle())">
-                  <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
-                    <div class="card-body">
-                      <div class="card-img">
-                        <img [src]="getImg(topic) || ''" alt="">
-                      </div>
-                    </div>
-                  </a>
-                  <div class="card-footer">
-                    <div>
-                      <div class="float-left hidden-xs user-avatar">
-                        <a [href]="topic.user.getLink(config.relativePath)">
-                          <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
-                            <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
-                                 [title]="topic.user.username"/>
-                          </ng-container>
-                          <ng-template #userNoIcon>
-                            <div class="user-icon" [title]="topic.user.username"
-                                 [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
-                          </ng-template>
-                        </a>
-                      </div>
-                      <div class="title">
-                        <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </ngb-tab>
-      </ngb-tabset>
-    </div>
-  </div>
-
   <!--    交易区/红黑榜-->
   <div class="card-slider wrap">
     <h3 class="h3-title"></h3>
