@@ -33,7 +33,6 @@ export class CategoryComponent implements OnInit {
   }
 
   async getTopics() {
-    console.log('get topics start:', this.start);
     if (this.gettingTopic) {
       return ;
     }
