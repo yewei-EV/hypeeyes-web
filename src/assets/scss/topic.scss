@@ -1,7 +1,6 @@
 @import "card";
 @import "old/mixins";
 .topic {
-  margin: auto;
   .card {
     @extend .card;
     background-color: transparent;
