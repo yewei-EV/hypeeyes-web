@@ -568,36 +568,46 @@
 <!--      </div>-->
 <!--    </div>-->
 <!--  </div>-->
-  <div class="home-separator"></div>
 
-  <ngb-tabset type="tabs" justify="center">
-    <div *ngFor="let category of categoriesUgc" style="display: inline;">
-      <ngb-tab title={{category.name}}>
-        <ng-template ngbTabContent>
-          <div class="row no-wrap m-auto flag-wrap">
-            <div class="topic col-lg-3 col-sm-6" *ngFor="let topic of category.topics">
-              <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
-                <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
-                  <div class="card-body">
-                    <div class="card-img">
-                      <img [src]="getImg(topic) || ''" alt="">
+
+<!--  图片Banner-->
+  <div class="img-wrap">
+    <img src="/assets/uploads/category/banner.jpg">
+    <div class="img-btn">
+      点击进入
+    </div>
+  </div>
+
+  <div class="ugc-section">
+    <ngb-tabset type="tabs" justify="center">
+      <div *ngFor="let category of categoriesUgc" style="display: inline;">
+        <ngb-tab title={{category.name}}>
+          <ng-template ngbTabContent>
+            <div class="row no-wrap m-auto flag-wrap">
+              <div class="topic col-lg-3 col-sm-6" *ngFor="let topic of category.topics">
+                <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
+                  <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
+                    <div class="card-body">
+                      <div class="card-img">
+                        <img [src]="getImg(topic) || ''" alt="">
+                      </div>
                     </div>
-                  </div>
-                </a>
-                <div class="card-footer">
-                  <div>
-                    <div class="title">
-                      <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+                  </a>
+                  <div class="card-footer">
+                    <div>
+                      <div class="title">
+                        <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </ng-template>
-      </ngb-tab>
-    </div>
-  </ngb-tabset>
+          </ng-template>
+        </ngb-tab>
+      </div>
+    </ngb-tabset>
+  </div>
 </div>
 
 <div class="tag-swiper">

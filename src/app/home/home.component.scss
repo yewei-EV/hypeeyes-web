@@ -401,8 +401,18 @@
 }
 
 .category {
-  margin:0 auto;
-  width: 1200px;
+  &>div {
+    margin:0 auto;
+    width: 1200px;
+    &.img-wrap {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      width: 100%!important;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
 }
 
 @import "~bootstrap/scss/bootstrap";
@@ -463,3 +473,24 @@
   text-align: center;
   font-size: 12px;
 }
+
+.img-wrap {
+  position: relative;
+  img {
+    max-width: 100%;
+  }
+  .img-btn {
+    background-color: #fff;
+    color: rgb(255, 200, 12);
+    border-radius: 10px;
+    padding: 5px 20px;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: 10%;
+  }
+}
+
+
+
+
