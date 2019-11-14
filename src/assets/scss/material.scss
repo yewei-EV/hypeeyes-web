@@ -1,6 +1,15 @@
-@import "old/material";
-@import "old/parent";
-@import "topic";
-@import "card";
-@import "generic";
-@import "category";
+$grid-gutter-width: 0;
+@import "~bootstrap/scss/bootstrap";
+@if $enable-grid-classes {
+  .container {
+    @include make-container($grid-gutter-width);
+    @include make-container-max-widths($grid-breakpoints, $grid-breakpoints);
+  }
+}
+a {
+  text-decoration: none;
+  color: #1d1d1d;
+  &:hover {
+    text-decoration: none;
+  }
+}
