@@ -118,7 +118,7 @@ export class HomeComponent implements OnInit {
       prevEl: '.swiper-button-prev',
     },
   };
-  mouseIndex = 1;
+  categoriesArray: Category[][] = [];
 
   constructor(private categoryService: CategoryService, private sanitizer: DomSanitizer, private topicService: TopicService,
               private configService: ConfigService) { }
@@ -131,7 +131,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  private async getCategories(cname: string, start: number = 0, size: number = 4, bWithMainPostInfo: boolean = false) {
+  private async getCategories(cname: string, start: number = 0, size: number = 3, bWithMainPostInfo: boolean = false) {
     const categories = await this.categoryService.getCategoryByName(cname).toPromise();
     if (categories && categories[0]) {
       if (bWithMainPostInfo) {
@@ -143,34 +143,57 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  private async getAllCategories() {
     this.configService.getConfig().subscribe((config) => this.config = config);
     // Slider
-    this.getCategories('首页置顶', 0, 8, true).then(category => this.categoriesSwiper = category);
+    this.categoriesSwiper = await this.getCategories('首页置顶', 0, 8, true);
     // 首页置顶
-    this.getCategories('发售日历', 0 , 4, true).then(object => {this.categoryPublish = object; });
+    this.categoryPublish = await this.getCategories('发售日历', 0 , 3, true);
     // 发售资讯
-    this.getCategories('发售资讯').then(object => {this.categoryNews = object; });
+    this.categoryNews = await this.getCategories('发售资讯');
+    const categoryNewsArray = [this.categoryNews, new Category(), new Category(), new Category(), new Category()];
+    categoryNewsArray[1].name = 'Nike';
+    categoryNewsArray[2].name = 'Adidas';
+    categoryNewsArray[3].name = 'Supreme';
+    categoryNewsArray[4].name = 'Kith';
+    this.categoriesArray.push(categoryNewsArray);
     // 潮流百科
-    this.getCategories('潮流百科').then(object => {this.categoryWiki = object; });
+    this.categoryWiki = await this.getCategories('潮流百科');
+    const categoryWikiArray = [this.categoryWiki, new Category(), new Category()];
+    categoryWikiArray[1].name = '人物';
+    categoryWikiArray[2].name = '品牌';
+    this.categoriesArray.push(categoryWikiArray);
     // 美图细赏
-    this.getCategories('美图细赏').then(object => {this.categoryPict = object; });
+    this.categoryPict = await this.getCategories('美图细赏');
+    const categoryPictArray = [this.categoryPict, new Category(), new Category(), new Category()];
+    categoryPictArray[1].name = '球鞋';
+    categoryPictArray[2].name = '潮服';
+    categoryPictArray[3].name = '上身驾驭';
+    this.categoriesArray.push(categoryPictArray);
 
     // 发售资讯 Subcategories
-    this.getCategories('Nike').then(object => {this.subCategoryNike = object; });
-    this.getCategories('Adidas').then(object => {this.subCategoryAdidas = object; });
-    this.getCategories('Supreme').then(object => {this.subCategorySupreme = object; });
-    this.getCategories('Kith').then(object => {this.subCategoryKith = object; });
+    this.subCategoryNike = await this.getCategories('Nike');
+    categoryNewsArray[1] = this.subCategoryNike;
+    this.subCategoryAdidas = await this.getCategories('Adidas');
+    categoryNewsArray[2] = this.subCategoryAdidas;
+    this.subCategorySupreme = await this.getCategories('Supreme');
+    categoryNewsArray[3] = this.subCategorySupreme;
+    this.subCategoryKith = await this.getCategories('Kith');
+    categoryNewsArray[4] = this.subCategoryKith;
 
     // 潮流百科 Subcategories
-    this.getCategories('人物').then(object => {this.subCategoryMan = object; });
-    this.getCategories('品牌').then(object => {this.subCategoryBrand = object; });
+    this.subCategoryMan = await this.getCategories('人物');
+    categoryWikiArray[1] = this.subCategoryMan;
+    this.subCategoryBrand = await this.getCategories('品牌');
+    categoryWikiArray[2] = this.subCategoryBrand;
 
     // 美图细赏 Subcategories
-    this.getCategories('球鞋').then(object => {this.subCategoryShoe = object; });
-    this.getCategories('潮服').then(object => {this.subCategoryCloth = object; });
-    this.getCategories('上身驾驭').then(object => {this.subCategoryShow = object; });
-
+    this.subCategoryShoe = await this.getCategories('球鞋');
+    categoryPictArray[1] = this.subCategoryShoe;
+    this.subCategoryCloth = await this.getCategories('潮服');
+    categoryPictArray[2] = this.subCategoryCloth;
+    this.subCategoryShow = await this.getCategories('上身驾驭');
+    categoryPictArray[3] = this.subCategoryShow;
     // 潮目社区
     // UGC categories
     this.categoryService.getAllUgcCategories().subscribe(categories => {
@@ -184,6 +207,10 @@ export class HomeComponent implements OnInit {
         });
       });
     });
+  }
+
+  ngOnInit() {
+    this.getAllCategories().then();
   }
 
   getImg(topic: Topic) {
