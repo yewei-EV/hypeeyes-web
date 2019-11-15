@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   exports: [
@@ -10,6 +11,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
     TranslateModule,
     NgbPopoverModule,
     NgxMasonryModule,
+    InfiniteScrollModule,
   ],
 })
 export class SharedModule {

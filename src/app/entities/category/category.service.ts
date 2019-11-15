@@ -12,6 +12,12 @@ import {Topic} from '../../shared/models/topic';
 export class CategoryService {
 
   private url = Constant.apiUrl + '/categories';
+
+  getAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.url)
+      .pipe(map((categories: Category[]) => this.convert(categories)));
+  }
+
   constructor(private http: HttpClient) { }
   getAllPgcCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url)
