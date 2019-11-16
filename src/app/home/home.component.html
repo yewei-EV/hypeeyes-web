@@ -621,72 +621,70 @@
 <!--    </div>-->
 <!--  </div>-->
 
-
-<!--  图片Banner-->
-<!--  <div class="img-wrap">-->
-<!--    <img src="/assets/uploads/category/banner.jpg">-->
-<!--    <div class="img-btn">-->
-<!--      点击进入-->
-<!--    </div>-->
+<!--  <div class="ugc-section">-->
+<!--    <ngb-tabset type="tabs" justify="center">-->
+<!--      <div *ngFor="let category of categoriesUgc" style="display: inline;">-->
+<!--        <ngb-tab title={{category.name}}>-->
+<!--          <ng-template ngbTabContent>-->
+<!--            <div class="row no-wrap m-auto flag-wrap">-->
+<!--              <div class="topic col-lg-4 col-sm-6" *ngFor="let topic of category.topics">-->
+<!--                <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">-->
+<!--                  <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">-->
+<!--                    <div class="card-body">-->
+<!--                      <div class="card-img">-->
+<!--                        <img [src]="getImg(topic) || ''" alt="">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </a>-->
+<!--                  <div class="card-footer">-->
+<!--                    <div>-->
+<!--                      <div class="title">-->
+<!--                        <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </ng-template>-->
+<!--        </ngb-tab>-->
+<!--      </div>-->
+<!--    </ngb-tabset>-->
 <!--  </div>-->
+</div>
 
-  <div class="ugc-section">
-    <ngb-tabset type="tabs" justify="center">
-      <div *ngFor="let category of categoriesUgc" style="display: inline;">
-        <ngb-tab title={{category.name}}>
-          <ng-template ngbTabContent>
-            <div class="row no-wrap m-auto flag-wrap">
-              <div class="topic col-lg-4 col-sm-6" *ngFor="let topic of category.topics">
-                <div class="card" [style]="sanitizer.bypassSecurityTrustStyle(category.getStyle())">
-                  <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
-                    <div class="card-body">
-                      <div class="card-img">
-                        <img [src]="getImg(topic) || ''" alt="">
-                      </div>
-                    </div>
-                  </a>
-                  <div class="card-footer">
-                    <div>
-                      <div class="title">
-                        <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </ngb-tab>
-      </div>
-    </ngb-tabset>
+<div class="img-wrap">
+  <img src="/assets/images/banner.jpg">
+  <div class="img-btn">
+    点击进入
   </div>
 </div>
 
-<div class="tag-swiper">
-  <div style="padding-top: 50px; background: #edf1f4;">
-  </div>
-  <div class="section-title" style="text-align:center;padding-top:5px;margin:15px;font-size:25px;font-weight:800;color:snow">
-    热门标签
-  </div>
-  <div class="swiper-container"  [swiper]="tagSwiperConfig">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Nike</div>
-      <div class="swiper-slide">Yeezy</div>
-      <div class="swiper-slide">Adidas Originals</div>
-      <div class="swiper-slide">A Bathing Ape</div>
-      <div class="swiper-slide">Vapormax</div>
-      <div class="swiper-slide">Kaws</div>
-      <div class="swiper-slide">Supreme</div>
-      <div class="swiper-slide">Air Jordan</div>
-      <div class="swiper-slide">Kith</div>
-      <div class="swiper-slide">Travis Scott</div>
-      <div class="swiper-slide">Sacai</div>
-      <div class="swiper-slide">Li-Ning</div>
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
-</div>
+<!--<div class="tag-swiper">-->
+<!--  <div style="padding-top: 50px; background: #edf1f4;">-->
+<!--  </div>-->
+<!--  <div class="section-title" style="text-align:center;padding-top:5px;margin:15px;font-size:25px;font-weight:800;color:snow">-->
+<!--    热门标签-->
+<!--  </div>-->
+<!--  <div class="swiper-container"  [swiper]="tagSwiperConfig">-->
+<!--    <div class="swiper-wrapper">-->
+<!--      <div class="swiper-slide">Nike</div>-->
+<!--      <div class="swiper-slide">Yeezy</div>-->
+<!--      <div class="swiper-slide">Adidas Originals</div>-->
+<!--      <div class="swiper-slide">A Bathing Ape</div>-->
+<!--      <div class="swiper-slide">Vapormax</div>-->
+<!--      <div class="swiper-slide">Kaws</div>-->
+<!--      <div class="swiper-slide">Supreme</div>-->
+<!--      <div class="swiper-slide">Air Jordan</div>-->
+<!--      <div class="swiper-slide">Kith</div>-->
+<!--      <div class="swiper-slide">Travis Scott</div>-->
+<!--      <div class="swiper-slide">Sacai</div>-->
+<!--      <div class="swiper-slide">Li-Ning</div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Add Pagination &ndash;&gt;-->
+<!--    <div class="swiper-pagination"></div>-->
+<!--    &lt;!&ndash; Add Arrows &ndash;&gt;-->
+<!--    <div class="swiper-button-next"></div>-->
+<!--    <div class="swiper-button-prev"></div>-->
+<!--  </div>-->
+<!--</div>-->
