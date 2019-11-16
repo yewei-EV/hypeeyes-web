@@ -1,4 +1,5 @@
 $grid-gutter-width: 0;
+$card-cap-bg: #fff;
 @import "~bootstrap/scss/bootstrap";
 @if $enable-grid-classes {
   .container {
@@ -11,5 +12,16 @@ a {
   color: #1d1d1d;
   &:hover {
     text-decoration: none;
+    color: #c01e2f;
+  }
+}
+body {
+  background: rgba(0, 0, 0, 0);
+}
+
+.card {
+  overflow: hidden;
+  &:hover {
+    @extend .shadow;
   }
 }

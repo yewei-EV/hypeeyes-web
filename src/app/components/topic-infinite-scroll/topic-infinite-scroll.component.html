@@ -1,0 +1,8 @@
+<div  infiniteScroll
+      [infiniteScrollThrottle]="throttle"
+      [infiniteScrollDistance]="scrollDistance">
+  <div *ngFor="let topic of topics">
+    <app-topic-card [topic]="topic"></app-topic-card>
+  </div>
+</div>
+<button *ngIf="!finished" (click)="onScroll()">加载更多</button>

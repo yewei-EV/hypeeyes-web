@@ -1,0 +1,31 @@
+<div class="card">
+    <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
+        <div class="card-body">
+            <div class="card-img-top">
+                <img [src]="getImg(topic) || ''" alt="">
+            </div>
+        </div>
+    </a>
+    <div class="card-footer">
+        <div class="title">
+            <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+        </div>
+        <div>
+            <div class="user-info">
+                <a [href]="topic.user.getLink(config.relativePath)">
+                    <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
+                        <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
+                             [title]="topic.user.username"/>
+                    </ng-container>
+                    <ng-template #userNoIcon>
+                        <div class="user-icon" [title]="topic.user.username"
+                             [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</div>
+                    </ng-template>
+                </a>
+                <div class="ml-2"><small>{{topic.user.username}}</small></div>
+                <div class="ml-auto"><i class="fa fa-heart-o mr-2"></i><small>{{topic.votes}}</small></div>
+            </div>
+
+        </div>
+    </div>
+</div>

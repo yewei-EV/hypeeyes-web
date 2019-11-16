@@ -164,7 +164,7 @@ export class HomeComponent implements OnInit {
     categoryWikiArray[2].name = '品牌';
     this.categoriesArray.push(categoryWikiArray);
     // 美图细赏
-    this.categoryPict = await this.getCategories('美图细赏');
+    this.categoryPict = await this.getCategories('美图细赏', 0, 4);
     const categoryPictArray = [this.categoryPict, new Category(), new Category(), new Category()];
     categoryPictArray[1].name = '球鞋';
     categoryPictArray[2].name = '潮服';
@@ -188,11 +188,11 @@ export class HomeComponent implements OnInit {
     categoryWikiArray[2] = this.subCategoryBrand;
 
     // 美图细赏 Subcategories
-    this.subCategoryShoe = await this.getCategories('球鞋');
+    this.subCategoryShoe = await this.getCategories('球鞋', 0, 4);
     categoryPictArray[1] = this.subCategoryShoe;
-    this.subCategoryCloth = await this.getCategories('潮服');
+    this.subCategoryCloth = await this.getCategories('潮服', 0 , 4);
     categoryPictArray[2] = this.subCategoryCloth;
-    this.subCategoryShow = await this.getCategories('上身驾驭');
+    this.subCategoryShow = await this.getCategories('上身驾驭', 0, 4);
     categoryPictArray[3] = this.subCategoryShow;
     // 潮目社区
     // UGC categories

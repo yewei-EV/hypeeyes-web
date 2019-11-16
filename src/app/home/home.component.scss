@@ -1,5 +1,4 @@
 .card {
-  width: 392px;
   .card-body {
     padding: 0;
     height: 260px;
@@ -21,11 +20,14 @@
   }
 }
 ::ng-deep .nav-link {
-  color: #ffc80c;
+  color: #666666;
 }
 .row {
-  margin-top: 10px;
   justify-content: space-between;
+}
+
+.section{
+  padding-top: 30px;
 }
 
 .swiper-slide {
