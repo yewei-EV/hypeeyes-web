@@ -1,8 +1,9 @@
 <div  infiniteScroll
       [infiniteScrollThrottle]="throttle"
-      [infiniteScrollDistance]="scrollDistance">
-  <div *ngFor="let topic of topics">
-    <app-topic-card [topic]="topic"></app-topic-card>
-  </div>
+      [infiniteScrollDistance]="scrollDistance" class="d-flex justify-content-between flex-wrap">
+    <app-topic-card *ngFor="let topic of topics" [topic]="topic" [styleType]="topicListInfo.styleType"></app-topic-card>
 </div>
-<button *ngIf="!finished" (click)="onScroll()">加载更多</button>
+<div class="w-100 mt-3">
+  <button type="button" class="btn m-auto d-block btn-primary text-white"
+          *ngIf="!finished" (click)="onScroll()">加载更多</button>
+</div>

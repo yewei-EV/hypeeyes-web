@@ -1,6 +1,6 @@
-<div class="position-relative section">
+<div class="position-relative section" *ngIf="categories?.length > 0">
   <div class="position-absolute">
-    <div style="display: flex; font-size: 1.25rem; color: #1d1d1d;">
+    <div class="category">
       <div>{{categories[0].name}}</div>
       <a class="ml-2 nav-link" style="padding: 0;" target="_blank"  [href]="'/category/' + categories[0].cid + '/'"><small>浏览全部</small></a>
     </div>
@@ -9,7 +9,8 @@
   <ngb-tabset justify="end" type="" style="font-weight: 500;">
     <ngb-tab *ngFor="let category of categories" [title]="category.name == categories[0].name ? '精选' : category.name">
       <ng-template ngbTabContent style="margin-top: 20px">
-        <app-topic-infinite-scroll [topicListInfo]="topicListInfo"></app-topic-infinite-scroll>
+        <hr class="m-0">
+        <app-topic-infinite-scroll [topicListInfo]="topicListInfo" [categoryId]="category.cid"></app-topic-infinite-scroll>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>

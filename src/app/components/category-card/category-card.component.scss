@@ -1,0 +1,22 @@
+.card {
+  .card-body {
+    padding: 0;
+    height: 1000px;
+    .card-img-top {
+      height: 240px;
+      overflow: hidden;
+      img {
+        width: 596px;
+      }
+    }
+  }
+  .title {
+    height: 4em;
+  }
+}
+
+.category {
+  display: flex;
+  font-size: 1.25rem;
+  color: #1d1d1d;
+}

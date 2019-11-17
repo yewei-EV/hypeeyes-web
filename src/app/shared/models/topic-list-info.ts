@@ -1,6 +1,6 @@
 export class TopicListInfo {
   itemNumberPerLine: number;
   line: number;
-  categoryId?: number;
+  styleType?: number;
   maxItems?: number;
 }
