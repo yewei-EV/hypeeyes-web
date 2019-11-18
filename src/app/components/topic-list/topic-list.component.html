@@ -1,5 +1,6 @@
-<div *ngFor="let topic of topics">
+<div *ngFor="let topic of topics" class="my-1 d-flex justify-content-between">
   <a [href]="topic.getLink(config.relativePath)">
     <div [innerHTML]="topic.title"></div>
   </a>
+  <div>{{topic.postCount}}回复/{{topic.votes}}赞</div>
 </div>
