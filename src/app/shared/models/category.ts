@@ -18,7 +18,8 @@ export class Category {
   slug: string;
   order: number;
   disable: number;
-
+  parentCid: number;
+  image: string;
 
   public getStyle() {
     return '';

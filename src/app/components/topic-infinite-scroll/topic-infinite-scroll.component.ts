@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Topic, TopicListInfo } from '../../shared/models';
 import { CategoryService } from '../../entities/category/category.service';
 
@@ -10,27 +10,46 @@ import { CategoryService } from '../../entities/category/category.service';
 export class TopicInfiniteScrollComponent implements OnInit {
 
   @Input() topicListInfo: TopicListInfo;
+  @Input() categoryId: number;
   throttle = 300;
   scrollDistance = 1;
-  topics: Topic[];
+  topics: Topic[] = [];
   start = 0;
-  finished = false;
+  finished = true;
 
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
+    if (this.topicListInfo) {
+      if (!this.topicListInfo.styleType) {
+        switch (this.topicListInfo.itemNumberPerLine) {
+          case 3:
+            this.topicListInfo.styleType = 0;
+            break;
+          case 4:
+            this.topicListInfo.styleType = 1;
+            break;
+          default:
+            this.topicListInfo.styleType = 0;
+            break;
+        }
+      }
+      this.onScroll();
+    }
   }
 
   onScroll() {
-    this.categoryService.getTopicsByCid(this.topicListInfo.categoryId, this.start, this.topicListInfo.itemNumberPerLine * this.topicListInfo.line)
+    this.categoryService.getTopicsByCid(this.categoryId, this.start, this.topicListInfo.itemNumberPerLine * this.topicListInfo.line)
       .subscribe(topics => {
         this.topics = this.topics.concat(topics);
         if (topics.length < this.topicListInfo.itemNumberPerLine * this.topicListInfo.line) {
           this.finished = true;
-        }
-        if (this.topics.length >= this.topicListInfo.maxItems) {
+        } else if (this.topics.length >= this.topicListInfo.maxItems) {
           this.finished = true;
+        } else {
+          this.finished = false;
         }
+        this.start += topics.length;
       });
   }
 }

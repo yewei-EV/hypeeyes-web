@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mt-3" *ngIf="config&&style" [ngStyle]="{'width': style.width}">
     <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
         <div class="card-body">
             <div class="card-img-top">

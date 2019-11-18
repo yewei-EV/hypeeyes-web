@@ -1,0 +1,22 @@
+.card {
+  .card-body {
+    padding: 0;
+    height: 260px;
+    overflow: hidden;
+    img {
+      width: 390px;
+    }
+  }
+  .user-info {
+    display: flex;
+    color: #666666;
+  }
+  .user-avatar {
+    width: 24px;
+    height: 24px;
+  }
+  .title {
+    height: 4em;
+  }
+}
+

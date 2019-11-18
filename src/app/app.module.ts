@@ -15,8 +15,10 @@ import {SharedModule} from './shared/shared.module';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ComponentsModule } from './components/components.module';
+import { PagesModule } from './pages/pages.module';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -41,18 +43,19 @@ const translateConfig: TranslateModuleConfig = {
 
 const routes: Route[] = [
   {path: '', component: HomePageComponent},
+  {path: 'categories/:id', component: CategoriesComponent},
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HomePageComponent,
     MenuComponent
   ],
   imports: [
     BrowserModule,
     TranslateModule.forRoot(translateConfig),
+    PagesModule,
     EntitiesModule,
     SwiperModule,
     RouterModule.forRoot(routes),

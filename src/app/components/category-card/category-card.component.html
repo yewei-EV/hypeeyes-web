@@ -1,0 +1,23 @@
+<div *ngIf="categories?.length > 0">
+  <div>
+    <div class="category">
+      <div>{{categories[0].name}}</div>
+    </div>
+    <hr style="width: 80px; border: 1px solid black; margin: 0;">
+    <hr class="m-0">
+  </div>
+  <div class="mt-2 d-flex flex-wrap justify-content-between">
+    <div class="card mb-2" *ngFor="let category of categories | slice:1" style="width: 596px;">
+      <div class="card-body">
+        <div class="card-img-top position-relative">
+          <img [src]="category.image || defaultImg" alt="">
+          <div class="position-absolute" style="bottom: 10px; left: 10px;">
+            <a [href]="'/category/' + categories[0].cid + '/'">{{category.descriptionParsed + "test"}}</a>
+          </div>
+        </div>
+        <app-topic-list [category]="category" [pageNumber]="0" [topicNumberPerPage]="10"></app-topic-list>
+      </div>
+    </div>
+  </div>
+</div>
+

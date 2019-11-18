@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Topic } from '../../shared/models/topic';
+import { Config, Topic } from '../../shared/models';
 import { ConfigService } from '../../shared/service/config.service';
-import { Config } from '../../shared/models/config';
+
+class Style {
+  width: string;
+}
 
 @Component({
   selector: 'app-topic-card',
@@ -11,10 +14,18 @@ import { Config } from '../../shared/models/config';
 export class TopicCardComponent implements OnInit {
 
   @Input() topic: Topic;
+  @Input() styleType: number;
+  style: Style;
+  private styles: Style[] = [
+    {width: '392px'},
+    {width: '290px'}
+  ];
+
   private config: Config;
   constructor(private configService: ConfigService) {}
 
   ngOnInit() {
+    this.style = this.styles[this.styleType];
     this.configService.getConfig().subscribe(config => this.config = config);
   }
 

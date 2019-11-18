@@ -25,3 +25,16 @@ body {
     @extend .shadow;
   }
 }
+
+.btn-primary {
+  background-color: #666666;
+  border-color: #666666;;
+  &:hover {
+    background: linear-gradient(180deg,rgba(71,144,229,1) 0%,rgba(82,165,244,1) 100%);
+    border-color: transparent;
+  }
+}
+
+::ng-deep .nav-link {
+  color: #666666;
+}

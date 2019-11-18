@@ -1,0 +1,5 @@
+<div *ngFor="let topic of topics">
+  <a [href]="topic.getLink(config.relativePath)">
+    <div [innerHTML]="topic.title"></div>
+  </a>
+</div>
