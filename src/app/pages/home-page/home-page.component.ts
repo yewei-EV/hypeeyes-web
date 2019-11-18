@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-    // autoplay: true,
+    autoplay: true,
     effect: 'slide',
     spaceBetween: 20,
     observer: true,

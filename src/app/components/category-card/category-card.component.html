@@ -6,19 +6,15 @@
     <hr style="width: 80px; border: 1px solid black; margin: 0;">
     <hr class="m-0">
   </div>
-  <div class="mt-2 d-flex flex-wrap justify-content-between">
+  <div class="mt-3 d-flex flex-wrap justify-content-between">
     <div class="card mb-2" *ngFor="let category of categories | slice:1">
       <div class="card-body">
-        <a [href]="'/category/' + categories[0].cid + '/'">
-          <div class="card-img-top position-relative">
-            <img [src]="category.image || defaultImg" alt="">
-            <div class="category-name position-absolute text-white">
-              {{category.name}}
-            </div>
-          </div>
-        </a>
-        <div class="m-3">
-          <app-topic-list [category]="category" [pageNumber]="0" [topicNumberPerPage]="6"></app-topic-list>
+        <div class="d-flex m-3">
+          <h5 class="h5 mr-2">{{category.name}}</h5>
+          <a [href]="'/category/' + categories[0].cid + '/'"><small>浏览全部</small></a>
+        </div>
+        <div>
+          <app-topic-list [category]="category" [pageNumber]="0" [topicNumberPerPage]="5"></app-topic-list>
         </div>
       </div>
     </div>

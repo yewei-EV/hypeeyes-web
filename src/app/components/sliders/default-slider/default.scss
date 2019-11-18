@@ -42,3 +42,8 @@
     @extend .shadow-lg;
   }
 }
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
