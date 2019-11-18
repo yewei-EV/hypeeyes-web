@@ -15,7 +15,7 @@ export class CategoriesComponent implements OnInit {
 
   categories: Category[] = [];
   topicListInfo: TopicListInfo;
-  linePerPage = 1;
+  linePerPage = 3;
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');

@@ -1,6 +1,6 @@
 <ng-container *ngIf="sliderDataArray?.length > 0">
   <div [class]="styleClass">
-    <div class="position-relative">
+    <div class="wrapper">
       <div class="swiper-container" [swiper]="sliderConfig">
         <div class="swiper-wrapper">
           <ng-container *ngFor="let data of sliderDataArray">

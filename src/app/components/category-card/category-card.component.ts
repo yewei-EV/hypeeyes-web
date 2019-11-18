@@ -8,7 +8,6 @@ import { Category } from '../../shared/models';
 })
 export class CategoryCardComponent implements OnInit {
   @Input() categories: Category[];
-  defaultImg = 'https://www.hypeeyes.com/assets/uploads/files/1568258148129-0659fb8a865d6007e3aa98dc3cd4fdba.jpg';
   constructor() { }
 
   ngOnInit() {

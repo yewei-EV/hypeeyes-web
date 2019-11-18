@@ -1,13 +1,11 @@
 .card {
+  width: 294px;
   .card-body {
     padding: 0;
-    height: 390px;
+    height: 584px;
     .card-img-top {
       height: 176px;
       overflow: hidden;
-      img {
-        width: 290px;
-      }
     }
   }
   .title {
@@ -27,4 +25,11 @@
   text-align: center;
   padding: 10px;
   width: 100%;
+}
+
+a small {
+  color: rgba(0, 0, 0, 0.5);
+  &:hover {
+    color: inherit;
+  }
 }
