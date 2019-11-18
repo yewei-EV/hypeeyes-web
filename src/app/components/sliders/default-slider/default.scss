@@ -1,0 +1,44 @@
+@import "~bootstrap/scss/bootstrap";
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 100vw;
+  max-width: 1200px;
+  height: 33.3vw;
+  max-height: 400px;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+
+.side {
+  height: 31vw !important;
+  max-height: 380px!important;
+  padding-top: 20px;
+  filter: brightness(50%);
+  @extend .shadow;
+}
+
+.swiper-slide-prev {
+  @extend .side;
+  div:after {
+    right: 0;
+  }
+}
+
+.swiper-slide-next {
+  @extend .side;
+}
+
+.swiper-container {
+  overflow: initial;
+  margin-bottom: 45px;
+}
+
+.swiper-slide-active {
+  @extend .shadow;
+  &:hover {
+    @extend .shadow-lg;
+  }
+}
