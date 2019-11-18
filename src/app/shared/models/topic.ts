@@ -24,8 +24,7 @@ export class Topic {
   timestampISO: string;
   lastPostTimeISO: string;
   votes: number;
-  private viewCount: number;
-  private postCount: number;
+  postCount: number;
   timestamp: moment.Moment;
   lastPostTime: moment.Moment;
 

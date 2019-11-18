@@ -7,15 +7,19 @@
     <hr class="m-0">
   </div>
   <div class="mt-2 d-flex flex-wrap justify-content-between">
-    <div class="card mb-2" *ngFor="let category of categories | slice:1" style="width: 596px;">
+    <div class="card mb-2" *ngFor="let category of categories | slice:1">
       <div class="card-body">
-        <div class="card-img-top position-relative">
-          <img [src]="category.image || defaultImg" alt="">
-          <div class="position-absolute" style="bottom: 10px; left: 10px;">
-            <a [href]="'/category/' + categories[0].cid + '/'">{{category.descriptionParsed + "test"}}</a>
+        <a [href]="'/category/' + categories[0].cid + '/'">
+          <div class="card-img-top position-relative">
+            <img [src]="category.image || defaultImg" alt="">
+            <div class="category-name position-absolute text-white">
+              {{category.name}}
+            </div>
           </div>
+        </a>
+        <div class="m-3">
+          <app-topic-list [category]="category" [pageNumber]="0" [topicNumberPerPage]="6"></app-topic-list>
         </div>
-        <app-topic-list [category]="category" [pageNumber]="0" [topicNumberPerPage]="10"></app-topic-list>
       </div>
     </div>
   </div>

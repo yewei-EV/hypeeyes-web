@@ -46,10 +46,11 @@ export class HomePageComponent implements OnInit {
         }
       }
       for (const category of categories) {
-        if (categoryId === category) {
-          this.categoriesForCard.concat(category, this.categoriesForCard);
+        if (categoryId === category.cid) {
+
+          this.categoriesForCard = this.categoriesForCard.concat(category);
         }
-        if (categoryId === category.parentCid) {
+        if (categoryId === category.parentCid && category.name !== '精选') {
           this.categoriesForCard.push(category);
         }
         for (const [index, categoryNameList] of categoryNameLists.entries()) {
@@ -60,6 +61,7 @@ export class HomePageComponent implements OnInit {
           }
         }
       }
+      console.log(this.categoriesForCard);
     });
   }
 
