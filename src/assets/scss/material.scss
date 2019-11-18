@@ -12,7 +12,7 @@ a {
   color: #1d1d1d;
   &:hover {
     text-decoration: none;
-    color: #c01e2f;
+    color: #FF5000;
   }
 }
 body {
@@ -21,6 +21,7 @@ body {
 
 .card {
   overflow: hidden;
+  border-radius: 6px;
   &:hover {
     @extend .shadow;
   }
