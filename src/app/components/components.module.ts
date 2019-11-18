@@ -6,22 +6,25 @@ import { TopicCardComponent } from './topic-card/topic-card.component';
 import { TopicListComponent } from './topic-list/topic-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { TopicInfiniteScrollComponent } from './topic-infinite-scroll/topic-infinite-scroll.component';
+import { SlidersModule } from './sliders/sliders.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
+    SlidersModule,
   ],
   exports: [
     CategoryCardComponent,
     CategoryTabComponent,
+    SlidersModule
   ],
   declarations: [
     CategoryCardComponent,
     CategoryTabComponent,
     TopicCardComponent,
     TopicListComponent,
-    TopicInfiniteScrollComponent
+    TopicInfiniteScrollComponent,
   ]
 })
 export class ComponentsModule { }
