@@ -21,7 +21,7 @@ export class TopicCardComponent implements OnInit {
     {width: '290px'}
   ];
 
-  private config: Config;
+  config: Config;
   constructor(private configService: ConfigService) {}
 
   ngOnInit() {
