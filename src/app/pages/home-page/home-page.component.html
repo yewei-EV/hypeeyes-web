@@ -4,8 +4,15 @@
   <div *ngFor="let info of infoList" class="py-2">
     <app-category-tab [categories]="info.categories" [topicListInfo]="info.topicListInfo"></app-category-tab>
   </div>
+</div>
+<div class="img-wrap">
+  <img src="/assets/uploads/category/banner.jpg">
+  <div class="img-btn">
+    点击进入
+  </div>
+</div>
+<div style="width: 1200px; margin: auto;">
   <div class="py-2">
     <app-category-card [categories]="categoriesForCard"></app-category-card>
   </div>
 </div>
-

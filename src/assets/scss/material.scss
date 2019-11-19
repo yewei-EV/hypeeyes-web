@@ -24,7 +24,7 @@ body {
 
 .card {
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 8px;
   &:hover {
     @extend .shadow;
   }
