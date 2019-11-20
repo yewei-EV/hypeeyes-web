@@ -1,4 +1,6 @@
-@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 .swiper-slide {
   background-position: center;
   background-size: cover;
@@ -16,11 +18,11 @@
 
 .side {
   // height: 31vw !important;
-  height: 380px;
-  max-height: 380px!important;
+  height: 360px;
+  max-height: 360px!important;
   margin-top: 20px;
   filter: brightness(50%);
-  @extend .shadow;
+  box-shadow: $box-shadow;
 }
 
 .swiper-slide-prev {
@@ -40,9 +42,9 @@
 }
 
 .swiper-slide-active {
-  @extend .shadow;
+  box-shadow: $box-shadow;
   &:hover {
-    @extend .shadow-lg;
+    box-shadow: $box-shadow-lg;
   }
 }
 
