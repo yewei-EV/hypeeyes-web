@@ -2,9 +2,11 @@
 .swiper-slide {
   background-position: center;
   background-size: cover;
-  width: 100vw;
+  // width: 100vw;
+  width: 1200px;
   max-width: 1200px;
-  height: 33.3vw;
+  // height: 33.3vw;
+  height: 400px;
   max-height: 400px;
   overflow: hidden;
   img {
@@ -13,9 +15,10 @@
 }
 
 .side {
-  height: 31vw !important;
+  // height: 31vw !important;
+  height: 380px;
   max-height: 380px!important;
-  padding-top: 20px;
+  margin-top: 20px;
   filter: brightness(50%);
   @extend .shadow;
 }

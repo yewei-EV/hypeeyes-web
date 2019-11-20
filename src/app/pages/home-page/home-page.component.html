@@ -1,12 +1,13 @@
-<div class="m-4"></div>
-<app-default-slider [sliderConfig]="sliderConfig" [sliderDataArray]="sliderDataArray"></app-default-slider>
+<div style="min-width: 1200px;" class="pt-2">
+  <app-default-slider [sliderConfig]="sliderConfig" [sliderDataArray]="sliderDataArray"></app-default-slider>
+</div>
 <div style="width: 1200px; margin: auto;">
   <div *ngFor="let info of infoList" class="py-2">
     <app-category-tab [categories]="info.categories" [topicListInfo]="info.topicListInfo"></app-category-tab>
   </div>
 </div>
 <div class="img-wrap">
-  <img src="/assets/uploads/category/banner.jpg">
+  <img [src]="'/assets/uploads/category/banner.jpg'" alt="">
   <div class="img-btn">
     点击进入
   </div>
