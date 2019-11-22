@@ -10,7 +10,7 @@ export class AppComponent implements AfterViewChecked {
   private oldHeight = 0;
 
   ngAfterViewChecked(): void {
-    const height = document.body.scrollHeight;
+    const height = document.body.scrollHeight + 10;
     if (window.parent === window || height === this.oldHeight) {
       return;
     }
