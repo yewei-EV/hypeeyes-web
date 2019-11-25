@@ -17,8 +17,8 @@ export class TopicCardComponent implements OnInit {
   @Input() styleType: number;
   style: Style;
   private styles: Style[] = [
-    {width: '392px'},
-    {width: '290px'}
+    {width: '390px'},
+    {width: '288px'}
   ];
 
   config: Config;
