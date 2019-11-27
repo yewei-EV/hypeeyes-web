@@ -61,6 +61,7 @@ export class HomePageComponent implements OnInit {
         info.categories.push(category);
         if (Constant.topicListInfoMap.has(name)) {
           info.topicListInfo = Constant.topicListInfoMap.get(name);
+          info.topicListInfo.showTitle = true;
         }
       }
       this.infoList.push(info);

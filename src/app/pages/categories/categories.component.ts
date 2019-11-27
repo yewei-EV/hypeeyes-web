@@ -23,6 +23,7 @@ export class CategoriesComponent implements OnInit {
       for (const category of categories) {
         if (category.cid === id) {
           this.topicListInfo = Constant.topicListInfoMap.get(category.name);
+          this.topicListInfo.showTitle = false;
           this.topicListInfo.line = this.linePerPage;
           delete this.topicListInfo.maxItems;
         }

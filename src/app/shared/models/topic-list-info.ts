@@ -3,4 +3,5 @@ export class TopicListInfo {
   line: number;
   styleType?: number;
   maxItems?: number;
+  showTitle?: boolean;
 }
