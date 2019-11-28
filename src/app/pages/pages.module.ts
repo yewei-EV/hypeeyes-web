@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { CategoriesComponent } from './categories/categories.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ComponentsModule } from '../components/components.module';
+import { UgcPageComponent } from './ugc-page/ugc-page.component';
 
 @NgModule({
   declarations: [
     HomePageComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    UgcPageComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { ComponentsModule } from '../components/components.module';
   ],
   exports: [
     HomePageComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    UgcPageComponent
   ]
 })
 export class PagesModule { }

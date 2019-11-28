@@ -13,6 +13,7 @@ export class TopicListComponent implements OnInit {
   @Input() category: Category;
   @Input() pageNumber: number;
   @Input() topicNumberPerPage;
+  @Input() showAllPreviews: boolean;
   topics: Topic[] = [];
   config: Config;
   constructor(private categoryService: CategoryService, private configService: ConfigService) { }

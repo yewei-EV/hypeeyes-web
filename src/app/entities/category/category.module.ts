@@ -12,6 +12,9 @@ const routes: Route[] = [
   declarations: [
     CategoryComponent
   ],
+  exports: [
+    CategoryComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

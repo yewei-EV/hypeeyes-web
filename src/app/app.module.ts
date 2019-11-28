@@ -19,6 +19,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { UgcPageComponent } from './pages/ugc-page/ugc-page.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -44,6 +45,7 @@ const translateConfig: TranslateModuleConfig = {
 const routes: Route[] = [
   {path: '', component: HomePageComponent},
   {path: 'categories/:id', component: CategoriesComponent},
+  {path: 'ugc/:id', component: UgcPageComponent},
 ];
 
 @NgModule({
