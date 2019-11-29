@@ -11,7 +11,7 @@
       <div class="card-body">
         <div class="d-flex m-3">
           <h5 class="h5 mr-2">{{category.name}}</h5>
-          <a [href]="'/category/' + categories[0].cid + '/'"><small>浏览全部</small></a>
+          <a target="_blank" [href]="'/category/' + categories[0].cid + '/'"><small>浏览全部</small></a>
         </div>
         <div>
           <app-topic-list [category]="category" [pageNumber]="0" [topicNumberPerPage]="5"></app-topic-list>
