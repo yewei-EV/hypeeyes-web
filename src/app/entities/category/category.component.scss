@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/bootstrap";
+@import "../../../assets/scss/bootstrap-interface";
 @include media-breakpoint-up(xs) {
   .masonry {
     width: 270px;
@@ -29,6 +29,7 @@
 
 .masonry-item {
   width: 270px;
+  margin-bottom: 20px;
 }
 
 .card-body {

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnChanges, OnInit } from '@angular/core';
 import { Topic } from '../../shared/models/topic';
 import { TopicService } from '../topic/topic.service';
 import { CategoryService } from './category.service';
@@ -14,11 +14,12 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 })
 export class CategoryComponent implements OnInit {
 
+  @Input() categoryId: number;
   topics: Topic[] = [];
   config: Config;
   start = 0;
   topicFinished = false;
-  pageSize = 5;
+  pageSize = 12;
   gettingTopic = false;
   footerHeight = 100;
   masonryOptions: NgxMasonryOptions = {
@@ -37,7 +38,10 @@ export class CategoryComponent implements OnInit {
       return ;
     }
     this.gettingTopic = true;
-    const cid = +this.activatedRoute.snapshot.paramMap.get('id');
+    let cid = this.categoryId;
+    if (!cid) {
+      cid = +this.activatedRoute.snapshot.paramMap.get('id');
+    }
     this.config = await this.configService.getConfig().toPromise();
     const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, this.start, this.pageSize).toPromise();
     let topicSize = 0;
@@ -68,7 +72,6 @@ export class CategoryComponent implements OnInit {
   private fix() {
     const scrollY = document.body.scrollHeight - this.footerHeight - window.innerHeight;
     if (window.scrollY > scrollY && !this.topicFinished) {
-      // window.scrollTo(window.scrollX, scrollY);
       if (!this.gettingTopic) {
         this.getTopics().then();
       }

@@ -25,9 +25,12 @@ body {
 .card {
   overflow: hidden;
   border-radius: 8px;
-  border: 0;
+  border: none;
   &:hover {
     @extend .shadow;
+  }
+  .card-footer {
+    border-top: none;
   }
 }
 
@@ -40,6 +43,11 @@ body {
   }
 }
 
-::ng-deep .nav-link {
+.nav-link {
   color: #666666;
+}
+
+.nav-link.active {
+  color: #FF5000;
+  border-bottom: #FF5000 solid;
 }
