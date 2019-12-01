@@ -1,14 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Category, Config, Topic } from '../../shared/models';
-import { CategoryService } from '../../entities/category/category.service';
-import { ConfigService } from '../../shared/service/config.service';
+import { Category, Config, Topic } from '../../../shared/models';
+import { CategoryService } from '../../../entities/category/category.service';
+import { ConfigService } from '../../../shared/service/config.service';
 
 @Component({
-  selector: 'app-topic-list',
-  templateUrl: './topic-list.component.html',
-  styleUrls: ['./topic-list.component.scss']
+  selector: 'app-topic-list-ugc',
+  templateUrl: './topic-list-ugc.component.html',
+  styleUrls: ['./topic-list-ugc.component.scss']
 })
-export class TopicListComponent implements OnInit {
+export class TopicListUgcComponent implements OnInit {
+
 
   @Input() category: Category;
   @Input() pageNumber: number;

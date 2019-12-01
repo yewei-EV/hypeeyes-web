@@ -1,0 +1,15 @@
+<div *ngIf="config && topics?.length > 0">
+  <div class="img-wrapper">
+    <a  [href]="topics[0].getLink(config.relativePath)">
+      <img [src]="topics[0].thumb" alt="">
+      <div [innerHTML]="topics[0].title" class="img-title"></div>
+    </a>
+  </div>
+  <div *ngFor="let topic of topics | slice:1" class="my-1 mx-3">
+    <a [href]="topic.getLink(config.relativePath)">
+      <div class="title" [innerHTML]="topic.title"></div>
+      <div><small class="text-black-50">{{topic.postCount}}回复/{{topic.votes}}赞</small></div>
+      <hr class="my-2">
+    </a>
+  </div>
+</div>
