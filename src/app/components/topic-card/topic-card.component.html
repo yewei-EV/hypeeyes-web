@@ -24,7 +24,10 @@
                         <span class="ml-2"><small>{{topic.user.username}}</small></span>
                     </ng-template>
                 </a>
-                <div class="ml-auto"><i class="fa fa-heart-o mr-2"></i><small>{{topic.votes}}</small></div>
+                <div class="ml-auto">
+                  <i class="fa fa-commenting-o mr-2"></i><small class="mr-3">{{topic.postCount-1}}</small>
+                  <i class="fa fa-heart-o mr-2"></i><small>{{topic.votes}}</small>
+                </div>
             </div>
         </div>
     </a>
