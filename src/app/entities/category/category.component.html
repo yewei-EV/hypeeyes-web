@@ -13,6 +13,23 @@
           <div class="title">
             <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
           </div>
+          <div>
+            <div class="user-info">
+              <a [href]="topic.user.getLink(config.relativePath)" target="_blank">
+                <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
+                  <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
+                       [title]="topic.user.username"/>
+                  <span class="ml-2"><small>{{topic.user.username}}</small></span>
+                </ng-container>
+                <ng-template #userNoIcon>
+                  <span class="user-icon" [title]="topic.user.username"
+                        [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</span>
+                  <span class="ml-2"><small>{{topic.user.username}}</small></span>
+                </ng-template>
+              </a>
+              <div class="ml-auto"><i class="fa fa-heart-o mr-2"></i><small>{{topic.votes}}</small></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

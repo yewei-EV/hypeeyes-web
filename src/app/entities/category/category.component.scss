@@ -39,4 +39,15 @@
 .card {
   overflow: hidden;
   border-radius: 8px;
+
+  .user-info {
+    display: flex;
+    color: #666666;
+    margin-top: 10px;
+  }
+  .user-avatar {
+    width: 24px;
+    height: 24px;
+  }
 }
+
