@@ -8,7 +8,7 @@
           </div>
         </div>
       </a>
-      <div class="card-footer">
+      <a class="card-footer" [href]="topic.getLink(config.relativePath)" target="_blank">
         <div style="width: 235px; margin: 0 auto;">
           <div class="title">
             <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </ngx-masonry>
