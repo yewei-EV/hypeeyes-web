@@ -31,6 +31,10 @@
     height: 33.3vw !important;
     margin-top: 0 !important;
   }
+
+  ::ng-deep .img-wrap {
+    display: none;
+  }
 }
 @media (min-width: 576px) {
   .slider {
