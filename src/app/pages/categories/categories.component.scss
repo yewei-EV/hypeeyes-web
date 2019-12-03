@@ -10,4 +10,7 @@
   ::ng-deep .justify-content-between {
     justify-content: space-around !important;
   }
+  ::ng-deep #originView {
+    display: none;
+  }
 }
