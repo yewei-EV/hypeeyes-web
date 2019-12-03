@@ -15,6 +15,30 @@
     transform: translateX(-50%);
     left: 50%;
     bottom: 25%;
-    box-shadow: 0px 0px 20px #ffc80c;
+    box-shadow: 0 0 20px #ffc80c;
   }
 }
+@media (max-width: 576px) {
+  ::ng-deep .justify-content-between {
+    justify-content: space-around !important;
+  }
+  ::ng-deep .swiper-slide {
+    width: 100vw !important;
+    height: 33.3vw !important;
+  }
+
+  ::ng-deep .swiper-slide-prev, ::ng-deep .swiper-slide-next {
+    height: 33.3vw !important;
+    margin-top: 0 !important;
+  }
+}
+@media (min-width: 576px) {
+  .slider {
+    min-width: 1200px;
+  }
+  .container {
+    width: 1200px;
+  }
+}
+
+

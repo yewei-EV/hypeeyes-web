@@ -45,9 +45,16 @@ body {
 
 .nav-link {
   color: #666666;
+  padding: 0.5rem 0.5rem;
 }
 
 .nav-link.active {
   color: #FF5000;
   border-bottom: #FF5000 solid;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 390px;
+  margin: auto;
 }
