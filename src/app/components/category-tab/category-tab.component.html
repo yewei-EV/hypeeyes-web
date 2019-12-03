@@ -6,11 +6,13 @@
     </div>
     <hr style="width: 5rem; border: 1px solid black; margin-top: 0.5rem; margin-left: 0;">
   </div>
+  <!--
   <div style="float: right" *ngIf="topicListInfo?.showTitle != true">
     <div class="category">
       <a id="originView" class="ml-2 nav-link" style="padding: 0;" target="_blank" [href]="'/category/' + categories[0].cid + '/'"><small>列表视图</small></a>
     </div>
   </div>
+  -->
 
   <ngb-tabset [justify]="topicListInfo?.showTitle? 'end':'start'" type="" style="font-weight: 500;">
     <ngb-tab *ngFor="let category of categories" [title]="category.name == categories[0].name ? '精选' : category.name">
