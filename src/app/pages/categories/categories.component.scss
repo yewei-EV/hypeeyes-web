@@ -6,3 +6,8 @@
     max-width: 100%;
   }
 }
+@media (max-width: 576px) {
+  ::ng-deep .justify-content-between {
+    justify-content: space-around !important;
+  }
+}
