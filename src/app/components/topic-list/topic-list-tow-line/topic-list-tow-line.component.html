@@ -8,7 +8,7 @@
   <div *ngFor="let topic of topics | slice:1" class="my-1 mx-3">
     <a [href]="topic.getLink(config.relativePath)">
       <div class="title" [innerHTML]="topic.title"></div>
-      <div><small class="text-black-50">{{topic.postCount}}回复/{{topic.votes}}赞</small></div>
+      <div><small class="text-black-50">{{topic.postCount-1}}回复/{{topic.votes}}赞</small></div>
       <hr class="my-2">
     </a>
   </div>

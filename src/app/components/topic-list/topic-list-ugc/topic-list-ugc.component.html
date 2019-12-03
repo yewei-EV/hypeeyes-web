@@ -8,7 +8,7 @@
   <div *ngFor="let topic of topics | slice:1" class="my-1 mx-3">
     <a [href]="topic.getLink(config.relativePath)">
       <div class="title" [innerHTML]="topic.title"></div>
-      <div><small class="text-black-50">{{topic.postCount}}回复/{{topic.votes}}赞</small></div>
+      <div><small class="text-black-50">{{topic.postCount-1}}回复 / {{topic.votes}}赞</small></div>
       <hr class="my-2">
     </a>
   </div>
@@ -19,13 +19,18 @@
     <div class="my-1 mx-3" style="display: flex">
       <strong class="ugc-header-title">主题</strong>
       <div style="flex: 1 auto"></div>
-      <strong class="ugc-header-title" style="padding-right: 80px">作者</strong>
-      <strong class="ugc-header-title">回复/点赞</strong>
+      <strong style="padding-right: 110px" class="ugc-header-title author">作者</strong>
+      <strong class="ugc-header-title">回复 / 点赞</strong>
     </div>
   </div>
   <div *ngFor="let topic of topics | slice:0" class="my-1 mx-3" style="line-height: 40px;">
+    <span style="float: right">
+      <a style="padding-right: 100px" class="author" [href]="topic.user.getLink(config.relativePath)">
+        <small class="text-black-50">{{topic.user.username}}</small>
+      </a>
+      <small class="text-black-50">{{topic.postCount-1}}回复 / {{topic.votes}}赞</small>
+    </span>
     <a [href]="topic.getLink(config.relativePath)" style="font-weight: 400;">
-      <span style="float: right"><small class="text-black-50">{{topic.postCount}}回复/{{topic.votes}}赞</small></span>
       <div [innerHTML]="topic.title"></div>
       <hr class="my-2">
     </a>

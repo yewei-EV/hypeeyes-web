@@ -8,7 +8,7 @@
           </div>
         </div>
       </a>
-      <div class="card-footer">
+      <a class="card-footer" [href]="topic.getLink(config.relativePath)" target="_blank">
         <div style="width: 235px; margin: 0 auto;">
           <div class="title">
             <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
@@ -27,11 +27,14 @@
                   <span class="ml-2"><small>{{topic.user.username}}</small></span>
                 </ng-template>
               </a>
-              <div class="ml-auto"><i class="fa fa-heart-o mr-2"></i><small>{{topic.votes}}</small></div>
+              <div class="ml-auto">
+                <i class="fa fa-commenting-o mr-1"></i><small class="mr-2">{{topic.postCount-1}}</small>
+                <i class="fa fa-heart-o mr-1"></i><small>{{topic.votes}}</small>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </ngx-masonry>
