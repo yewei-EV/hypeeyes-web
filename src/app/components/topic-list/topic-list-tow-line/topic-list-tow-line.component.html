@@ -1,7 +1,7 @@
 <div *ngIf="config && topics?.length > 0">
   <div class="img-wrapper">
     <a  [href]="topics[0].getLink(config.relativePath)">
-      <img [src]="topics[0].thumb" alt="">
+      <img [src]="topics[0].firstImg" alt="">
       <div [innerHTML]="topics[0].title" class="img-title"></div>
     </a>
   </div>
