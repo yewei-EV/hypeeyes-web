@@ -1,8 +1,8 @@
 <div class="position-relative section" *ngIf="categories?.length > 0">
   <div class="position-absolute" *ngIf="topicListInfo?.showTitle != false">
     <div class="category">
-      <div>{{categories[0].name}}</div>
-      <a class="ml-2 nav-link" style="padding: 0;" target="_blank"  [href]="'/custom/categories/' + categories[0].cid + '/'"><small>浏览全部</small></a>
+      <a target="_blank"  [href]="'/custom/categories/' + categories[0].cid + '/'">{{categories[0].name}}</a>
+      <a class="ml-2 nav-link browse-all" style="padding: 0;" target="_blank"  [href]="'/custom/categories/' + categories[0].cid + '/'"><small>浏览全部</small></a>
     </div>
     <hr style="width: 5rem; border: 1px solid black; margin-top: 0.5rem; margin-left: 0;">
   </div>

@@ -4,3 +4,8 @@
   color: #1d1d1d;
   padding-top: 4px;
 }
+@media (max-width: 576px) {
+  ::ng-deep .browse-all {
+    display: none !important;
+  }
+}

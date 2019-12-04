@@ -22,6 +22,7 @@
   ::ng-deep .justify-content-between {
     justify-content: space-around !important;
   }
+
   ::ng-deep .swiper-slide {
     width: 100vw !important;
     height: 33.3vw !important;
@@ -30,6 +31,10 @@
   ::ng-deep .swiper-slide-prev, ::ng-deep .swiper-slide-next {
     height: 33.3vw !important;
     margin-top: 0 !important;
+  }
+
+  ::ng-deep .swiper-button-prev, ::ng-deep .swiper-button-next {
+    display: none !important;
   }
 
   ::ng-deep .img-wrap {
