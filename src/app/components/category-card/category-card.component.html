@@ -11,7 +11,8 @@
       <div class="card-body">
         <div class="d-flex m-3">
           <h5 class="h5 mr-2">{{category.name}}</h5>
-          <a target="_blank" [href]="'/category/' + categories[0].cid + '/'"><small>浏览全部</small></a>
+          <a *ngIf="category.name === '晒图区'" target="_blank" [href]="'custom/category/' + category.cid + '/'"><small>浏览全部</small></a>
+          <a *ngIf="category.name !== '晒图区'" target="_blank" [href]="'custom/categories/' + category.cid + '/'"><small>浏览全部</small></a>
         </div>
         <div>
           <app-topic-list-tow-line [category]="category" [pageNumber]="0" [topicNumberPerPage]="5"></app-topic-list-tow-line>
