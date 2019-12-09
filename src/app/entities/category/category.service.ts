@@ -46,11 +46,11 @@ export class CategoryService {
   }
 
   getTopicsByCid(cid: number, start: number, size: number): Observable<Topic[]> {
-    return this.http.get<Topic[]>(`${this.url}/${cid}?start=${start}&stop=${start + size - 1}&sort=most-votes`)
+    return this.http.get<Topic[]>(`${this.url}/${cid}?start=${start}&stop=${start + size - 1}&sort=most_votes`)
       .pipe(map((topics: Topic[]) => topics.map(topic => Topic.convert(topic))));
   }
   getTopicsWithMainPostInfoByCid(cid: number, start: number, size: number) {
-    return this.http.get<Topic[]>(`${this.url}/${cid}/withMainPostInfo?start=${start}&stop=${start + size - 1}&sort=most-votes`)
+    return this.http.get<Topic[]>(`${this.url}/${cid}/withMainPostInfo?start=${start}&stop=${start + size - 1}&sort=most_votes`)
       .pipe(map((topics: Topic[]) => topics.map(topic => Topic.convert(topic))));
   }
 }
