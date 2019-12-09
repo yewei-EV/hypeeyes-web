@@ -16,9 +16,19 @@ export class CategoriesComponent implements OnInit {
   categories: Category[] = [];
   topicListInfo: TopicListInfo;
   linePerPage = 3;
+  bannerPath: string;
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
+    if (id === 1) {
+      this.bannerPath = '/assets/uploads/category/zixun_banner.png';
+    }
+    if (id === 4) {
+      this.bannerPath = '/assets/uploads/category/baike_banner.png';
+    }
+    if (id === 8) {
+      this.bannerPath = '/assets/uploads/category/xishang_banner.png';
+    }
     this.categoryService.getAllCategories().subscribe(categories => {
       for (const category of categories) {
         if (category.cid === id) {
