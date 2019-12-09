@@ -39,6 +39,9 @@ export class TopicInfiniteScrollComponent implements OnInit {
   }
 
   onScroll() {
+    if (!this.categoryId) {
+      return;
+    }
     this.categoryService.getTopicsByCid(this.categoryId, this.start, this.topicListInfo.itemNumberPerLine * this.topicListInfo.line)
       .subscribe(topics => {
         this.topics = this.topics.concat(topics);

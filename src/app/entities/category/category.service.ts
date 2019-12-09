@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, pipe} from 'rxjs';
+import { Observable, of, pipe } from 'rxjs';
 import { Category } from '../../shared/models/category';
 import { HttpClient } from '@angular/common/http';
 import { Constant } from '../../shared';
@@ -46,6 +46,10 @@ export class CategoryService {
   }
 
   getTopicsByCid(cid: number, start: number, size: number): Observable<Topic[]> {
+    if (!cid) {
+      console.trace(cid);
+      return of([]);
+    }
     return this.http.get<Topic[]>(`${this.url}/${cid}/allTopics?start=${start}&stop=${start + size - 1}&sort=most_votes`)
       .pipe(map((topics: Topic[]) => topics.map(topic => Topic.convert(topic))));
   }
