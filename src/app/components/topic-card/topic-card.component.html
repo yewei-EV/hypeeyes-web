@@ -2,7 +2,7 @@
     <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
         <div class="card-body">
             <div class="card-img-top">
-                <img [src]="getImg(topic) || ''" alt="">
+                <img [src]="getImg(topic) || ''" alt="" [ngStyle]="{'width': style.width}">
             </div>
         </div>
     </a>
