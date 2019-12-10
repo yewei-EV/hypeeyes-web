@@ -4,6 +4,7 @@ import { CategoryService } from '../../entities/category/category.service';
 import { Constant } from '../../shared';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { SliderData } from '../../components/sliders/default-slider/default-slider.component';
+import { TopicService } from '../../entities/topic/topic.service';
 
 class Info {
   categories: Category[] = [];
@@ -45,7 +46,7 @@ export class HomePageComponent implements OnInit {
   };
   sliderDataArray: SliderData[] = [];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private topicService: TopicService) { }
 
   private async getCategoryList() {
     const categoryNameLists = [
@@ -53,6 +54,7 @@ export class HomePageComponent implements OnInit {
       ['潮流百科', '人物', '品牌'],
       ['美图细赏', '球鞋', '潮服', '上身驾驭'],
     ];
+    // const sliderTopicLists = [6];
     for (const categoryNameList of categoryNameLists) {
       const info = new Info();
       for (const name of categoryNameList) {
@@ -76,6 +78,7 @@ export class HomePageComponent implements OnInit {
         await this.getSliderData(category.cid);
       }
     }
+    // await this.getSliderData(sliderTopicLists);
     for (const category of categories) {
       if (categoryId === category.cid) {
 
@@ -103,6 +106,16 @@ export class HomePageComponent implements OnInit {
       this.sliderDataArray.push(sliderData);
     }
   }
+
+  // private async getSliderData(cids: number[]) {
+  //   const topics = await this.topicService.getByIds(cids).toPromise();
+  //   for (const topic of topics) {
+  //     const sliderData = new SliderData();
+  //     sliderData.imageUrl = topic.firstImg;
+  //     sliderData.url = '/topic/' + topic.tid + '/';
+  //     this.sliderDataArray.push(sliderData);
+  //   }
+  // }
 
   private async getData() {
     await this.getCategoryList();
