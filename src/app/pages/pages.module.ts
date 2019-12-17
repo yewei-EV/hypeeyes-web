@@ -4,6 +4,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ComponentsModule } from '../components/components.module';
 import { UgcPageComponent } from './ugc-page/ugc-page.component';
+import { CategoryModule } from '../entities/category/category.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { UgcPageComponent } from './ugc-page/ugc-page.component';
   ],
   imports: [
     CommonModule,
-    ComponentsModule
+    ComponentsModule,
+    CategoryModule
   ],
   exports: [
     HomePageComponent,
