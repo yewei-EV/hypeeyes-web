@@ -38,6 +38,11 @@
   }
 
   ::ng-deep .img-wrap {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  ::ng-deep .img-btn {
     display: none;
   }
 }
