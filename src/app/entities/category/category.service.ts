@@ -47,7 +47,6 @@ export class CategoryService {
 
   getTopicsByCid(cid: number, start: number, size: number): Observable<Topic[]> {
     if (!cid) {
-      console.trace(cid);
       return of([]);
     }
     return this.http.get<Topic[]>(`${this.url}/${cid}/allTopics?start=${start}&stop=${start + size - 1}&sort=most_votes`)
