@@ -1,8 +1,8 @@
-<div class="card mt-3" *ngIf="config&&style" [ngStyle]="{'width': style.width}">
+<div class="card mt-3" *ngIf="config&&style">
     <a [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
-        <div class="card-body">
+        <div class="card-body" [style.padding-bottom]="style.aspectRatio">
             <div class="card-img-top">
-                <img [src]="getImg(topic) || ''" alt="" [ngStyle]="{'width': style.width}">
+                <img [src]="getImg(topic) || ''" alt="">
             </div>
         </div>
     </a>

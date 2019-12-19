@@ -1,10 +1,10 @@
 .card {
   .card-body {
-    padding: 0;
-    height: 260px;
     overflow: hidden;
+    padding: 0;
+    height: 0;
     img {
-      width: 390px;
+      width: 100%;
     }
   }
   .user-info {
@@ -20,3 +20,9 @@
   }
 }
 
+@import "../../../assets/scss/bootstrap-interface";
+@include media-breakpoint-down(xs) {
+  :host {
+    width: 92% !important;
+  }
+}

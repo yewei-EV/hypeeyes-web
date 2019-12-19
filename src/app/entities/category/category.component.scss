@@ -1,34 +1,20 @@
 @import "../../../assets/scss/bootstrap-interface";
-@include media-breakpoint-up(xs) {
+@include media-breakpoint-down(xs) {
   .masonry {
-    width: 270px;
+    width: 92% !important;
   }
-}
-
-@include media-breakpoint-up(md) {
-  .masonry {
-    width: 560px;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  .masonry {
-    width: 850px;
-  }
-}
-
-@include media-breakpoint-up(xl) {
-  .masonry {
-    width: 1140px;
+  .masonry-item {
+    width: 100% !important;
   }
 }
 
 .masonry {
   margin: auto;
+  width: 1200px;
 }
 
 .masonry-item {
-  width: 270px;
+  width: 386px;
   margin-bottom: 20px;
 }
 
@@ -49,5 +35,11 @@
     width: 24px;
     height: 24px;
   }
+  img {
+    width: 100%;
+  }
 }
 
+:host {
+  margin: auto;
+}
