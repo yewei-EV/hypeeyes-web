@@ -34,6 +34,16 @@
   .user-avatar {
     width: 24px;
     height: 24px;
+    border-radius: 50%;
+  }
+  .user-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 24px;
   }
   img {
     width: 100%;
