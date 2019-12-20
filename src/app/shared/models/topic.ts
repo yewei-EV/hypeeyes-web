@@ -17,6 +17,7 @@ export class Topic {
   title: string;
   uid: number;
   thumb: string;
+  mainPost: Post;
 
   upVotes: number;
   downVotes: number;
@@ -33,6 +34,7 @@ export class Topic {
     topic.lastPostTime = moment(topic.lastPostTime);
     topic.user = User.convert(topic.user);
     topic.firstCalendar = new Date(topic.firstCalendar);
+    topic.mainPost = Post.convert(topic.mainPost);
     return Object.assign(new Topic(), topic);
   }
 
