@@ -15,7 +15,8 @@
           </div>
           <div class="text-content" *ngIf="!getImg(topic)">
             <hr style="margin-top:0"/>
-            <a>{{topic.mainPost.content}}</a>
+            <div class="card-text-content" [innerHTML]="topic.mainPost.content" style="overflow : hidden;
+            text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 8;-webkit-box-orient: vertical;"></div>
           </div>
           <div>
             <div class="user-info">
