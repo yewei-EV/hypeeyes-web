@@ -28,8 +28,8 @@
 
   .user-info {
     display: flex;
-    color: #666666;
-    margin-top: 10px;
+    color: #777777;
+    margin-top: 15px;
   }
   .user-avatar {
     width: 24px;
@@ -47,6 +47,39 @@
   }
   img {
     width: 100%;
+  }
+  .card-footer {
+    .title {
+      font-size: 16px;
+      font-weight: 400;
+      max-height: 49px;
+      line-height: 1.5;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+    .text-content {
+      font-size: 16px;
+      font-weight: 400;
+      max-height: 300px;
+      line-height: 1.5;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      color: #BCBCBC;
+    }
+  }
+}
+.card:hover {
+  .card-img {
+    img {
+      transition: all 0.5s;
+      transform: scale(1.1);
+    }
+    overflow: hidden;
+    cursor: pointer;
   }
 }
 
