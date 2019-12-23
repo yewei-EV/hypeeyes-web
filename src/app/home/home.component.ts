@@ -221,6 +221,6 @@ export class HomeComponent implements OnInit {
   }
 
   private getTopicsByCid(cid: number, start: number, size: number) {
-    return this.categoryService.getTopicsByCid(cid, start, size);
+    return this.categoryService.getTopicsByCid(cid, start, size, '');
   }
 }
