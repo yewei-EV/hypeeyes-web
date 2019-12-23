@@ -71,7 +71,7 @@ export class CategoryComponent implements OnInit, OnChanges {
       this.start = 0;
       this.gettingTopic = false;
       this.topics = await this.categoryService
-        .getTopicsWithMainPostInfoByCid(this.categoryId, 0, this.pageSize, this.sortType).toPromise().then();
+        .getTopicsWithMainPostInfoByCid(this.categoryId, 0, this.pageSize, this.sortType).toPromise();
     }
   }
 
