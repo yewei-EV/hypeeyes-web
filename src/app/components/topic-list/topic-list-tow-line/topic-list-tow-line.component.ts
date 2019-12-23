@@ -21,7 +21,7 @@ export class TopicListTowLineComponent implements OnInit {
   ngOnInit() {
     this.configService.getConfig().subscribe(config => this.config = config);
     this.categoryService.getTopicsWithMainPostInfoByCid(this.category.cid,
-      this.pageNumber * this.topicNumberPerPage, this.topicNumberPerPage)
+      this.pageNumber * this.topicNumberPerPage, this.topicNumberPerPage, '')
       .subscribe(topics => {
         this.topics = this.topics.concat(topics);
       });

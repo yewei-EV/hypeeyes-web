@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
   private async getSwiperCategories() {
     const categories = await this.categoryService.getCategoryByName('首页置顶').toPromise();
     if (categories && categories[0]) {
-      categories[0].topics = await this.categoryService.getTopicsWithMainPostInfoByCid(categories[0].cid, 0, 7).toPromise();
+      categories[0].topics = await this.categoryService.getTopicsWithMainPostInfoByCid(categories[0].cid, 0, 7, '').toPromise();
       this.categoriesSwiper = categories[0];
     }
   }
@@ -135,9 +135,9 @@ export class HomeComponent implements OnInit {
     const categories = await this.categoryService.getCategoryByName(cname).toPromise();
     if (categories && categories[0]) {
       if (bWithMainPostInfo) {
-        categories[0].topics = await this.categoryService.getTopicsWithMainPostInfoByCid(categories[0].cid, start, size).toPromise();
+        categories[0].topics = await this.categoryService.getTopicsWithMainPostInfoByCid(categories[0].cid, start, size, '').toPromise();
       } else {
-        categories[0].topics = await this.categoryService.getTopicsByCid(categories[0].cid, start, size).toPromise();
+        categories[0].topics = await this.categoryService.getTopicsByCid(categories[0].cid, start, size, '').toPromise();
       }
       return categories[0];
     }

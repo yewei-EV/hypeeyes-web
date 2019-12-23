@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Topic } from '../../shared/models/topic';
 import { TopicService } from '../topic/topic.service';
 import { CategoryService } from './category.service';
@@ -12,9 +12,10 @@ import { NgxMasonryOptions } from 'ngx-masonry';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit, OnChanges {
 
   @Input() categoryId: number;
+  @Input() sortType: string;
   topics: Topic[] = [];
   config: Config;
   start = 0;
@@ -43,7 +44,7 @@ export class CategoryComponent implements OnInit {
       cid = +this.activatedRoute.snapshot.paramMap.get('id');
     }
     this.config = await this.configService.getConfig().toPromise();
-    const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, this.start, this.pageSize).toPromise();
+    const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, this.start, this.pageSize, this.sortType).toPromise();
     let topicSize = 0;
     if (topics && topics.length > 0) {
       topicSize = topics.length;
@@ -63,6 +64,15 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.getTopics().then();
+  }
+
+  async ngOnChanges(changes: SimpleChanges) {
+    if (!changes.sortType.firstChange) {
+      this.start = 0;
+      this.gettingTopic = false;
+      this.topics = await this.categoryService
+        .getTopicsWithMainPostInfoByCid(this.categoryId, 0, this.pageSize, this.sortType).toPromise().then();
+    }
   }
 
   getImg(topic: Topic) {

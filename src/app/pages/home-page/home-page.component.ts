@@ -98,7 +98,7 @@ export class HomePageComponent implements OnInit {
   }
 
   private async getSliderData(cid: number) {
-    const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, 0, 7).toPromise();
+    const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, 0, 7, 'newest_to_oldest').toPromise();
     for (const topic of topics) {
       const sliderData = new SliderData();
       sliderData.imageUrl = topic.firstImg;

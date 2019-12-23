@@ -45,15 +45,17 @@ export class CategoryService {
     return this.http.get<number[]>(`${this.url}/${category.cid}/topics`);
   }
 
-  getTopicsByCid(cid: number, start: number, size: number): Observable<Topic[]> {
+  getTopicsByCid(cid: number, start: number, size: number, sort: string): Observable<Topic[]> {
     if (!cid) {
       return of([]);
     }
-    return this.http.get<Topic[]>(`${this.url}/${cid}/allTopics?start=${start}&stop=${start + size - 1}&sort=most_votes`)
+    sort = sort || 'newest_to_oldest';
+    return this.http.get<Topic[]>(`${this.url}/${cid}/allTopics?start=${start}&stop=${start + size - 1}&sort=${sort}`)
       .pipe(map((topics: Topic[]) => topics.map(topic => Topic.convert(topic))));
   }
-  getTopicsWithMainPostInfoByCid(cid: number, start: number, size: number) {
-    return this.http.get<Topic[]>(`${this.url}/${cid}/withMainPostInfo?start=${start}&stop=${start + size - 1}&sort=most_votes`)
+  getTopicsWithMainPostInfoByCid(cid: number, start: number, size: number, sort: string) {
+    sort = sort || 'newest_to_oldest';
+    return this.http.get<Topic[]>(`${this.url}/${cid}/withMainPostInfo?start=${start}&stop=${start + size - 1}&sort=${sort}`)
       .pipe(map((topics: Topic[]) => topics.map(topic => Topic.convert(topic))));
   }
 }

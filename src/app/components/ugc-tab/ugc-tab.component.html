@@ -9,6 +9,14 @@
   <div style="float: right" *ngIf="topicListInfo?.showTitle != true">
     <div class="category">
       <a id="originView" class="ml-2 nav-link" style="padding: 0.5rem 1rem; color: #333333" target="_blank" [href]="'/category/' + categories[0].cid + '/'"><small>列表视图</small></a>
+      <div ngbDropdown>
+        <button class="btn" id="dropdownBasic1" ngbDropdownToggle>排序</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="sendSortType('newest_to_oldest')">按最新回帖排序</button>
+          <button ngbDropdownItem (click)="sendSortType('most_posts')">按最多回复排序</button>
+          <button ngbDropdownItem (click)="sendSortType('most_votes')">按最多点赞排序</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -16,11 +24,11 @@
     <ngb-tab *ngFor="let category of categories" [title]="category.name == categories[0].name ? '🔥最热' : category.name">
       <ng-template  ngbTabContent style="margin-top: 20px" >
         <hr class="m-0 mb-3">
-        <div *ngIf="category.name === '晒图区' else topicList">
-          <app-category [categoryId]="category.cid"></app-category>
+        <div *ngIf="category.name === '晒图区' || category.name === '潮目社区' else topicList">
+          <app-category [categoryId]="category.cid" [sortType]="sortType"></app-category>
         </div>
         <ng-template #topicList>
-          <app-topic-list-ugc [category]="category" [pageNumber]="0" [topicNumberPerPage]="100" [showAllPreviews]=true></app-topic-list-ugc>
+          <app-topic-list-ugc [category]="category" [pageNumber]="0" [topicNumberPerPage]="100" [showAllPreviews]=true [sortType]="sortType"></app-topic-list-ugc>
         </ng-template>
       </ng-template>
     </ngb-tab>
