@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, HostListener, Input, OnInit} from '@angular/core';
 import { Topic } from '../../shared/models/topic';
 import { TopicService } from '../topic/topic.service';
 import { CategoryService } from './category.service';
@@ -12,12 +12,27 @@ import { NgxMasonryOptions } from 'ngx-masonry';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit, OnChanges {
+export class CategoryComponent implements OnInit {
 
   @Input() categoryId: number;
-  @Input() sortType: string;
+  @Input() set sortType(value: string) {
+    if (value && value === this._oldSortType) {
+      return;
+    }
+    this._oldSortType = value;
+    this.start = 0;
+    this.gettingTopic = false;
+    this._sortType = value;
+    this.topics = [];
+    this.getTopics().then();
+  }
+  get sortType() {
+    return this._sortType;
+  }
   topics: Topic[] = [];
   config: Config;
+  _sortType: string;
+  _oldSortType: string;
   start = 0;
   topicFinished = false;
   pageSize = 12;
@@ -63,18 +78,8 @@ export class CategoryComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.getTopics().then();
+    // this.getTopics().then();
   }
-
-  async ngOnChanges(changes: SimpleChanges) {
-    if (!changes.sortType.firstChange) {
-      this.start = 0;
-      this.gettingTopic = false;
-      this.topics = await this.categoryService
-        .getTopicsWithMainPostInfoByCid(this.categoryId, 0, this.pageSize, this.sortType).toPromise();
-    }
-  }
-
   getImg(topic: Topic) {
     return topic.firstImg;
   }

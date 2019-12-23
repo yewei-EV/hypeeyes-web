@@ -10,7 +10,7 @@ export class UgcTabComponent implements OnChanges {
 
   @Input() categories: Category[];
   @Input() topicListInfo: TopicListInfo;
-  sortType: string;
+  sortType = 'newest_to_oldest';
 
   ngOnChanges(changes: SimpleChanges): void {
   }
