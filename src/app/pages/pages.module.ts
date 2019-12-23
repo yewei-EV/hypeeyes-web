@@ -5,6 +5,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ComponentsModule } from '../components/components.module';
 import { UgcPageComponent } from './ugc-page/ugc-page.component';
 import { CategoryModule } from '../entities/category/category.module';
+import {TopicListModule} from '../components/topic-list/topic-list.module';
 
 @NgModule({
   declarations: [
@@ -12,11 +13,12 @@ import { CategoryModule } from '../entities/category/category.module';
     CategoriesComponent,
     UgcPageComponent
   ],
-  imports: [
-    CommonModule,
-    ComponentsModule,
-    CategoryModule
-  ],
+    imports: [
+        CommonModule,
+        ComponentsModule,
+        CategoryModule,
+        TopicListModule
+    ],
   exports: [
     HomePageComponent,
     CategoriesComponent,

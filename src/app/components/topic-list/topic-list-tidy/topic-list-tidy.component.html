@@ -1,0 +1,19 @@
+<div class="row no-wrap m-auto flag-wrap">
+  <div class="topic col-lg-4 col-sm-6" *ngFor="let topic of topics">
+    <a class="card" [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
+      <div class="card-body">
+        <div class="card-img">
+          <img [src]="getImg(topic) || ''" alt="" style="width:369px; height:273px">
+        </div>
+      </div>
+      <div class="card-footer">
+        <div style="width: 269px; margin: 0 auto; text-align: center;">
+          <div class="title">
+            <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+          </div>
+          <div class="calendar" *ngIf="topic?.firstCalendar">{{topic.firstCalendar | date:'MM月dd日'}}</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

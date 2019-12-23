@@ -42,7 +42,8 @@ export class TopicInfiniteScrollComponent implements OnInit {
     if (!this.categoryId) {
       return;
     }
-    this.categoryService.getTopicsByCid(this.categoryId, this.start, this.topicListInfo.itemNumberPerLine * this.topicListInfo.line)
+    this.categoryService
+      .getTopicsByCid(this.categoryId, this.start, this.topicListInfo.itemNumberPerLine * this.topicListInfo.line, 'newest_to_oldest')
       .subscribe(topics => {
         this.topics = this.topics.concat(topics);
         if (topics.length < this.topicListInfo.itemNumberPerLine * this.topicListInfo.line) {
