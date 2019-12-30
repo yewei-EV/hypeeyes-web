@@ -10,13 +10,13 @@
       </a>
       <a class="card-footer">
         <div style="margin: 0 auto;">
-          <div class="title">
-            <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
-          </div>
           <div class="text-content" *ngIf="!getImg(topic)">
-            <hr style="margin-top:0"/>
             <div class="card-text-content" [innerHTML]="topic.mainPost.content" style="overflow : hidden;
             text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 8;-webkit-box-orient: vertical;"></div>
+            <hr style="margin-bottom: 0.5rem"/>
+          </div>
+          <div class="title">
+            <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
           </div>
           <div>
             <div class="user-info">
@@ -24,12 +24,12 @@
                 <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
                   <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
                        [title]="topic.user.username"/>
-                  <span class="ml-2"><small>{{topic.user.username}}</small></span>
+                  <span class="ml-2"><small style="color: #777777">{{topic.user.username}}</small></span>
                 </ng-container>
                 <ng-template #userNoIcon>
                   <span class="user-icon" [title]="topic.user.username"
                         [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</span>
-                  <span class="ml-2"><small>{{topic.user.username}}</small></span>
+                  <span class="ml-2"><small style="color: #777777">{{topic.user.username}}</small></span>
                 </ng-template>
               </a>
               <div class="ml-auto">
