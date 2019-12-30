@@ -12,9 +12,9 @@
         <div style="margin: 0 auto;">
           <div class="text-content" *ngIf="!getImg(topic)">
             <div class="card-text-content" [innerHTML]="topic.mainPost.content" style="overflow : hidden;
-            text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 8;-webkit-box-orient: vertical;"></div>
-            <hr style="margin-bottom: 0.5rem"/>
+            text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 15;-webkit-box-orient: vertical;"></div>
           </div>
+          <hr style="margin-bottom: 0.5rem" *ngIf="!getImg(topic)"/>
           <div class="title">
             <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
           </div>
