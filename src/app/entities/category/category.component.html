@@ -4,12 +4,12 @@
       <a>
         <div class="card-body">
           <div *ngIf="getImg(topic)"  class="card-img">
-            <img [src]="getImg(topic)" alt="" style="width: 285px;">
+            <img [src]="getImg(topic)" alt="" style="width: 100%">
           </div>
         </div>
       </a>
       <a class="card-footer">
-        <div style="width: 235px; margin: 0 auto;">
+        <div style="margin: 0 auto;">
           <div class="text-content" *ngIf="!getImg(topic)">
             <div class="card-text-content" [innerHTML]="topic.mainPost.content" style="overflow : hidden;
             text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 15;-webkit-box-orient: vertical;"></div>
