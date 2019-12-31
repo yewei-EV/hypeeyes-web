@@ -9,6 +9,7 @@ import { SlidersModule } from './sliders/sliders.module';
 import { UgcTabComponent } from './ugc-tab/ugc-tab.component';
 import { CategoryModule } from '../entities/category/category.module';
 import { TopicListModule } from './topic-list/topic-list.module';
+import { UgcTabHomePageComponent } from './ugc-tab-home-page/ugc-tab-home-page.component';
 
 @NgModule({
   imports: [
@@ -22,12 +23,14 @@ import { TopicListModule } from './topic-list/topic-list.module';
     CategoryCardComponent,
     CategoryTabComponent,
     UgcTabComponent,
-    SlidersModule
+    SlidersModule,
+    UgcTabHomePageComponent
   ],
   declarations: [
     CategoryCardComponent,
     CategoryTabComponent,
     UgcTabComponent,
+    UgcTabHomePageComponent,
     TopicCardComponent,
     TopicInfiniteScrollComponent,
   ]
