@@ -25,7 +25,7 @@
       <ng-template  ngbTabContent style="margin-top: 20px" >
         <hr class="m-0 mb-3">
         <div *ngIf="category.name === '晒图区' || category.name === '潮目社区' else topicList">
-          <app-category [categoryId]="category.cid" [sortType]="sortType"></app-category>
+          <app-category [categoryId]="category.cid" [sortType]="sortType" [loadManually]="false"></app-category>
         </div>
         <ng-template #topicList>
           <app-topic-list-ugc [category]="category" [pageNumber]="0" [topicNumberPerPage]="100" [showAllPreviews]=true [sortType]="sortType"></app-topic-list-ugc>

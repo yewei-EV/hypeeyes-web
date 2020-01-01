@@ -15,6 +15,7 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 export class CategoryComponent implements OnInit {
 
   @Input() categoryId: number;
+  @Input() loadManually: boolean;
   @Input() set sortType(value: string) {
     if (value && value === this._oldSortType) {
       return;
@@ -35,7 +36,7 @@ export class CategoryComponent implements OnInit {
   _oldSortType: string;
   start = 0;
   topicFinished = false;
-  pageSize = 12;
+  pageSize = 8;
   gettingTopic = false;
   footerHeight = 100;
   masonryOptions: NgxMasonryOptions = {
@@ -51,7 +52,7 @@ export class CategoryComponent implements OnInit {
 
   async getTopics() {
     if (this.gettingTopic) {
-      return ;
+      return;
     }
     this.gettingTopic = true;
     let cid = this.categoryId;
@@ -71,10 +72,38 @@ export class CategoryComponent implements OnInit {
       this.topicFinished = true;
     }
     this.start += this.pageSize;
-    setTimeout((obj) => {
+    if (!this.loadManually) {
+      setTimeout((obj) => {
         obj.gettingTopic = false;
         obj.fix();
       }, 200, this);
+    } else {
+      this.gettingTopic = false;
+    }
+  }
+  async getTopicsManually() {
+    if (this.gettingTopic) {
+      return;
+    }
+    this.gettingTopic = true;
+    let cid = this.categoryId;
+    if (!cid) {
+      cid = +this.activatedRoute.snapshot.paramMap.get('id');
+    }
+    this.config = await this.configService.getConfig().toPromise();
+    const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, this.start, this.pageSize, this.sortType).toPromise();
+    let topicSize = 0;
+    if (topics && topics.length > 0) {
+      topicSize = topics.length;
+    }
+    if (topicSize) {
+      this.topics = this.topics.concat(topics);
+    }
+    if (topicSize < this.pageSize) {
+      this.topicFinished = true;
+    }
+    this.start += this.pageSize;
+    this.gettingTopic = false;
   }
 
   ngOnInit() {
@@ -95,12 +124,16 @@ export class CategoryComponent implements OnInit {
 
   @HostListener('window:scroll')
   public scrollListener(): void {
-    this.fix();
+    if (!this.loadManually) {
+      this.fix();
+    }
   }
 
   @HostListener('window:resize')
   public resize(): void {
-    this.fix();
+    if (!this.loadManually) {
+      this.fix();
+    }
   }
 
 }
