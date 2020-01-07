@@ -21,7 +21,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
     if (id === 1) {
-      this.bannerPath = '/assets/uploads/category/zixun_banner.png';
+      this.bannerPath = '/assets/uploads/category/miji_banner.png';
     }
     if (id === 4) {
       this.bannerPath = '/assets/uploads/category/baike_banner.png';
