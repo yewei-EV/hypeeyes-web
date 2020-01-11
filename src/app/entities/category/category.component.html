@@ -44,9 +44,9 @@
   </div>
 </ngx-masonry>
 <div *ngIf="loadManually" class="w-100" style="margin-top: 20px">
-  <button *ngIf="!topicFinished" type="button" class="btn m-auto d-block btn-primary text-white" style="background-color: #FF5000"
-          (click)="getTopicsManually()">加载更多</button>
-  <button *ngIf="topicFinished" type="button" class="btn m-auto d-block btn-primary text-white" style="background-color: gray">
+  <button *ngIf="!topicFinished" class="btn m-auto d-block" style="color: #F8BD2C; font-size: 1.2rem"
+          (click)="getTopicsManually()">查看更多<i class="fa fa-angle-right ml-2" style="font-size:21px"></i></button>
+  <button *ngIf="topicFinished" class="btn m-auto d-block" style="color: gray">
           没有更多</button>
 </div>
 <div *ngIf="gettingTopic && !loadManually" style="margin: auto; width: 50px; font-size: 2.5rem; color:gray;"><i class="fa fa-spinner fa-pulse"></i></div>

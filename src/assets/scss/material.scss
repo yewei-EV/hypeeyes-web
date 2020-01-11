@@ -12,14 +12,14 @@ a {
   color: #1d1d1d;
   &:hover {
     text-decoration: none;
-    color: #FF5000;
+    color: #F8BD2C;
   }
 }
 html {
   font-size: 16px;
 }
 body {
-  background-color: #edf1f4;
+  background-color: #f9f9f9;
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   overflow:hidden;
 }
@@ -28,6 +28,7 @@ body {
   overflow: hidden;
   border-radius: 8px;
   border: none;
+  @extend .shadow-sm;
   &:hover {
     @extend .shadow;
   }
@@ -46,13 +47,18 @@ body {
 }
 
 .nav-link {
-  color: #666666;
+  color: #4A4A4A;
+  padding: 0.5rem 0.5rem;
+}
+
+.nav-link-reverse {
+  color: white;
   padding: 0.5rem 0.5rem;
 }
 
 .nav-link.active {
-  color: #FF5000;
-  border-bottom: #FF5000 solid;
+  color: #F8BD2C;
+  border-bottom: #F8BD2C solid;
 }
 
 .container {

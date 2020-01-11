@@ -14,7 +14,13 @@
 }
 .ugc-tab-set {
   font-weight: 500;
-  color: #333333;
+  ::ng-deep .nav-link {
+    color: white;
+  }
+  ::ng-deep .nav-link.active {
+    color: #F8BD2C;
+    border-bottom: #F8BD2C solid;
+  }
 }
 #dropdownBasic1 {
   color: #333333;

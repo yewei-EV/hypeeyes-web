@@ -20,9 +20,9 @@
   </div>
 
   <ngb-tabset class="ugc-tab-set" [justify]="topicListInfo?.showTitle? 'end':'start'" type="">
-    <ngb-tab *ngFor="let category of categories" [title]="category.name == categories[0].name ? '🔥最热' : category.name">
+    <ngb-tab *ngFor="let category of categories" [title]="category.name == categories[0].name ? '最热' : category.name">
       <ng-template  ngbTabContent style="margin-top: 20px" >
-        <hr class="m-0 mb-3">
+        <div class="mb-3"></div>
           <app-category [categoryId]="category.cid" [sortType]="sortType" [loadManually]="true"></app-category>
       </ng-template>
     </ngb-tab>

@@ -1,8 +1,7 @@
 <div class="position-relative section" *ngIf="categories?.length > 0">
   <div class="position-absolute" *ngIf="topicListInfo?.showTitle != false">
     <div class="category">
-      <a target="_blank"  [href]="'/custom/categories/' + categories[0].cid + '/'">{{categories[0].name}}</a>
-      <a class="ml-2 nav-link browse-all" style="padding: 0;" target="_blank"  [href]="'/custom/categories/' + categories[0].cid + '/'"><small>浏览全部</small></a>
+      <a style="background-color: #F8BD2C" target="_blank"  [href]="'/custom/categories/' + categories[0].cid + '/'">{{categories[0].name}}</a>
     </div>
     <hr style="width: 5rem; border: 1px solid black; margin-top: 0.5rem; margin-left: 0;">
   </div>
@@ -15,11 +14,12 @@
   <ngb-tabset [justify]="topicListInfo?.showTitle? 'end':'start'" type="" style="font-weight: 500;">
     <ngb-tab *ngFor="let category of categories" [title]="category.name == categories[0].name ? '精选' : category.name">
       <ng-template ngbTabContent style="margin-top: 20px">
-        <hr class="m-0">
         <app-topic-infinite-scroll [topicListInfo]="topicListInfo" [categoryId]="category.cid"></app-topic-infinite-scroll>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
+  <div style="padding-top: 10px; padding-bottom: 40px"><a class="browse-all" style="font-size: 1rem; color: #F8BD2C" target="_blank"
+  [href]="'/custom/categories/' + categories[0].cid + '/'">查看更多<i class="fa fa-angle-right ml-2" style="font-size:21px"></i></a></div>
 </div>
 
 

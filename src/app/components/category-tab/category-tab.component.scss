@@ -3,6 +3,10 @@
   font-size: 1.25rem;
   color: #1d1d1d;
   padding-top: 4px;
+  a:before {
+    position: fixed;
+    bottom: -10px;
+  }
 }
 @media (max-width: 576px) {
   ::ng-deep .browse-all {
