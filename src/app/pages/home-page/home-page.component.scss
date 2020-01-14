@@ -1,23 +1,58 @@
-.img-wrap {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  position: relative;
-  img {
-    max-width: 100%;
-  }
-  .img-btn {
-    background-color: #ffad03;
-    color: rgb(71, 71, 71);
-    font-weight: bold;
-    border-radius: 15px;
-    padding: 3px 45px;
-    position: absolute;
-    transform: translateX(-50%);
-    left: 50%;
-    bottom: 25%;
-    box-shadow: 0 0 20px #ffc80c;
+//.img-wrap {
+//  padding-top: 40px;
+//  padding-bottom: 40px;
+//  position: relative;
+//  img {
+//    max-width: 100%;
+//  }
+//  .img-btn {
+//    background-color: #ffad03;
+//    color: rgb(71, 71, 71);
+//    font-weight: bold;
+//    border-radius: 15px;
+//    padding: 3px 45px;
+//    position: absolute;
+//    transform: translateX(-50%);
+//    left: 50%;
+//    bottom: 25%;
+//    box-shadow: 0 0 20px #ffc80c;
+//  }
+//}
+.forum-title {
+  text-align: center;
+  a {
+    display: inline-block;
+    font-size: 34px;
+    font-weight: bolder;
+    padding: 0 20px;
+    position: relative;
+    overflow: hidden;
+    &:hover {
+      color: black;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        background-color: black;
+        height: 2px;
+        width: 60%;
+        z-index: -1;
+        left: 20%;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      background-color: #F8BD2C;
+      height: 60%;
+      width: 60%;
+      z-index: -1;
+      left: 20%;
+    }
   }
 }
+
 @media (max-width: 576px) {
   ::ng-deep .justify-content-between {
     justify-content: space-around !important;
