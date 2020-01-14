@@ -24,12 +24,13 @@
     <ngb-tab *ngFor="let category of categories" [title]="category.name == categories[0].name ? '🔥最热' : category.name">
       <ng-template  ngbTabContent style="margin-top: 20px" >
         <div class="mb-3"></div>
-        <div *ngIf="category.name === '晒图区' || category.name === '潮目社区' else topicList">
-          <app-category [categoryId]="category.cid" [sortType]="sortType" [loadManually]="false"></app-category>
-        </div>
-        <ng-template #topicList>
-          <app-topic-list-ugc [category]="category" [pageNumber]="0" [topicNumberPerPage]="100" [showAllPreviews]=true [sortType]="sortType"></app-topic-list-ugc>
-        </ng-template>
+        <app-category [categoryId]="category.cid" [sortType]="sortType" [loadManually]="true"></app-category>
+        <!--        <div *ngIf="category.name === '晒图区' || category.name === '潮目社区' else topicList">-->
+<!--          <app-category [categoryId]="category.cid" [sortType]="sortType" [loadManually]="false"></app-category>-->
+<!--        </div>-->
+<!--        <ng-template #topicList>-->
+<!--          <app-topic-list-ugc [category]="category" [pageNumber]="0" [topicNumberPerPage]="100" [showAllPreviews]=true [sortType]="sortType"></app-topic-list-ugc>-->
+<!--        </ng-template>-->
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
