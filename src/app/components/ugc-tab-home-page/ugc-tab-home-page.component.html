@@ -8,7 +8,7 @@
   </div>
   <div style="float: right" *ngIf="topicListInfo?.showTitle != true">
     <div class="category">
-      <div ngbDropdown>
+      <div ngbDropdown placement="bottom-right" class="d-inline-block">
         <button class="btn" id="dropdownBasic1" ngbDropdownToggle>排序</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem (click)="sendSortType('newest_to_oldest')">按最新回帖排序</button>
