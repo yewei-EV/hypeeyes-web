@@ -14,3 +14,17 @@
   line-height: 1.8;
   box-shadow: none !important;
 }
+@media (max-width: 576px) {
+  ::ng-deep #dropdownBasic1 {
+    font-size: 0.6rem!important;
+    padding: 0!important;
+    line-height: 0!important;
+  }
+  ::ng-deep .nav-link {
+    font-size: 0.6rem!important;
+  }
+  ::ng-deep .img-wrap {
+    padding-bottom: 25px!important;
+  }
+}
+

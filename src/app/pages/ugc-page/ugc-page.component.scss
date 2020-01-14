@@ -1,5 +1,5 @@
 .img-wrap {
-  padding-top: 40px;
+  //padding-top: 40px;
   padding-bottom: 40px;
   position: relative;
   img {
@@ -7,6 +7,9 @@
   }
 }
 @media (max-width: 576px) {
+  ::ng-deep .justify-content-between {
+    justify-content: space-around !important;
+  }
   ::ng-deep #originView {
     display: none;
   }

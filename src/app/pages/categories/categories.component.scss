@@ -13,4 +13,10 @@
   ::ng-deep #originView {
     display: none;
   }
+  ::ng-deep .nav-link {
+    font-size: 0.6rem!important;
+  }
+  ::ng-deep .img-wrap {
+    padding-bottom: 25px!important;
+  }
 }
