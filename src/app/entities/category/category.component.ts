@@ -14,7 +14,7 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 })
 export class CategoryComponent implements OnInit {
 
-  private blockList = '218';
+  private blockList = '';
 
   @Input() categoryId: number;
   @Input() loadManually: boolean;
