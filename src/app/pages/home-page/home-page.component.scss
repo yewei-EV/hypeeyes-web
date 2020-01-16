@@ -82,8 +82,14 @@
   ::ng-deep .category a {
     font-size: 1.2rem!important;
   }
+  ::ng-deep .category {
+    padding-left: 15px!important;
+  }
+  ::ng-deep .nav {
+    margin-right: 10px!important;
+  }
   ::ng-deep .nav-link {
-    font-size: 0.6rem!important;
+    font-size: 0.8rem!important;
   }
   ::ng-deep .slider {
     padding: 0!important;
