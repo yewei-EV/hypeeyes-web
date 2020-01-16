@@ -4,10 +4,8 @@
 .swiper-slide {
   background-position: center;
   background-size: cover;
-  //width: 100vw;
   width: 1200px;
   max-width: 1200px;
-  //height: 33.3vw;
   height: 400px;
   max-height: 400px;
   overflow: hidden;
@@ -17,7 +15,6 @@
 }
 
 .side {
-  //height: 31vw !important;
   height: 360px;
   max-height: 360px!important;
   margin-top: 20px;
@@ -88,5 +85,5 @@
 }
 
 .swiper-pagination-bullets {
-  top: min(29.3vw, 352px);
+  top: min(29.3%, 352px);
 }
