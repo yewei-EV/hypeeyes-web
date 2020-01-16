@@ -54,17 +54,22 @@
 }
 
 @media (max-width: 576px) {
+  .slider {
+    padding: 0!important;
+    width: 100%;
+  }
+
   ::ng-deep .justify-content-between {
     justify-content: space-around !important;
   }
 
   ::ng-deep .swiper-slide {
-    width: 100vw !important;
-    height: 33.3vw !important;
+    width: 100% !important;
+    height: 33.3% !important;
   }
 
   ::ng-deep .swiper-slide-prev, ::ng-deep .swiper-slide-next {
-    height: 33.3vw !important;
+    height: 33.3% !important;
     margin-top: 0 !important;
   }
 
@@ -91,9 +96,7 @@
   ::ng-deep .nav-link {
     font-size: 0.8rem!important;
   }
-  ::ng-deep .slider {
-    padding: 0!important;
-  }
+
   ::ng-deep .wrapper {
     margin-top: 0!important;
   }

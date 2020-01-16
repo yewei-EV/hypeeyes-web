@@ -5,7 +5,7 @@ import { CategoryService } from './category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Config } from '../../shared/models/config';
 import { ConfigService } from '../../shared/service/config.service';
-import { NgxMasonryOptions } from 'ngx-masonry';
+import { NgxMasonryOptions } from '../../shared/components/masonry/ngx-masonry-options';
 
 @Component({
   selector: 'app-category',
@@ -33,6 +33,9 @@ export class CategoryComponent implements OnInit {
     return this._sortType;
   }
   topics: Topic[] = [];
+  queueTopics: Topic[] = [];
+  loadedCount = 1;
+  loadingCount = 0;
   config: Config;
   _sortType: string;
   _oldSortType: string;
@@ -70,7 +73,11 @@ export class CategoryComponent implements OnInit {
       topicSize = filterTopics.length;
     }
     if (topicSize) {
-      this.topics = this.topics.concat(filterTopics);
+      const empty = this.queueTopics.length === 0;
+      this.queueTopics = this.queueTopics.concat(topics);
+      if (empty) {
+        this.getNextTopic(false);
+      }
     }
     if (topicSize < this.pageSize - blockOffset) {
       this.topicFinished = true;
@@ -117,6 +124,19 @@ export class CategoryComponent implements OnInit {
   }
   getImg(topic: Topic) {
     return topic.firstImg;
+  }
+
+  getNextTopic(loaded: boolean) {
+    if (loaded) {
+      if (this.loadedCount > this.loadingCount) {
+        return;
+      }
+      this.loadedCount ++;
+    }
+    if (this.queueTopics.length > 0) {
+        this.topics = this.topics.concat(this.queueTopics.shift());
+        this.loadingCount ++;
+    }
   }
 
   private fix() {

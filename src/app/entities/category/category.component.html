@@ -1,5 +1,5 @@
-<ngx-masonry [options]="masonryOptions" [useImagesLoaded]="true" class="masonry">
-  <div ngxMasonryItem class="masonry-item" *ngFor="let topic of topics">
+<app-masonry [options]="masonryOptions" [useImagesLoaded]="true" class="masonry" (elementAdded)="getNextTopic(true);">
+  <div appMasonryItem class="masonry-item" *ngFor="let topic of topics">
     <a class="card" [href]="topic.getLink(config.relativePath)" itemprop="url" target="_blank">
       <a>
         <div class="card-body">
@@ -42,7 +42,7 @@
       </a>
     </a>
   </div>
-</ngx-masonry>
+</app-masonry>
 <div *ngIf="loadManually" class="w-100" style="margin-top: 20px">
   <button *ngIf="!topicFinished" class="btn m-auto d-block" style="color: #F8BD2C; font-size: 1rem"
           (click)="getTopicsManually()">查看更多<i class="fa fa-angle-right ml-2" style="font-size:21px"></i></button>
