@@ -6,6 +6,9 @@
   .masonry-item {
     width: calc(50% - 10px) !important;
   }
+  .comment-like {
+    display: none;
+  }
 }
 
 .masonry {
@@ -64,7 +67,7 @@
     .text-content {
       font-size: 16px;
       font-weight: 400;
-      max-height: 335px;
+      max-height: 210px;
       line-height: 1.5;
       overflow: hidden;
       text-overflow: ellipsis;

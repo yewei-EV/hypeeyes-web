@@ -14,7 +14,10 @@ import { NgxMasonryOptions } from '../../shared/components/masonry/ngx-masonry-o
 })
 export class CategoryComponent implements OnInit {
 
+  private blockList = '';
+
   @Input() categoryId: number;
+  @Input() loadManually: boolean;
   @Input() set sortType(value: string) {
     if (value && value === this._oldSortType) {
       return;
@@ -38,7 +41,7 @@ export class CategoryComponent implements OnInit {
   _oldSortType: string;
   start = 0;
   topicFinished = false;
-  pageSize = 12;
+  pageSize = 10;
   gettingTopic = false;
   footerHeight = 100;
   masonryOptions: NgxMasonryOptions = {
@@ -54,7 +57,7 @@ export class CategoryComponent implements OnInit {
 
   async getTopics() {
     if (this.gettingTopic) {
-      return ;
+      return;
     }
     this.gettingTopic = true;
     let cid = this.categoryId;
@@ -63,9 +66,11 @@ export class CategoryComponent implements OnInit {
     }
     this.config = await this.configService.getConfig().toPromise();
     const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, this.start, this.pageSize, this.sortType).toPromise();
+    const filterTopics = topics.filter(topic => this.blockList.indexOf(String(topic.tid)) === -1);
+    const blockOffset = topics.length - filterTopics.length;
     let topicSize = 0;
-    if (topics && topics.length > 0) {
-      topicSize = topics.length;
+    if (filterTopics && filterTopics.length > 0) {
+      topicSize = filterTopics.length;
     }
     if (topicSize) {
       const empty = this.queueTopics.length === 0;
@@ -74,14 +79,44 @@ export class CategoryComponent implements OnInit {
         this.getNextTopic(false);
       }
     }
-    if (topicSize < this.pageSize) {
+    if (topicSize < this.pageSize - blockOffset) {
       this.topicFinished = true;
     }
-    this.start += this.pageSize;
-    setTimeout((obj) => {
+    this.start += (this.pageSize);
+    if (!this.loadManually) {
+      setTimeout((obj) => {
         obj.gettingTopic = false;
         obj.fix();
       }, 200, this);
+    } else {
+      this.gettingTopic = false;
+    }
+  }
+  async getTopicsManually() {
+    if (this.gettingTopic) {
+      return;
+    }
+    this.gettingTopic = true;
+    let cid = this.categoryId;
+    if (!cid) {
+      cid = +this.activatedRoute.snapshot.paramMap.get('id');
+    }
+    this.config = await this.configService.getConfig().toPromise();
+    const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, this.start, this.pageSize, this.sortType).toPromise();
+    const filterTopics = topics.filter(topic => this.blockList.indexOf(String(topic.tid)) === -1);
+    const blockOffset = topics.length - filterTopics.length;
+    let topicSize = 0;
+    if (filterTopics && filterTopics.length > 0) {
+      topicSize = filterTopics.length;
+    }
+    if (topicSize) {
+      this.topics = this.topics.concat(filterTopics);
+    }
+    if (topicSize < this.pageSize - blockOffset) {
+      this.topicFinished = true;
+    }
+    this.start += this.pageSize;
+    this.gettingTopic = false;
   }
 
   ngOnInit() {
@@ -115,12 +150,16 @@ export class CategoryComponent implements OnInit {
 
   @HostListener('window:scroll')
   public scrollListener(): void {
-    this.fix();
+    if (!this.loadManually) {
+      this.fix();
+    }
   }
 
   @HostListener('window:resize')
   public resize(): void {
-    this.fix();
+    if (!this.loadManually) {
+      this.fix();
+    }
   }
 
 }

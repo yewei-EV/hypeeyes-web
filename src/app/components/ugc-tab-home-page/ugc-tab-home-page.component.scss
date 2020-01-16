@@ -1,3 +1,12 @@
+@media (max-width: 576px) {
+  .ugc-tab-set {
+    font-size: 12px;
+  }
+  #dropdownBasic1 {
+    display: none;
+    //font-size: 12px;
+  }
+}
 .category {
   display: flex;
   font-size: 1.25rem;
@@ -5,10 +14,16 @@
 }
 .ugc-tab-set {
   font-weight: 500;
-  color: #333333;
+  ::ng-deep .nav-link {
+    color: white;
+  }
+  ::ng-deep .nav-link.active {
+    color: #F8BD2C;
+    border-bottom: #F8BD2C solid;
+  }
 }
 #dropdownBasic1 {
-  color: #333333;
+  color: white;
   border-color: transparent;
   padding: 0.5rem 1rem;
   line-height: 1.8;

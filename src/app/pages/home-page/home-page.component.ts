@@ -50,7 +50,7 @@ export class HomePageComponent implements OnInit {
 
   private async getCategoryList() {
     const categoryNameLists = [
-      ['发售资讯', 'Nike', 'Adidas', 'Supreme', 'Kith'],
+      ['潮目秘籍', '线上抢购', '线下购买', '鉴定教学'],
       ['潮流百科', '人物', '品牌'],
       ['美图细赏', '球鞋', '潮服', '上身驾驭'],
     ];

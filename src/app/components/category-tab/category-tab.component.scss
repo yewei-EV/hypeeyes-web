@@ -1,8 +1,45 @@
 .category {
-  display: flex;
-  font-size: 1.25rem;
-  color: #1d1d1d;
-  padding-top: 4px;
+  //display: flex;
+  //font-size: 1.25rem;
+  //color: #1d1d1d;
+  //padding-top: 4px;
+  //a:before {
+  //  position: fixed;
+  //  bottom: -10px;
+  //}
+  a {
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bolder;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 10px;
+    &:hover {
+      color: black;
+      &::after {
+        left: 0;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        background-color: black;
+        height: 2px;
+        width: 100%;
+        z-index: -1;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      background-color: #F8BD2C;
+      height: 60%;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+}
+::ng-deep .nav {
+  margin-bottom: 10px;
 }
 @media (max-width: 576px) {
   ::ng-deep .browse-all {

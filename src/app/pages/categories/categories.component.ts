@@ -21,13 +21,13 @@ export class CategoriesComponent implements OnInit {
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
     if (id === 1) {
-      this.bannerPath = '/assets/uploads/category/zixun_banner.png';
+      this.bannerPath = '/assets/uploads/category/miji.png';
     }
     if (id === 4) {
-      this.bannerPath = '/assets/uploads/category/baike_banner.png';
+      this.bannerPath = '/assets/uploads/category/baike.png';
     }
     if (id === 8) {
-      this.bannerPath = '/assets/uploads/category/xishang_banner.png';
+      this.bannerPath = '/assets/uploads/category/xishang.png';
     }
     this.categoryService.getAllCategories().subscribe(categories => {
       for (const category of categories) {
