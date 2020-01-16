@@ -28,7 +28,6 @@
     "merge-jsons-webpack-plugin": "^1.0.19",
     "moment": "^2.24.0",
     "ngx-infinite-scroll": "^8.0.1",
-    "ngx-masonry": "^1.1.4",
     "ngx-swiper-wrapper": "^8.0.2",
     "rxjs": "~6.4.0",
     "swiper": "^4.5.0",
