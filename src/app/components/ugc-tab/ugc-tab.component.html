@@ -24,7 +24,7 @@
     <ngb-tab *ngFor="let category of categories" [title]="category.name == categories[0].name ? '🔥最热' : category.name">
       <ng-template  ngbTabContent style="margin-top: 20px" >
         <div class="mb-3"></div>
-        <app-category [categoryId]="category.cid" [sortType]="sortType" [loadManually]="true"></app-category>
+        <app-category [categoryId]="category.cid" [sortType]="sortType" [loadManually]="loadManually"></app-category>
         <!--        <div *ngIf="category.name === '晒图区' || category.name === '潮目社区' else topicList">-->
 <!--          <app-category [categoryId]="category.cid" [sortType]="sortType" [loadManually]="false"></app-category>-->
 <!--        </div>-->

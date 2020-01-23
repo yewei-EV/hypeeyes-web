@@ -1,31 +1,30 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { Category, Topic, TopicListInfo } from '../../shared/models';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Category, TopicListInfo } from '../../shared/models';
 import { CategoryService } from '../../entities/category/category.service';
 import { Constant } from '../../shared';
 
 @Component({
-  selector: 'app-ugc-tab-home',
-  templateUrl: './ugc-tab-home-page.component.html',
-  styleUrls: ['./ugc-tab-home-page.component.scss']
+  selector: 'app-ugc-mobile-page',
+  templateUrl: './ugc-mobile-page.component.html',
+  styleUrls: ['./ugc-mobile-page.component.scss']
 })
-export class UgcTabHomePageComponent implements OnInit {
+export class UgcMobilePageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private categoryService: CategoryService) { }
 
-  @Input() loadManually: boolean;
   categories: Category[] = [];
   topicListInfo: TopicListInfo;
-  sortType = 'newest_to_oldest';
+  linePerPage = 3;
 
   ngOnInit() {
-    const id = 12;
+    const id = +this.route.snapshot.paramMap.get('id');
     this.categoryService.getAllCategories().subscribe(categories => {
       for (const category of categories) {
         if (category.cid === id) {
           this.topicListInfo = Constant.topicListInfoMap.get(category.name);
           this.topicListInfo.showTitle = false;
-          this.topicListInfo.line = 3;
+          this.topicListInfo.line = this.linePerPage;
           delete this.topicListInfo.maxItems;
         }
         if (category.cid === id || category.parentCid === id) {
@@ -34,7 +33,5 @@ export class UgcTabHomePageComponent implements OnInit {
       }
     });
   }
-  sendSortType(type: string) {
-    this.sortType = type;
-  }
+
 }

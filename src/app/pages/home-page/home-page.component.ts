@@ -45,6 +45,7 @@ export class HomePageComponent implements OnInit {
     speed: 1000,
   };
   sliderDataArray: SliderData[] = [];
+  mouseIndex: number;
 
   constructor(private categoryService: CategoryService, private topicService: TopicService) { }
 

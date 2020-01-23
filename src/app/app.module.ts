@@ -20,6 +20,7 @@ import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { UgcPageComponent } from './pages/ugc-page/ugc-page.component';
+import { UgcMobilePageComponent } from './pages/ugc-mobile-page/ugc-mobile-page.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -46,6 +47,7 @@ const routes: Route[] = [
   {path: '', component: HomePageComponent},
   {path: 'categories/:id', component: CategoriesComponent},
   {path: 'ugc/:id', component: UgcPageComponent},
+  {path: 'ugcMobile/:id', component: UgcMobilePageComponent},
 ];
 
 @NgModule({
