@@ -1,0 +1,41 @@
+.category {
+  display: flex;
+  font-size: 1.25rem;
+  color: #1d1d1d;
+}
+.ugc-tab-set {
+  ::ng-deep ul {
+    margin-left: 10px;
+  }
+  ::ng-deep .nav-link {
+    font-weight: 500;
+    font-size: 1rem!important;
+    color: #666666!important;
+  }
+  ::ng-deep .nav-link.active {
+    color: #F8BD2C!important;
+    border-bottom: none!important;
+  }
+}
+
+#dropdownBasic1 {
+  color: #333333;
+  border-color: transparent;
+  padding: 0.5rem 1rem;
+  line-height: 1.8;
+  box-shadow: none !important;
+}
+@media (max-width: 576px) {
+  ::ng-deep #dropdownBasic1 {
+    font-size: 0.6rem!important;
+    padding: 0!important;
+    line-height: 0!important;
+  }
+  ::ng-deep .nav-link {
+    font-size: 0.8rem!important;
+  }
+  ::ng-deep .img-wrap {
+    padding-bottom: 25px!important;
+  }
+}
+

@@ -1,0 +1,52 @@
+<app-masonry [options]="masonryOptions" [useImagesLoaded]="true" class="masonry" (elementAdded)="getNextTopic(true);">
+  <div appMasonryItem class="masonry-item" *ngFor="let topic of topics">
+    <a class="card" (click)=sendMessage(topic.tid)>
+      <a>
+        <div class="card-body">
+          <div *ngIf="getImg(topic)"  class="card-img">
+            <img [src]="getImg(topic)" alt="" style="width: 100%">
+          </div>
+        </div>
+      </a>
+      <a class="card-footer">
+        <div style="margin: 0 auto;">
+          <div class="text-content" *ngIf="!getImg(topic)">
+            <div class="card-text-content" [innerHTML]="topic.mainPost.content" style="overflow : hidden;
+            text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 8;-webkit-box-orient: vertical;"></div>
+          </div>
+          <hr style="margin-bottom: 0.5rem" *ngIf="!getImg(topic)"/>
+          <div class="title">
+            <a (click)=sendMessage(topic.tid)>{{topic.title}}</a>
+          </div>
+          <div>
+            <div class="user-info">
+              <a [href]="topic.user.getLink(config.relativePath)" target="_blank">
+                <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
+                  <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
+                       [title]="topic.user.username"/>
+                  <span class="ml-2"><small style="color: #777777">{{topic.user.username}}</small></span>
+                </ng-container>
+                <ng-template #userNoIcon>
+                  <span class="user-icon" [title]="topic.user.username"
+                        [style.background-color]="topic.user.iconBgColor">{{topic.user.iconText}}</span>
+                  <span class="ml-2"><small style="color: #777777">{{topic.user.username}}</small></span>
+                </ng-template>
+              </a>
+              <div class="ml-auto comment-like">
+                <i class="fa fa-commenting-o mr-1"></i><small class="mr-2">{{topic.postCount-1}}</small>
+                <i class="fa fa-heart-o mr-1"></i><small>{{topic.votes}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </a>
+  </div>
+</app-masonry>
+<div *ngIf="loadManually" class="w-100" style="margin-top: 20px">
+  <button *ngIf="!topicFinished" class="btn m-auto d-block" style="color: #F8BD2C; font-size: 1rem"
+          (click)="getTopicsManually()">查看更多<i class="fa fa-angle-right ml-2" style="font-size:21px"></i></button>
+  <button *ngIf="topicFinished" class="btn m-auto d-block" style="color: gray">
+          没有更多</button>
+</div>
+<div *ngIf="gettingTopic && !loadManually" style="margin: auto; width: 50px; font-size: 2.5rem; color:gray;"><i class="fa fa-spinner fa-pulse"></i></div>

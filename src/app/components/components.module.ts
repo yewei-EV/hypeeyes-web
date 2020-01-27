@@ -10,6 +10,8 @@ import { UgcTabComponent } from './ugc-tab/ugc-tab.component';
 import { CategoryModule } from '../entities/category/category.module';
 import { TopicListModule } from './topic-list/topic-list.module';
 import { UgcTabHomePageComponent } from './ugc-tab-home-page/ugc-tab-home-page.component';
+import { UgcTabMobileComponent } from './ugc-tab-mobile/ugc-tab-mobile.component';
+import { CategoryMobileModule } from '../entities/category-mobile/category-mobile.module';
 
 @NgModule({
   imports: [
@@ -18,18 +20,21 @@ import { UgcTabHomePageComponent } from './ugc-tab-home-page/ugc-tab-home-page.c
     SlidersModule,
     CategoryModule,
     TopicListModule,
+    CategoryMobileModule,
   ],
   exports: [
     CategoryCardComponent,
     CategoryTabComponent,
     UgcTabComponent,
+    UgcTabMobileComponent,
     SlidersModule,
-    UgcTabHomePageComponent
+    UgcTabHomePageComponent,
   ],
   declarations: [
     CategoryCardComponent,
     CategoryTabComponent,
     UgcTabComponent,
+    UgcTabMobileComponent,
     UgcTabHomePageComponent,
     TopicCardComponent,
     TopicInfiniteScrollComponent,

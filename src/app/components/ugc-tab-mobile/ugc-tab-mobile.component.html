@@ -1,0 +1,12 @@
+<div class="position-relative section" *ngIf="categories?.length > 0">
+  <ngb-tabset class="ugc-tab-set" [justify]="topicListInfo?.showTitle? 'end':'start'" type="">
+    <ngb-tab *ngFor="let category of categories" [title]="category.name == categories[0].name ? '推荐' : category.name">
+      <ng-template  ngbTabContent style="margin-top: 20px" >
+        <div class="mb-3"></div>
+        <app-category-mobile [categoryId]="category.cid" [sortType]="sortType" [loadManually]="loadManually"></app-category-mobile>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>
+
+
