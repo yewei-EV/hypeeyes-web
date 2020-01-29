@@ -85,5 +85,11 @@
 }
 
 .swiper-pagination-bullets {
-  top: min(29.3%, 352px);
+  top: 88%
+}
+
+@include media-breakpoint-down(xs) {
+  .swiper-pagination-bullets {
+    top: 78% !important;
+  }
 }
