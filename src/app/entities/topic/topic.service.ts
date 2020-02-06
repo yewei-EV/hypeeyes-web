@@ -19,13 +19,6 @@ export class TopicService {
     return this.http.get<Topic>(`${this.url}/${id}`).pipe(map(topic => Topic.convert(topic)));
   }
 
-  getByIds(ids: number[]): Observable<Topic[]> {
-    const queryString = ids.map(id => 'id=' + id).join('&');
-    console.log(`${this.url}/byIds?${queryString}`);
-    return this.http.get<Topic[]>(`${this.url}/byIds?${queryString}`).pipe(map(topics =>
-      topics.map(topic => Topic.convert(topic))));
-  }
-
   getMainPostByTid(id: number): Observable<Post> {
     return this.http.get<Post>(`${this.url}/${id}/mainPost`).pipe(map(post => Post.convert(post)));
   }
