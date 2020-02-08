@@ -20,7 +20,7 @@
           </div>
           <div>
             <div class="user-info">
-              <a [href]="topic.user.getLink(config.relativePath)" target="_blank">
+              <a>
                 <ng-container *ngIf="topic?.user?.picture; else userNoIcon">
                   <img class="user-avatar" [src]="topic.user.picture" [alt]="topic.user.username"
                        [title]="topic.user.username"/>
