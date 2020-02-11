@@ -65,7 +65,7 @@ export class UgcMobilePageComponent implements OnInit {
   }
 
   private async getSliderData(cid: number) {
-    const tid = [248, 215, 230, 176];
+    const tid = [176, 230, 215, 248];
     const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, 0, 7, 'newest_to_oldest').toPromise();
     for (const topic of topics) {
       const sliderData = new SliderData();

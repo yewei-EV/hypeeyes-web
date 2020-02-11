@@ -22,7 +22,7 @@ export class HomePageComponent implements OnInit {
   sliderConfig: SwiperConfigInterface = {
     direction: 'horizontal',
     loop: true,
-    initialSlide: 2,
+    initialSlide: 0,
     slidesPerView: 'auto',
     keyboard: false,
     mousewheel: false,
@@ -100,7 +100,7 @@ export class HomePageComponent implements OnInit {
 
   private async getSliderData(cid: number) {
     // To update ugc-mobile-page.components.ts as well
-    const tid = [248, 215, 230, 176];
+    const tid = [176, 230, 215, 248];
     const topics = await this.categoryService.getTopicsWithMainPostInfoByCid(cid, 0, 7, 'newest_to_oldest').toPromise();
     for (const topic of topics) {
       const sliderData = new SliderData();
