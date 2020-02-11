@@ -20,7 +20,7 @@ export class UgcMobilePageComponent implements OnInit {
   sliderConfig: SwiperConfigInterface = {
     direction: 'horizontal',
     loop: true,
-    initialSlide: 2,
+    initialSlide: 0,
     slidesPerView: 'auto',
     keyboard: false,
     mousewheel: false,
