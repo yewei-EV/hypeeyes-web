@@ -17,11 +17,11 @@
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-  <div *ngIf="topicListInfo?.showTitle == true" style="padding-top: 10px; padding-bottom: 40px">
+  <div *ngIf="topicListInfo?.showTitle == true" style="padding-top: 10px; padding-bottom: 60px">
     <a class="browse-all" style="font-size: 1rem; float: left; color: #F8BD2C" target="_blank" [href]="'/custom/categories/' + categories[0].cid + '/'">查看更多
       <i class="fa fa-angle-right ml-2" style="font-size:21px"></i>
     </a>
-    <a class="browse-all" style="font-size: 1rem; float: right; color: #F8BD2C">换一批
+    <a (click)="clickRefresh()" class="refresh" style="font-size: 1rem; float: right; color: #F8BD2C; cursor: pointer">换一换
       <i class="fa fa-refresh ml-2" style="font-size:16px"></i>
     </a>
   </div>

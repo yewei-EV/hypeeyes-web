@@ -56,4 +56,19 @@ export class TopicInfiniteScrollComponent implements OnInit {
         this.start += topics.length;
       });
   }
+  refresh() {
+    this.categoryService
+      .getTopicsByCid(this.categoryId, this.start, this.topicListInfo.itemNumberPerLine * this.topicListInfo.line, 'newest_to_oldest')
+      .subscribe(topics => {
+        if (topics.length === 0) {
+          this.start = 0;
+        } else {
+          this.topics = topics;
+          this.start = this.start += this.topicListInfo.itemNumberPerLine * this.topicListInfo.line;
+          if (topics.length < this.topicListInfo.itemNumberPerLine * this.topicListInfo.line) {
+            this.start = 0;
+          }
+        }
+      });
+  }
 }
