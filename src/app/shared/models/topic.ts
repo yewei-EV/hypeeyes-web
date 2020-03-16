@@ -1,7 +1,7 @@
 import { User } from './user';
 import * as moment from 'moment';
 import { Post } from './post';
-import { Constant } from '../constant';
+import { Tag } from './tag';
 
 export class Topic {
   firstImg: string;
@@ -18,6 +18,7 @@ export class Topic {
   uid: number;
   thumb: string;
   mainPost: Post;
+  tags: Tag[];
 
   upVotes: number;
   downVotes: number;
