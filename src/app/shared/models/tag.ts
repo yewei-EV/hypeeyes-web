@@ -1,4 +1,3 @@
-
 export class Tag {
   value: string;
   valueEscaped: string;

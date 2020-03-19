@@ -1,0 +1,95 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 1200px;
+  max-width: 1200px;
+  height: 400px;
+  max-height: 400px;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+
+.side {
+  height: 360px;
+  max-height: 360px!important;
+  margin-top: 20px;
+  filter: brightness(50%);
+  box-shadow: $box-shadow;
+}
+
+.swiper-slide-prev {
+  @extend .side;
+  div:after {
+    right: 0;
+  }
+}
+
+.swiper-slide-next {
+  @extend .side;
+}
+
+.swiper-container {
+  overflow: initial;
+  margin-bottom: 45px;
+}
+
+.swiper-slide-active {
+  box-shadow: $box-shadow;
+  &:hover {
+    box-shadow: $box-shadow-lg;
+  }
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.swiper-button-prev {
+  transition: all 0.6s ease 0s !important;
+  visibility: hidden;
+  opacity: 0;
+  background-size: 15px 40px !important;
+  left: 20%;
+  background-color: rgba(0,0,0,0.4) !important;
+  width: 60px;
+  height: 60px;
+  border-radius: 50% !important;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 27 44'%3E%3Cpath d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z' fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E") !important;
+}
+
+
+.swiper-button-next {
+  transition: all 0.6s ease 0s !important;
+  visibility: hidden;
+  opacity: 0;
+  background-size: 15px 40px !important;
+  right: 20%;
+  background-color: rgba(0,0,0,0.4) !important;
+  width: 60px;
+  height: 60px;
+  border-radius: 50% !important;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 27 44'%3E%3Cpath d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z' fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E") !important;
+}
+
+.swiper-container:hover .swiper-button-prev, .swiper-container:hover .swiper-button-next  {
+  opacity: 1 !important;
+  transition: all 1s ease 0s !important;
+  visibility: visible !important;
+}
+
+.swiper-pagination-bullets {
+  top: 88%
+}
+
+@include media-breakpoint-down(xs) {
+  .swiper-pagination-bullets {
+    top: 78% !important;
+  }
+}

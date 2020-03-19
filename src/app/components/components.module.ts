@@ -12,6 +12,8 @@ import { TopicListModule } from './topic-list/topic-list.module';
 import { UgcTabHomePageComponent } from './ugc-tab-home-page/ugc-tab-home-page.component';
 import { UgcTabMobileComponent } from './ugc-tab-mobile/ugc-tab-mobile.component';
 import { CategoryMobileModule } from '../entities/category-mobile/category-mobile.module';
+import { DefaultSliderMobileComponent } from './sliders-mobile/default-slider-mobile.component';
+import { SwiperModule } from 'ngx-swiper-wrapper';
 
 @NgModule({
   imports: [
@@ -21,12 +23,14 @@ import { CategoryMobileModule } from '../entities/category-mobile/category-mobil
     CategoryModule,
     TopicListModule,
     CategoryMobileModule,
+    SwiperModule,
   ],
   exports: [
     CategoryCardComponent,
     CategoryTabComponent,
     UgcTabComponent,
     UgcTabMobileComponent,
+    DefaultSliderMobileComponent,
     SlidersModule,
     UgcTabHomePageComponent,
   ],
@@ -35,6 +39,7 @@ import { CategoryMobileModule } from '../entities/category-mobile/category-mobil
     CategoryTabComponent,
     UgcTabComponent,
     UgcTabMobileComponent,
+    DefaultSliderMobileComponent,
     UgcTabHomePageComponent,
     TopicCardComponent,
     TopicInfiniteScrollComponent,
