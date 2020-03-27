@@ -8,7 +8,16 @@
     </a>
     <a class="card-footer" [href]="topic.getLink(config.relativePath)" target="_blank">
         <div class="title">
-            <a [href]="topic.getLink(config.relativePath)" target="_blank">{{topic.title}}</a>
+            <a *ngIf="topic.containTag(topic?.tags) else normalTopic"
+              [href]="topic.getLink(config.relativePath)" target="_blank">
+              <span class="promotion-tag">编辑精选</span>
+              {{topic.title}}
+            </a>
+            <ng-template #normalTopic>
+              <a [href]="topic.getLink(config.relativePath)" target="_blank">
+                {{topic.title}}
+              </a>
+            </ng-template>
         </div>
         <div>
             <div class="user-info">

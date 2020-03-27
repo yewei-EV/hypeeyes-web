@@ -43,4 +43,8 @@ export class Topic {
     return relativePath + '/topic/' + this.slug + '/' + this.tid;
   }
 
+  containTag(tags: Tag[]) {
+    return tags.find(e => e.value === '编辑精选');
+  }
+
 }

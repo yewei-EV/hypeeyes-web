@@ -42,7 +42,7 @@ export class HomePageComponent implements OnInit {
     observer: true,
     centeredSlides: true,
     observeParents: true,
-    speed: 1000,
+    speed: 600,
   };
   sliderDataArray: SliderData[] = [];
   mouseIndex: number;

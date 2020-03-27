@@ -28,6 +28,22 @@
   .title {
     height: 4em;
   }
+  .promotion-tag {
+    font-size: 12px;
+    line-height: 20px;
+    height: 20px;
+    padding: 0 8px;
+    text-align: center;
+    color: black;
+    background: #F8BD2C;
+    opacity: 0.9;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    border-radius: 10px;
+    min-width: 28px;
+  }
+
 }
 
 @import "../../../assets/scss/bootstrap-interface";

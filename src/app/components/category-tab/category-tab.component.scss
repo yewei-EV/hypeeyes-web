@@ -38,9 +38,6 @@
     }
   }
 }
-::ng-deep .nav {
-  margin-bottom: 10px;
-}
 @media (max-width: 576px) {
   ::ng-deep .browse-all {
     display: none !important;
